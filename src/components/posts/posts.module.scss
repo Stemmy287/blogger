@@ -1,0 +1,10 @@
+.select {
+  display: flex;
+  justify-content: flex-end;
+}
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 15px;
+  row-gap: 30px;
+}

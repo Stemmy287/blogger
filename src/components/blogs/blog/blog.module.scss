@@ -1,0 +1,45 @@
+@import "../../../common/styles/sass/mixns";
+
+.blogContainer {
+  display: flex;
+  .photo {
+    img {
+      width: 156px;
+      height: 156px;
+      background-color: white;
+      border-radius: 50%;
+      border: 1px solid #DEDBDC;
+    }
+  }
+
+  .content {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    .navBlog{
+      text-decoration: none;
+      .title {
+        margin: 0;
+        @include text(600, 18px, 24px);
+        color: $secondFontColor;
+      }
+    }
+    .website {
+      margin-bottom: 20px;
+      @include text(400, 14px, 24px);
+      color: #3677F7;
+
+      b {
+        font-weight: 400;
+        color: $fontColor;
+      }
+
+      a {
+        color: #3677F7;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+

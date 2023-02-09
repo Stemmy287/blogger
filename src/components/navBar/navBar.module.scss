@@ -1,0 +1,31 @@
+@import "../../common/styles/sass/variables";
+@import "../../common/styles/sass/mixns";
+
+.navBarContainer {
+  background-color: $secondBGColor;
+  width: 292px;
+  display: flex;
+  flex-direction: column;
+
+  .navLinks {
+    margin: 50px 0 0 63px;
+
+    .navLink {
+      display: flex;
+      text-decoration: none;
+      color: #000;
+      margin-bottom: 25px;
+
+      span {
+        @include text(400, 14px, 24px);
+        margin-left: 15px;
+      }
+      .square {
+        position: relative;
+        top: 3px;
+      }
+    }
+  }
+
+
+}

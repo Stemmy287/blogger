@@ -1,0 +1,11 @@
+@import "../../../common/styles/sass/variables";
+@import "../../../common/styles/sass/mixns";
+
+.blogPageContainer {
+  .banner {
+    background-color: white;
+    height: 312px;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}
