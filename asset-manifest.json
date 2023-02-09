@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/blogger/static/css/main.8908a2cd.css",
+    "main.js": "/blogger/static/js/main.772553a1.js",
+    "static/js/787.28cb0dcd.chunk.js": "/blogger/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/blogger/index.html",
+    "static/media/BurgerMenu.svg": "/blogger/static/media/BurgerMenu.29048fb5b611d495972b6b6117f6726e.svg",
+    "static/media/SquareMenu.svg": "/blogger/static/media/SquareMenu.86e2a3544ed1aa2009b733af27e2a8a9.svg",
+    "static/media/arrowBackLink.svg": "/blogger/static/media/arrowBackLink.d017553fc0a9c2a4f92534db46f5e911.svg",
+    "static/media/arrow.svg": "/blogger/static/media/arrow.415c311a5b9f4595f3e917488a440dff.svg",
+    "main.8908a2cd.css.map": "/blogger/static/css/main.8908a2cd.css.map",
+    "main.772553a1.js.map": "/blogger/static/js/main.772553a1.js.map",
+    "787.28cb0dcd.chunk.js.map": "/blogger/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8908a2cd.css",
+    "static/js/main.772553a1.js"
+  ]
+}
