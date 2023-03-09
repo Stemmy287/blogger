@@ -1,0 +1,18 @@
+@import "../../../styles/sass/mixns";
+@import "../../../styles/sass/variables";
+
+.select {
+  margin-bottom: 30px;
+  height: 40px;
+  margin-left: 12px;
+  width: 25.7%;
+  border: 1px solid #DEDBDC;
+  border-radius: 3px;
+  background: transparent;
+  padding-left: 10px;
+  @include text(400, 14px, 24px);
+  .option {
+    background-color: $mainColor;
+    padding: 10px 0 10px 0
+  }
+}

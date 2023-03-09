@@ -1,0 +1,11 @@
+@import "../../styles/sass/variables";
+@import "../../styles/sass/mixns";
+
+.backLink {
+  display: flex;
+  text-decoration: none;
+  @include text(400, 14px, 24px);
+  color: $secondFontColor;
+  column-gap: 10px;
+  margin-bottom: 10px;
+}
