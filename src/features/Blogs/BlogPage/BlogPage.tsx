@@ -8,11 +8,12 @@ import {fetchBlogTC} from "features/Blogs/blogsReducer";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {useAppSelector} from "hooks/useAppSelector";
 import defaultBlogBanner from 'common/image/blog-banner.jpg'
+import {blogSelector} from "features/Blogs/blogsSelectors";
 
 export const BlogPage = () => {
 
     const {blogId} = useParams()
-    const blog = useAppSelector(state => state.blogs.blog)
+    const blog = useAppSelector(blogSelector)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
