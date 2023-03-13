@@ -1,4 +1,4 @@
-import {apiBlogs, BlogType} from "features/Blogs/blogsApi";
+import {apiBlogs, BlogType, ResponseType} from "features/Blogs/blogsApi";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AppRootStateType} from "app/store";
 
@@ -7,13 +7,12 @@ export const fetchBlogsTC = createAsyncThunk('Blogs/fetchBlogs', async (param, {
   rejectWithValue,
   getState
 }) => {
-
   const state = getState() as AppRootStateType
   const queryParams = state.blogs.queryParams
 
   try {
     const res = await apiBlogs.getBlogs(queryParams)
-    dispatch(setBlogsAC({blogs: res.items}))
+    dispatch(setBlogsAC({blogs: res}))
   } catch (e) {
     return rejectWithValue(null)
   }
@@ -33,21 +32,23 @@ export const fetchBlogTC = createAsyncThunk('Blogs/fetchBlog', async (param: { b
 const slice = createSlice({
   name: 'blogs',
   initialState: {
+    blogs: {
+      items: [] as BlogType[]
+    } as ResponseType<BlogType[]>,
     blog: {} as BlogType,
-    blogs: [] as Array<BlogType>,
     queryParams: {
       pageNumber: 1,
       pageSize: 15
     }
   },
   reducers: {
-    setBlogsAC(state, action: PayloadAction<{ blogs: Array<BlogType> }>) {
-      const index = state.blogs.findIndex(el => action.payload.blogs[0].id === el.id)
+    setBlogsAC(state, action: PayloadAction<{ blogs: ResponseType<BlogType[]> }>) {
+      const index = state.blogs.items.findIndex(el => el.id === action.payload.blogs.items[0].id)
 
       if (index > -1) {
-        state.blogs = [...state.blogs]
+        state.blogs = {...state.blogs}
       } else {
-        state.blogs = [...state.blogs, ...action.payload.blogs]
+        state.blogs = {...action.payload.blogs, items: [...state.blogs.items, ...action.payload.blogs.items]}
       }
 
     },

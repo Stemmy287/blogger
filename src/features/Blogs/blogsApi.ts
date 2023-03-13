@@ -2,7 +2,7 @@ import {instance} from "common/constans/instanceApi";
 
 export const apiBlogs = {
     getBlogs(data: BlogsQueryParamsType) {
-        return instance.get<ResponseType<Array<BlogType>>>(`api/blogs`, {params: data})
+        return instance.get<ResponseType<BlogType[]>>(`api/blogs`, {params: data})
             .then(res => res.data)
     },
     getBlog(blogId: string) {

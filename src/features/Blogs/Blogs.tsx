@@ -5,7 +5,7 @@ import {Blog} from "./Blog/Blog";
 import {useAppSelector} from "hooks/useAppSelector";
 import {fetchBlogsTC, setPageNumberAC} from "features/Blogs/blogsReducer";
 import {useAppDispatch} from "hooks/useAppDispatch";
-import {blogsSelector, pageNumberSelector, pageSizeSelector} from "features/Blogs/blogsSelectors";
+import {blogsSelector, blogsTotalCountSelector, pageNumberSelector, pageSizeSelector} from "features/Blogs/blogsSelectors";
 import {Pagination} from "common/components/Pagination/Pagination";
 
 export const Blogs = () => {
@@ -13,6 +13,7 @@ export const Blogs = () => {
   const blogs = useAppSelector(blogsSelector)
   const pageNumber = useAppSelector(pageNumberSelector)
   const pageSize = useAppSelector(pageSizeSelector)
+  const blogsTotalCount = useAppSelector(blogsTotalCountSelector)
 
   const dispatch = useAppDispatch()
 
@@ -28,14 +29,14 @@ export const Blogs = () => {
     <div>
       <Title title="Blogs" isDesc={false}/>
       <Search/>
-      {blogs.map(bg => <Blog
+      {blogs?.map(bg => <Blog
         key={bg.id}
         blogId={bg.id}
         title={bg.name}
         webSiteUrl={bg.websiteUrl}
         description={bg.description}
       />)}
-      <Pagination callback={onPaginationHandler}/>
+      {blogsTotalCount > blogs.length  && <Pagination callback={onPaginationHandler}/>}
     </div>
   );
 };
