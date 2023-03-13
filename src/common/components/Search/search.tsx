@@ -1,6 +1,6 @@
 import React from 'react';
 import s from 'common/components/Search/search.module.scss'
-import {Select} from "common/components/Search/Select/Select";
+import {Select} from "common/components/Select/Select";
 
 export const Search = () => {
     return (

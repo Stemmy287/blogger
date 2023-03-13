@@ -3,7 +3,7 @@ import s from './posts.module.scss'
 import {Title} from "common/components/Title/Title";
 import {Post} from "./Post/Post";
 import {useAppSelector} from "hooks/useAppSelector";
-import {Select} from "common/components/Search/Select/Select";
+import {Select} from "common/components/Select/Select";
 import {fetchPostsTC} from "features/Posts/postsReducer";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {postsSelector} from "features/Posts/postsSelectors";

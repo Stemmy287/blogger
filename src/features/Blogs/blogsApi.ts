@@ -30,4 +30,8 @@ export type ResponseType<T> = {
 
 export type BlogsQueryParamsType = {
     pageNumber: number
+    pageSize: number
+    sortBy: string
+    sortDirection: string
+    searchNameTerm: string
 }
