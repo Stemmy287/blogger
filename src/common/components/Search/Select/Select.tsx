@@ -3,7 +3,7 @@ import s from "common/components/Search/Select/select.module.scss";
 
 export const Select = () => {
     return (
-        <select name="" id="" className={s.select}>
+        <select className={s.select}>
             <option className={s.option}>New blogs first</option>
             <option className={s.option}>Old blogs first</option>
             <option className={s.option}>From A to Z</option>

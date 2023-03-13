@@ -1,0 +1,17 @@
+@import "../../styles/sass/variables";
+@import "../../styles/sass/mixns";
+
+.paginationButton {
+  height: 36px;
+  width: 153px;
+  background-color: transparent;
+  border-radius: 2px;
+  border: 1px solid $secondFontColor;
+  margin: 41px auto;
+  cursor: pointer;
+  @include text(600, 14px, 20px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+}
