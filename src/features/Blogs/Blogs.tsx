@@ -2,11 +2,15 @@ import React, {useEffect, useState} from 'react';
 import {Title} from "common/components/Title/Title";
 import {Blog} from "./Blog/Blog";
 import {useAppSelector} from "hooks/useAppSelector";
-import {fetchBlogsTC, setPageNumberBlogsAC, setSearchNameTermBlogsAC, setSortByBlogsAC} from "features/Blogs/blogsReducer";
+import {
+  fetchBlogsTC, setIsPaginationBlogsAC,
+  setPageNumberBlogsAC,
+  setSearchNameTermBlogsAC,
+  setSortByBlogsAC
+} from "features/Blogs/blogsReducer";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {
   blogsPageNumberSelector,
-  blogsPageSizeSelector,
   blogsSearchNameTermSelector,
   blogsSelector,
   blogsSortBySelector,
@@ -23,7 +27,6 @@ export const Blogs = () => {
   const blogs = useAppSelector(blogsSelector)
 
   const pageNumber = useAppSelector(blogsPageNumberSelector)
-  const pageSize = useAppSelector(blogsPageSizeSelector)
   const sortBy = useAppSelector(blogsSortBySelector)
   const sortDirection = useAppSelector(blogsSortDirectionSelector)
   const searchNameTerm = useAppSelector(blogsSearchNameTermSelector)
@@ -34,20 +37,23 @@ export const Blogs = () => {
 
   useEffect(() => {
     dispatch(fetchBlogsTC())
-  }, [pageNumber, pageSize, sortBy, sortDirection, searchNameTerm])
+  }, [pageNumber, sortBy, sortDirection, searchNameTerm])
 
   const onPagination = () => {
+    dispatch(setIsPaginationBlogsAC({isPagination: true}))
     dispatch(setPageNumberBlogsAC({pageNumber: pageNumber + 1}))
   }
 
   const onChangeSelect = (sortBy: string) => {
     const value = sortBy.split(' ')
+    dispatch(setPageNumberBlogsAC({pageNumber: 1}))
     dispatch(setSortByBlogsAC({sortBy: value[1], sortDirection: value[0]}))
   }
 
   const [searchValue, setSearchValue] = useState('')
 
   const searchHandler = (searchNameTerm: string) => {
+    dispatch(setPageNumberBlogsAC({pageNumber: 1}))
     dispatch(setSearchNameTermBlogsAC({searchNameTerm}))
   }
 

@@ -15,6 +15,8 @@ export const fetchBlogsTC = createAsyncThunk('Blogs/fetchBlogs', async (param, {
     dispatch(setBlogsAC({blogs: res}))
   } catch (e) {
     return rejectWithValue(null)
+  } finally {
+      dispatch(setIsPaginationBlogsAC({isPagination: false}))
   }
 })
 export const fetchBlogTC = createAsyncThunk('Blogs/fetchBlog', async (param: { blogId: string }, {
@@ -42,11 +44,16 @@ const slice = createSlice({
       sortBy: '',
       sortDirection: '',
       searchNameTerm: ''
-    }
+    },
+    isPagination: false
   },
   reducers: {
     setBlogsAC(state, action: PayloadAction<{ blogs: ResponseType<BlogType[]> }>) {
+      if (state.isPagination) {
+        state.blogs = {...action.payload.blogs, items: [...state.blogs.items, ...action.payload.blogs.items]}
+      } else {
         state.blogs = action.payload.blogs
+      }
     },
     setBlogAC(state, action: PayloadAction<{ blog: BlogType }>) {
       state.blog = action.payload.blog
@@ -54,14 +61,17 @@ const slice = createSlice({
     setPageNumberBlogsAC(state, action: PayloadAction<{ pageNumber: number }>) {
       state.queryParams.pageNumber = action.payload.pageNumber
     },
-    setSortByBlogsAC(state, action: PayloadAction<{sortBy: string, sortDirection: string}>) {
+    setSortByBlogsAC(state, action: PayloadAction<{ sortBy: string, sortDirection: string }>) {
       state.queryParams = {...state.queryParams, ...action.payload}
     },
-    setSearchNameTermBlogsAC(state, action: PayloadAction<{searchNameTerm: string}>) {
+    setSearchNameTermBlogsAC(state, action: PayloadAction<{ searchNameTerm: string }>) {
       state.queryParams.searchNameTerm = action.payload.searchNameTerm
     },
+    setIsPaginationBlogsAC(state, action: PayloadAction<{isPagination: boolean}>) {
+      state.isPagination = action.payload.isPagination
+    }
   }
 })
 
 export const blogsReducer = slice.reducer
-export const {setBlogsAC, setBlogAC, setPageNumberBlogsAC, setSortByBlogsAC, setSearchNameTermBlogsAC} = slice.actions
+export const {setBlogsAC, setBlogAC, setPageNumberBlogsAC, setSortByBlogsAC, setSearchNameTermBlogsAC, setIsPaginationBlogsAC} = slice.actions

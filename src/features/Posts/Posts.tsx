@@ -4,12 +4,18 @@ import {Title} from "common/components/Title/Title";
 import {Post} from "./Post/Post";
 import {useAppSelector} from "hooks/useAppSelector";
 import {Select} from "common/components/Select/Select";
-import {fetchPostsTC, setPageNumberPostsAC, setSortByPostsAC} from "features/Posts/postsReducer";
+import {
+  fetchPostsTC,
+  setIsPaginationPostsAC,
+  setPageNumberPostsAC,
+  setSortByPostsAC
+} from "features/Posts/postsReducer";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {
   postsPageNumberSelector,
-  postsPageSizeSelector,
-  postsSelector, postsSortBySelector, postsSortDirectionSelector,
+  postsSelector,
+  postsSortBySelector,
+  postsSortDirectionSelector,
   postsTotalCountSelector
 } from "features/Posts/postsSelectors";
 import {Pagination} from "common/components/Pagination/Pagination";
@@ -19,7 +25,6 @@ export const Posts = () => {
   const posts = useAppSelector(postsSelector)
 
   const pageNumber = useAppSelector(postsPageNumberSelector)
-  const pageSize = useAppSelector(postsPageSizeSelector)
   const sortBy = useAppSelector(postsSortBySelector)
   const sortDirection = useAppSelector(postsSortDirectionSelector)
 
@@ -29,14 +34,16 @@ export const Posts = () => {
 
   useEffect(() => {
     dispatch(fetchPostsTC())
-  }, [pageNumber, pageSize, sortBy, sortDirection])
+  }, [pageNumber, sortBy, sortDirection])
 
   const onChangeSelect = (sortBy: string) => {
     const value = sortBy.split(' ')
+    dispatch(setPageNumberPostsAC({pageNumber: 1}))
     dispatch(setSortByPostsAC({sortBy: value[1], sortDirection: value[0]}))
   }
 
   const onPagination = () => {
+    dispatch(setIsPaginationPostsAC({isPagination: true}))
     dispatch(setPageNumberPostsAC({pageNumber: pageNumber + 1}))
   }
 
@@ -56,7 +63,7 @@ export const Posts = () => {
             date={ps.createdAt}
           />)}
       </div>
-      {postsTotalCount > posts.length  && <Pagination callback={onPagination}/>}
+      {postsTotalCount > posts.length && <Pagination callback={onPagination}/>}
     </div>
   );
 };
