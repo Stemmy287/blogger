@@ -51,17 +51,17 @@ const slice = createSlice({
     setBlogAC(state, action: PayloadAction<{ blog: BlogType }>) {
       state.blog = action.payload.blog
     },
-    setPageNumberAC(state, action: PayloadAction<{ pageNumber: number }>) {
+    setPageNumberBlogsAC(state, action: PayloadAction<{ pageNumber: number }>) {
       state.queryParams.pageNumber = action.payload.pageNumber
     },
-    setSortByAC(state, action: PayloadAction<{sortBy: string, sortDirection: string}>) {
+    setSortByBlogsAC(state, action: PayloadAction<{sortBy: string, sortDirection: string}>) {
       state.queryParams = {...state.queryParams, ...action.payload}
     },
-    setSearchNameTermAC(state, action: PayloadAction<{searchNameTerm: string}>) {
+    setSearchNameTermBlogsAC(state, action: PayloadAction<{searchNameTerm: string}>) {
       state.queryParams.searchNameTerm = action.payload.searchNameTerm
     },
   }
 })
 
 export const blogsReducer = slice.reducer
-export const {setBlogsAC, setBlogAC, setPageNumberAC, setSortByAC, setSearchNameTermAC} = slice.actions
+export const {setBlogsAC, setBlogAC, setPageNumberBlogsAC, setSortByBlogsAC, setSearchNameTermBlogsAC} = slice.actions

@@ -1,8 +1,8 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Title} from "common/components/Title/Title";
 import {Blog} from "./Blog/Blog";
 import {useAppSelector} from "hooks/useAppSelector";
-import {fetchBlogsTC, setPageNumberAC, setSearchNameTermAC, setSortByAC} from "features/Blogs/blogsReducer";
+import {fetchBlogsTC, setPageNumberBlogsAC, setSearchNameTermBlogsAC, setSortByBlogsAC} from "features/Blogs/blogsReducer";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {
   blogsPageNumberSelector,
@@ -16,7 +16,7 @@ import {
 import {Pagination} from "common/components/Pagination/Pagination";
 import s from "./blogs.module.scss";
 import {Select} from "common/components/Select/Select";
-import {useDebounce} from "hooks/useDebounce";
+import {Input} from "common/components/Input/Input";
 
 export const Blogs = () => {
 
@@ -37,32 +37,26 @@ export const Blogs = () => {
   }, [pageNumber, pageSize, sortBy, sortDirection, searchNameTerm])
 
   const onPagination = () => {
-    dispatch(setPageNumberAC({pageNumber: pageNumber + 1}))
+    dispatch(setPageNumberBlogsAC({pageNumber: pageNumber + 1}))
   }
 
   const onChangeSelect = (sortBy: string) => {
     const value = sortBy.split(' ')
-    dispatch(setSortByAC({sortBy: value[1], sortDirection: value[0]}))
+    dispatch(setSortByBlogsAC({sortBy: value[1], sortDirection: value[0]}))
   }
 
-  const [searchNameTermLocal, setSearchNameTermLocal] = useState('')
+  const [searchValue, setSearchValue] = useState('')
 
-  const onChangeSearchNameTermLocal = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchNameTermLocal(e.currentTarget.value)
+  const searchHandler = (searchNameTerm: string) => {
+    dispatch(setSearchNameTermBlogsAC({searchNameTerm}))
   }
-
-  const debouncedSearchNameTerm = useDebounce(searchNameTermLocal, 750)
-
-  useEffect(() => {
-    dispatch(setSearchNameTermAC({searchNameTerm: debouncedSearchNameTerm}))
-  }, [debouncedSearchNameTerm])
 
   return (
     <div>
       <Title title="Blogs" isDesc={false}/>
       <div className={s.searchContainer}>
-        <input className={s.input} value={searchNameTermLocal} onChange={onChangeSearchNameTermLocal} placeholder="Search"/>
-        <Select onChange={onChangeSelect}/>
+        <Input searchValue={searchValue} onChange={setSearchValue} searchHandler={searchHandler}/>
+        <Select onChange={onChangeSelect} title={'blogs'} blogs/>
       </div>
       {blogs?.map(bg => <Blog
         key={bg.id}

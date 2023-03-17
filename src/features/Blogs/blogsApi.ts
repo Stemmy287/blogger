@@ -1,7 +1,7 @@
 import {instance} from "common/constans/instanceApi";
 
 export const apiBlogs = {
-    getBlogs(data: BlogsQueryParamsType) {
+    getBlogs(data: QueryParamsType) {
         return instance.get<ResponseType<BlogType[]>>(`api/blogs`, {params: data})
             .then(res => res.data)
     },
@@ -28,10 +28,10 @@ export type ResponseType<T> = {
     items: T
 }
 
-export type BlogsQueryParamsType = {
+export type QueryParamsType = {
     pageNumber: number
     pageSize: number
     sortBy: string
     sortDirection: string
-    searchNameTerm: string
+    searchNameTerm?: string
 }
