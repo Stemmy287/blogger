@@ -8,6 +8,5 @@ export const postsTotalCountSelector = (state: AppRootStateType) => state.posts.
 
 //query params
 export const postsPageNumberSelector = (state: AppRootStateType) => state.posts.queryParams.pageNumber
-export const postsPageSizeSelector = (state: AppRootStateType) => state.posts.queryParams.pageSize
 export const postsSortBySelector = (state: AppRootStateType) => state.posts.queryParams.sortBy
 export const postsSortDirectionSelector = (state: AppRootStateType) => state.posts.queryParams.sortDirection

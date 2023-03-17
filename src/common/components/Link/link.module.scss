@@ -1,0 +1,13 @@
+@import "../../../common/styles/sass/mixns";
+
+.navLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+
+  span {
+    @include text(400, 14px, 24px);
+    margin-left: 15px;
+  }
+}

@@ -56,9 +56,6 @@ const slice = createSlice({
         state.posts = action.payload.posts
       }
     },
-    setPostAC(state, action: PayloadAction<{ post: PostType }>) {
-      state.post = action.payload.post
-    },
     setPageNumberPostsAC(state, action: PayloadAction<{ pageNumber: number }>) {
       state.queryParams.pageNumber = action.payload.pageNumber
     },
@@ -67,6 +64,9 @@ const slice = createSlice({
     },
     setIsPaginationPostsAC(state, action: PayloadAction<{ isPagination: boolean }>) {
       state.isPagination = action.payload.isPagination
+    },
+    setPostAC(state, action: PayloadAction<{ post: PostType }>) {
+      state.post = action.payload.post
     }
   }
 })

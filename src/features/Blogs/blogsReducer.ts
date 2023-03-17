@@ -55,9 +55,6 @@ const slice = createSlice({
         state.blogs = action.payload.blogs
       }
     },
-    setBlogAC(state, action: PayloadAction<{ blog: BlogType }>) {
-      state.blog = action.payload.blog
-    },
     setPageNumberBlogsAC(state, action: PayloadAction<{ pageNumber: number }>) {
       state.queryParams.pageNumber = action.payload.pageNumber
     },
@@ -69,6 +66,9 @@ const slice = createSlice({
     },
     setIsPaginationBlogsAC(state, action: PayloadAction<{isPagination: boolean}>) {
       state.isPagination = action.payload.isPagination
+    },
+    setBlogAC(state, action: PayloadAction<{ blog: BlogType }>) {
+      state.blog = action.payload.blog
     }
   }
 })
