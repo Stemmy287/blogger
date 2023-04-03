@@ -9,7 +9,7 @@ import {
   setIsPaginationPostsAC,
   setPageNumberPostsAC,
   setSortByPostsAC
-} from "features/Posts/postsReducer";
+} from "features/Posts/postsSlice";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {
   postsPageNumberSelector,

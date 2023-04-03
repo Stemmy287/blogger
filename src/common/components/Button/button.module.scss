@@ -1,0 +1,24 @@
+@import "../../styles/sass/mixns";
+@import "../../styles/sass/variables";
+
+.buttonContainer {
+  .button {
+    background-color: #F8346B;
+    box-shadow: 0 4px 18px rgba(248, 52, 107, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    border: none;
+    width: 100%;
+    color: white;
+    height: 36px;
+    @include text(600, 14px, 20px);
+    cursor: pointer;
+  }
+  .noBorder {
+    background-color: $secondBGColor;
+    color: #F8346B;
+    border: 2px #F8346B solid;
+    box-shadow: none;
+  }
+}
+

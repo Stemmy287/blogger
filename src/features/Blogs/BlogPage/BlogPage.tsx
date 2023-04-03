@@ -4,7 +4,7 @@ import {Title} from "common/components/Title/Title";
 import {BackLink} from "common/components/BackLink/BackLink";
 import {Blog} from "../Blog/Blog";
 import {useParams} from "react-router-dom";
-import {fetchBlogTC} from "features/Blogs/blogsReducer";
+import {fetchBlogTC} from "features/Blogs/blogsSlice";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {useAppSelector} from "hooks/useAppSelector";
 import defaultBlogBanner from 'common/image/blog-banner.jpg'

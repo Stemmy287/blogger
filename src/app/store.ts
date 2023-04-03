@@ -1,12 +1,14 @@
 import {AnyAction, combineReducers} from "redux";
 import thunkMiddleware, {ThunkDispatch} from "redux-thunk";
 import {configureStore} from "@reduxjs/toolkit";
-import {blogsReducer} from "features/Blogs/blogsReducer";
-import {postsReducer} from "features/Posts/postsReducer";
+import {blogsSlice} from "features/Blogs/blogsSlice";
+import {postsSlice} from "features/Posts/postsSlice";
+import {loginSlice} from "features/Login/loginSlice";
 
 const rootReducers = combineReducers({
-    blogs: blogsReducer,
-    posts: postsReducer
+    blogs: blogsSlice,
+    posts: postsSlice,
+    login: loginSlice
 })
 
 export const store = configureStore({

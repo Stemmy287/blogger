@@ -4,7 +4,7 @@ import {BackLink} from "common/components/BackLink/BackLink";
 import {PostDeployed} from "features/Posts/PostDeployed/PostDeployed";
 import {useParams} from "react-router-dom";
 import {useAppDispatch} from "hooks/useAppDispatch";
-import {fetchPostTC} from "features/Posts/postsReducer";
+import {fetchPostTC} from "features/Posts/postsSlice";
 import {useAppSelector} from "hooks/useAppSelector";
 import {postSelector} from "features/Posts/postsSelectors";
 

@@ -7,7 +7,7 @@ import {
   setPageNumberBlogsAC,
   setSearchNameTermBlogsAC,
   setSortByBlogsAC
-} from "features/Blogs/blogsReducer";
+} from "features/Blogs/blogsSlice";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {
   blogsPageNumberSelector,

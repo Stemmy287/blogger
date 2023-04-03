@@ -1,0 +1,43 @@
+@import "../../styles/sass/mixns";
+@import "../../styles/sass/variables";
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  span {
+    @include text(400, 14px, 24px);
+    color: $fontColor
+  }
+
+  input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #DEDBDC;
+    @include text(400, 16px, 24px);
+    color: #1A1718;
+    outline: hidden;
+    &[data-showpassword="true"] {
+      -webkit-text-security: disc;
+    }
+
+  }
+
+  textarea {
+    background-color: transparent;
+    border: 1px solid #DEDBDC;
+    @include text(400, 16px, 24px);
+    color: #1A1718;
+    border-radius: 2px;
+    height: 120px;
+    resize: none;
+    outline: hidden;
+  }
+
+  .showPassword {
+    position: absolute;
+    bottom: 7%;
+    right: 3%;
+    cursor: pointer;
+  }
+}
