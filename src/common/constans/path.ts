@@ -1,5 +1,6 @@
 export const PATH = {
   MAIN: '/',
+  LOGIN: '/Login',
   BLOGS: '/Blogs',
   POSTS: '/Posts',
   BLOG_PAGE: '/BlogPage/:blogId?',
