@@ -3,11 +3,11 @@ import s from 'common/components/FormInput/formInput.module.scss'
 import {ReactComponent as Eye} from "common/icons/visibility.svg";
 
 type InputPropsType = {
-  title: string
+  title?: string
   value: string
   onChange: (title: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => void
   component: 'input' | 'textarea'
-  name: string
+  name?: string
   password?: boolean
 }
 
@@ -32,7 +32,7 @@ export const FormInput: FC<InputPropsType> = ({
 
   return (
     <div className={s.inputContainer}>
-      <span>{title}</span>
+      {title && <span>{title}</span>}
       {component === 'input'
         ?
         <>
@@ -40,7 +40,7 @@ export const FormInput: FC<InputPropsType> = ({
           {password && <Eye className={s.showPassword} onClick={onShowHandler}/>}
         </>
         :
-        <textarea value={value} onChange={onChangeHandler} name={name}></textarea>}
+        <textarea placeholder={'Provide your comment...'} value={value} onChange={onChangeHandler} name={name}></textarea>}
     </div>
   );
 };

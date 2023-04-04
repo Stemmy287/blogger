@@ -28,9 +28,16 @@
       display: flex;
       flex-direction: column;
       row-gap: 30px;
-
+      position: relative;
       .button {
         margin-top: 43px;
+      }
+      .error {
+        position: absolute;
+        @include text(400, 12px, 24px);
+        color: #F73636;
+        bottom: 25%;
+
       }
     }
 

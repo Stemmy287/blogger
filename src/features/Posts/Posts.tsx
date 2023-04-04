@@ -4,12 +4,7 @@ import {Title} from "common/components/Title/Title";
 import {Post} from "./Post/Post";
 import {useAppSelector} from "hooks/useAppSelector";
 import {Select} from "common/components/Select/Select";
-import {
-  fetchPostsTC,
-  setIsPaginationPostsAC,
-  setPageNumberPostsAC,
-  setSortByPostsAC
-} from "features/Posts/postsSlice";
+import {fetchPostsTC, setIsPaginationPostsAC, setPageNumberPostsAC, setSortByPostsAC} from "features/Posts/postsSlice";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {
   postsPageNumberSelector,
@@ -19,6 +14,9 @@ import {
   postsTotalCountSelector
 } from "features/Posts/postsSelectors";
 import {Pagination} from "common/components/Pagination/Pagination";
+import {Navigate} from "react-router-dom";
+import {PATH} from "common/constans/path";
+import {isLoggedInSelector} from "features/Login/loginSelectors";
 
 export const Posts = () => {
 
@@ -29,6 +27,8 @@ export const Posts = () => {
   const sortDirection = useAppSelector(postsSortDirectionSelector)
 
   const postsTotalCount = useAppSelector(postsTotalCountSelector)
+
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
 
   const dispatch = useAppDispatch()
 
@@ -47,6 +47,10 @@ export const Posts = () => {
     dispatch(setPageNumberPostsAC({pageNumber: pageNumber + 1}))
   }
 
+  if(!isLoggedIn) {
+    return <Navigate to={PATH.LOGIN}/>
+  }
+
   return (
     <div>
       <Title title={'Posts'} isDesc={false}/>
@@ -63,7 +67,7 @@ export const Posts = () => {
             date={ps.createdAt}
           />)}
       </div>
-      {postsTotalCount > posts.length && <Pagination callback={onPagination}/>}
+      {postsTotalCount > posts.length && <div className={s.pagination}><Pagination callback={onPagination}/></div>}
     </div>
   );
 };

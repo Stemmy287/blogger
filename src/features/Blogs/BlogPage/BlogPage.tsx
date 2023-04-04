@@ -19,7 +19,7 @@ export const BlogPage = () => {
     useEffect(() => {
         if (blogId)
         dispatch(fetchBlogTC({blogId}))
-    })
+    }, [])
 
     return (
         <div className={s.blogPageContainer}>

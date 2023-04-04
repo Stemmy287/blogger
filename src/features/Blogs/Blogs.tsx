@@ -3,7 +3,8 @@ import {Title} from "common/components/Title/Title";
 import {Blog} from "./Blog/Blog";
 import {useAppSelector} from "hooks/useAppSelector";
 import {
-  fetchBlogsTC, setIsPaginationBlogsAC,
+  fetchBlogsTC,
+  setIsPaginationBlogsAC,
   setPageNumberBlogsAC,
   setSearchNameTermBlogsAC,
   setSortByBlogsAC
@@ -21,6 +22,9 @@ import {Pagination} from "common/components/Pagination/Pagination";
 import s from "./blogs.module.scss";
 import {Select} from "common/components/Select/Select";
 import {Input} from "common/components/Input/Input";
+import {Navigate} from "react-router-dom";
+import {PATH} from "common/constans/path";
+import {isLoggedInSelector} from "features/Login/loginSelectors";
 
 export const Blogs = () => {
 
@@ -32,6 +36,8 @@ export const Blogs = () => {
   const searchNameTerm = useAppSelector(blogsSearchNameTermSelector)
 
   const blogsTotalCount = useAppSelector(blogsTotalCountSelector)
+
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
 
   const dispatch = useAppDispatch()
 
@@ -57,10 +63,14 @@ export const Blogs = () => {
     dispatch(setSearchNameTermBlogsAC({searchNameTerm}))
   }
 
+  if(!isLoggedIn) {
+    return <Navigate to={PATH.LOGIN}/>
+  }
+
   return (
     <div>
       <Title title="Blogs" isDesc={false}/>
-      <div className={s.searchContainer}>
+      <div>
         <Input searchValue={searchValue} onChange={setSearchValue} searchHandler={searchHandler}/>
         <Select onChange={onChangeSelect} title={'blogs'} blogs/>
       </div>
@@ -71,7 +81,7 @@ export const Blogs = () => {
         webSiteUrl={bg.websiteUrl}
         description={bg.description}
       />)}
-      {blogsTotalCount > blogs.length  && <Pagination callback={onPagination}/>}
+      {blogsTotalCount > blogs.length  && <div className={s.pagination}><Pagination callback={onPagination}/></div>}
     </div>
   );
 };

@@ -4,11 +4,13 @@ import {configureStore} from "@reduxjs/toolkit";
 import {blogsSlice} from "features/Blogs/blogsSlice";
 import {postsSlice} from "features/Posts/postsSlice";
 import {loginSlice} from "features/Login/loginSlice";
+import {appSlice} from "app/appSlice";
 
 const rootReducers = combineReducers({
     blogs: blogsSlice,
     posts: postsSlice,
-    login: loginSlice
+    login: loginSlice,
+    app : appSlice
 })
 
 export const store = configureStore({

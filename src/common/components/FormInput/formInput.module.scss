@@ -29,9 +29,10 @@
     @include text(400, 16px, 24px);
     color: #1A1718;
     border-radius: 2px;
-    height: 120px;
+    height: 84px;
     resize: none;
     outline: hidden;
+    padding: 5px 10px;
   }
 
   .showPassword {

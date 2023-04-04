@@ -3,11 +3,11 @@ import {AxiosResponse} from "axios";
 
 export const apiLogin = {
   login(data: LoginType) {
-    return instance.post<'', AxiosResponse<{ accessToken: string }>, LoginType>('api/auth/login', data, {headers})
+    return instance.post<'', AxiosResponse<{ accessToken: string }>, LoginType>('api/auth/login', data)
       .then(res => res.data)
   },
   auth() {
-    return instance.get<UserType>('api/auth/me')
+    return instance.get<UserType>('api/auth/me', {headers})
       .then(res => res.data)
   }
 }
