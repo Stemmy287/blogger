@@ -5,5 +5,5 @@ export const instance = axios.create({
 })
 
 export const headers = {
-  authorization: `Basic YWRtaW46cXdlcnR5`
+  authorization: `Basic YWRtaW46cXdlcnR5`,
 }

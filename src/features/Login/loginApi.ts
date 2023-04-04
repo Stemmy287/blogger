@@ -1,4 +1,4 @@
-import {instance, headers} from "common/constans/instanceApi";
+import {instance} from "common/constans/instanceApi";
 import {AxiosResponse} from "axios";
 
 export const apiLogin = {
@@ -7,7 +7,7 @@ export const apiLogin = {
       .then(res => res.data)
   },
   auth() {
-    return instance.get<UserType>('api/auth/me', {headers})
+    return instance.get<UserType>('api/auth/me')
       .then(res => res.data)
   }
 }

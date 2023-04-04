@@ -1,0 +1,33 @@
+@import '../../styles/sass/variables';
+@import '../../styles/sass/mixns';
+
+.burgerMenuContainer{
+  position: relative;
+  z-index: 1;
+  .burger {
+    cursor: pointer;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #DEDBDC;
+    position: absolute;
+
+    left:50%;
+    transform:translate(-50%, 0%);
+    .button {
+      display: flex;
+      padding-left: 20px;
+      cursor: pointer;
+      align-items: center;
+      column-gap: 17px;
+      width: 134px;
+      height: 42px;
+      border: none;
+      background-color: #fcfbfb;
+      @include text(400, 14px, 24px);
+    }
+  }
+}
+
+

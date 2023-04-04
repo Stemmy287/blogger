@@ -8,7 +8,8 @@
   padding: 20px;
   display: flex;
   column-gap: 25px;
-  img {
+  position: relative;
+  .photo {
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -37,5 +38,10 @@
       margin: 0;
 
     }
+  }
+  .burger_menu {
+    position: absolute;
+    top: 23px;
+    right: 20px;
   }
 }
