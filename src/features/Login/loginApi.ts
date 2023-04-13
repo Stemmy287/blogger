@@ -3,7 +3,7 @@ import {AxiosResponse} from "axios";
 
 export const apiLogin = {
   login(data: LoginType) {
-    return instance.post<'', AxiosResponse<{ accessToken: string }>, LoginType>('api/auth/login', data)
+    return instance.post<'', AxiosResponse<TokensType>, LoginType>('api/auth/login', data)
       .then(res => res.data)
   },
   auth() {
@@ -22,4 +22,9 @@ export type UserType = {
   email: string
   login: string
   userId: string
+}
+
+type TokensType = {
+  accessToken: string
+  refresh: string
 }

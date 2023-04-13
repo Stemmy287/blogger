@@ -1,16 +1,16 @@
 import {AnyAction, combineReducers} from "redux";
 import thunkMiddleware, {ThunkDispatch} from "redux-thunk";
 import {configureStore} from "@reduxjs/toolkit";
-import {blogsSlice} from "features/Blogs/blogsSlice";
-import {postsSlice} from "features/Posts/postsSlice";
-import {loginSlice} from "features/Login/loginSlice";
-import {appSlice} from "app/appSlice";
+import {blogsReducer} from "features/Blogs/blogsSlice";
+import {postsReducer} from "features/Posts/postsSlice";
+import {loginReducer} from "features/Login/loginSlice";
+import {appReducer} from "app/appSlice";
 
 const rootReducers = combineReducers({
-    blogs: blogsSlice,
-    posts: postsSlice,
-    login: loginSlice,
-    app : appSlice
+    blogs: blogsReducer,
+    posts: postsReducer,
+    login: loginReducer,
+    app : appReducer
 })
 
 export const store = configureStore({

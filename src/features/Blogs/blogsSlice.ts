@@ -73,5 +73,5 @@ const slice = createSlice({
   }
 })
 
-export const blogsSlice = slice.reducer
+export const blogsReducer = slice.reducer
 export const {setBlogsAC, setBlogAC, setPageNumberBlogsAC, setSortByBlogsAC, setSearchNameTermBlogsAC, setIsPaginationBlogsAC} = slice.actions

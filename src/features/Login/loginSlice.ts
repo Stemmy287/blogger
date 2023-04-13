@@ -5,11 +5,13 @@ import {setIsInitialized} from "app/appSlice";
 export const loginTC = createAsyncThunk('login/loginTC', async (param: LoginType, {dispatch, rejectWithValue}) => {
 
   try {
-    await apiLogin.login(param)
-    dispatch(setIsLoggedIn({isLoggedIn: true}))
+    const res = await apiLogin.login(param)
+    localStorage.setItem('accessToken', res.accessToken)
+    dispatch(authTC())
   } catch (e) {
     return rejectWithValue('The password or email or Username is incorrect. Please try again')
   }
+  
 })
 export const authTC = createAsyncThunk('login/authTC', async (param, {dispatch, rejectWithValue}) => {
 
@@ -40,5 +42,5 @@ const slice = createSlice({
   }
 })
 
-export const loginSlice = slice.reducer
+export const loginReducer = slice.reducer
 export const {setIsLoggedIn, setUser} = slice.actions

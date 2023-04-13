@@ -71,5 +71,5 @@ const slice = createSlice({
   }
 })
 
-export const postsSlice = slice.reducer
+export const postsReducer = slice.reducer
 export const {setPostsAC, setPostAC, setPageNumberPostsAC, setSortByPostsAC, setIsPaginationPostsAC} = slice.actions

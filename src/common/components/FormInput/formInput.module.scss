@@ -16,7 +16,7 @@
     border-bottom: 1px solid #DEDBDC;
     @include text(400, 16px, 24px);
     color: #1A1718;
-    outline: hidden;
+    outline: none;
     &[data-showpassword="true"] {
       -webkit-text-security: disc;
     }
@@ -31,7 +31,7 @@
     border-radius: 2px;
     height: 84px;
     resize: none;
-    outline: hidden;
+    outline: none;
     padding: 5px 10px;
   }
 
