@@ -11,14 +11,13 @@ export const fetchPostsTC = createAsyncThunk('Posts/fetchPosts', async (param, {
 
   const state = getState() as AppRootStateType
   const queryParams = state.posts.queryParams
+  const isPagination = state.posts.isPagination
 
   try {
-    const res = await apiPosts.getPosts(queryParams)
+    const res = await apiPosts.getPosts(isPagination ? queryParams : {...queryParams, pageNumber: 1})
     dispatch(setPostsAC({posts: res}))
   } catch (e) {
     return rejectWithValue(null)
-  } finally {
-    dispatch(setIsPaginationPostsAC({isPagination: false}))
   }
 })
 
@@ -33,6 +32,7 @@ export const fetchPostTC = createAsyncThunk('Posts/fetchPost', async (param: { p
     return rejectWithValue(null)
   }
 })
+
 
 const slice = createSlice({
   name: 'posts',
@@ -53,6 +53,7 @@ const slice = createSlice({
     setPostsAC(state, action: PayloadAction<{ posts: ResponseType<PostType[]> }>) {
       if (state.isPagination) {
         state.posts = {...action.payload.posts, items: [...state.posts.items, ...action.payload.posts.items]}
+        state.isPagination = false
       } else {
         state.posts = action.payload.posts
       }
@@ -63,8 +64,8 @@ const slice = createSlice({
     setSortByPostsAC(state, action: PayloadAction<{ sortBy: string, sortDirection: string }>) {
       state.queryParams = {...state.queryParams, ...action.payload}
     },
-    setIsPaginationPostsAC(state, action: PayloadAction<{ isPagination: boolean }>) {
-      state.isPagination = action.payload.isPagination
+    setIsPaginationPostsAC(state) {
+      state.isPagination = true
     },
     setPostAC(state, action: PayloadAction<{ post: PostType }>) {
       state.post = action.payload.post

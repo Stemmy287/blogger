@@ -43,7 +43,7 @@ export const Posts = () => {
   }
 
   const onPagination = () => {
-    dispatch(setIsPaginationPostsAC({isPagination: true}))
+    dispatch(setIsPaginationPostsAC())
     dispatch(setPageNumberPostsAC({pageNumber: pageNumber + 1}))
   }
 

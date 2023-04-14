@@ -12,9 +12,10 @@ export const fetchCommentsTC = createAsyncThunk('Posts/fetchComment', async (par
 
   const state = getState() as AppRootStateType
   const queryParams = state.comments.queryParams
+  const isPagination = state.comments.isPagination
 
   try {
-    const res = await apiComments.getComments(param.postId, queryParams)
+    const res = await apiComments.getComments(param.postId, isPagination ? queryParams : {...queryParams, pageNumber: 1})
     dispatch(setCommentsAC({comments: res}))
   } catch (e) {
     return rejectWithValue(null)
@@ -67,10 +68,16 @@ const slice = createSlice({
       pageNumber: 1,
       pageSize: 15
     },
+    isPagination: false
   },
   reducers: {
     setCommentsAC(state, action: PayloadAction<{ comments: ResponseType<CommentType[]> }>) {
-      state.comments = {...action.payload.comments, items: [...state.comments.items, ...action.payload.comments.items]}
+      if (state.isPagination) {
+        state.comments = {...action.payload.comments, items: [...state.comments.items, ...action.payload.comments.items]}
+        state.isPagination = false
+      } else {
+        state.comments = action.payload.comments
+      }
     },
     createCommentAC(state, action: PayloadAction<{ comment: CommentType }>) {
       state.comments.items.unshift(action.payload.comment)
@@ -91,6 +98,9 @@ const slice = createSlice({
     },
     setPageNumberCommentsAC(state, action: PayloadAction<{ pageNumber: number }>) {
       state.queryParams.pageNumber = action.payload.pageNumber
+    },
+    setIsPaginationCommentsAC(state) {
+      state.isPagination = true
     }
   }
 })
@@ -101,5 +111,6 @@ export const {
   createCommentAC,
   updateCommentAC,
   deleteCommentAC,
-  setPageNumberCommentsAC
+  setPageNumberCommentsAC,
+  setIsPaginationCommentsAC
 } = slice.actions

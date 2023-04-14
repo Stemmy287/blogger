@@ -11,7 +11,12 @@ import {
   commentsSelector,
   commentsTotalCountSelector
 } from "features/Comments/commentsSelectors";
-import {createCommentTC, fetchCommentsTC, setPageNumberCommentsAC} from "features/Comments/commentsSlice";
+import {
+  createCommentTC,
+  fetchCommentsTC,
+  setIsPaginationCommentsAC,
+  setPageNumberCommentsAC
+} from "features/Comments/commentsSlice";
 
 type PropsType = {
   postId: string
@@ -49,6 +54,7 @@ export const Comments:FC<PropsType> = ({postId}) => {
   }
 
   const onPaginationHandler = () => {
+    dispatch(setIsPaginationCommentsAC())
     dispatch(setPageNumberCommentsAC({pageNumber: commentsPageNumber + 1}))
   }
 

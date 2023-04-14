@@ -46,7 +46,7 @@ export const Blogs = () => {
   }, [pageNumber, sortBy, sortDirection, searchNameTerm])
 
   const onPagination = () => {
-    dispatch(setIsPaginationBlogsAC({isPagination: true}))
+    dispatch(setIsPaginationBlogsAC())
     dispatch(setPageNumberBlogsAC({pageNumber: pageNumber + 1}))
   }
 

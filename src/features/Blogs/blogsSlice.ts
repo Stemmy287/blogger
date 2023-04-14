@@ -15,9 +15,8 @@ export const fetchBlogsTC = createAsyncThunk('Blogs/fetchBlogs', async (param, {
     dispatch(setBlogsAC({blogs: res}))
   } catch (e) {
     return rejectWithValue(null)
-  } finally {
-      dispatch(setIsPaginationBlogsAC({isPagination: false}))
   }
+
 })
 export const fetchBlogTC = createAsyncThunk('Blogs/fetchBlog', async (param: { blogId: string }, {
   dispatch,
@@ -51,6 +50,7 @@ const slice = createSlice({
     setBlogsAC(state, action: PayloadAction<{ blogs: ResponseType<BlogType[]> }>) {
       if (state.isPagination) {
         state.blogs = {...action.payload.blogs, items: [...state.blogs.items, ...action.payload.blogs.items]}
+        state.isPagination = false
       } else {
         state.blogs = action.payload.blogs
       }
@@ -64,8 +64,8 @@ const slice = createSlice({
     setSearchNameTermBlogsAC(state, action: PayloadAction<{ searchNameTerm: string }>) {
       state.queryParams.searchNameTerm = action.payload.searchNameTerm
     },
-    setIsPaginationBlogsAC(state, action: PayloadAction<{isPagination: boolean}>) {
-      state.isPagination = action.payload.isPagination
+    setIsPaginationBlogsAC(state) {
+      state.isPagination = true
     },
     setBlogAC(state, action: PayloadAction<{ blog: BlogType }>) {
       state.blog = action.payload.blog
