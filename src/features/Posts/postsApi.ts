@@ -10,16 +10,6 @@ export const apiPosts = {
   getPost(postId: string) {
     return instance.get<PostType>(`api/posts/${postId}`)
       .then(res => res.data)
-  },
-  getComments(postId: string) {
-    return instance.get<CommentType[]>(`api/comments${postId}`)
-      .then(res => res.data)
-  },
-  updateComment(data: { content: string }, commentId: string) {
-    return instance.put(`api/comments${commentId}`, data)
-  },
-  deleteComment(commentId: string) {
-    return instance.delete(`api/comments${commentId}`)
   }
 
 }
@@ -47,16 +37,4 @@ export type NewestLikesType = {
   addedAt: string
   userId: string
   login: string
-}
-
-export type CommentType = {
-  id: string,
-  content: string,
-  commentatorInfo: CommentatorInfoType
-  createdAt: string
-}
-
-type CommentatorInfoType = {
-  userId: string,
-  userLogin: string
 }

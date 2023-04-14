@@ -1,5 +1,6 @@
 import {AppRootStateType} from "app/store";
 
+//posts
 export const postsSelector = (state: AppRootStateType) => state.posts.posts.items
 export const postSelector = (state: AppRootStateType) => state.posts.post
 

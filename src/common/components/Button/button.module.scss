@@ -13,6 +13,11 @@
     height: 36px;
     @include text(600, 14px, 20px);
     cursor: pointer;
+    padding: 0 25px;
+    &:disabled {
+      background-color: #FB85A6;
+      cursor: default;
+    }
   }
   .noBorder {
     background-color: $secondBGColor;

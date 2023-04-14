@@ -5,12 +5,14 @@ import {blogsReducer} from "features/Blogs/blogsSlice";
 import {postsReducer} from "features/Posts/postsSlice";
 import {loginReducer} from "features/Login/loginSlice";
 import {appReducer} from "app/appSlice";
+import {commentsReducer} from "features/Comments/commentsSlice";
 
 const rootReducers = combineReducers({
+    app : appReducer,
     blogs: blogsReducer,
     posts: postsReducer,
     login: loginReducer,
-    app : appReducer
+    comments: commentsReducer
 })
 
 export const store = configureStore({

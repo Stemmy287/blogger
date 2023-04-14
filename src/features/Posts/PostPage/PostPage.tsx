@@ -7,7 +7,8 @@ import {useAppDispatch} from "hooks/useAppDispatch";
 import {fetchPostTC} from "features/Posts/postsSlice";
 import {useAppSelector} from "hooks/useAppSelector";
 import {postSelector} from "features/Posts/postsSelectors";
-import {Comments} from "features/Posts/Comments/Comments";
+import {Comments} from "features/Comments/Comments";
+import s from './postPage.module.scss'
 
 export const PostPage = () => {
 
@@ -22,7 +23,7 @@ export const PostPage = () => {
   }, [])
 
   return (
-    <div>
+    <div className={s.postPageContainer}>
       <Title title={'Posts'} isDesc={true} desc={post.blogName}/>
       <BackLink link={'/Posts'} where={'posts'}/>
       <PostDeployed
@@ -31,7 +32,7 @@ export const PostPage = () => {
         date={post.createdAt}
         content={post.content}
       />
-      <Comments/>
+      <Comments postId={postId || ''}/>
     </div>
   );
 };

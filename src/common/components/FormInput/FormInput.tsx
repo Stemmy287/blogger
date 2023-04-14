@@ -6,24 +6,25 @@ type InputPropsType = {
   title?: string
   value: string
   onChange: (title: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => void
+  onFocus?: () => void
   component: 'input' | 'textarea'
   name?: string
   password?: boolean
 }
 
 export const FormInput: FC<InputPropsType> = ({
-                                            title,
-                                            value,
-                                            onChange,
-                                            component,
-                                            name,
-                                            password
-                                          }) => {
+                                                title,
+                                                value,
+                                                onChange,
+                                                onFocus,
+                                                component,
+                                                name,
+                                                password
+                                              }) => {
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
     onChange(e)
   }
-
   const [showPassword, setShowPassword] = useState(true)
 
   const onShowHandler = () => {
@@ -36,11 +37,24 @@ export const FormInput: FC<InputPropsType> = ({
       {component === 'input'
         ?
         <>
-          <input type={'text'} value={value} data-showpassword={password && showPassword} onChange={onChangeHandler} name={name}/>
+          <input
+            type={'text'}
+            value={value}
+            data-showpassword={password && showPassword}
+            onChange={onChangeHandler}
+            name={name}
+          />
           {password && <Eye className={s.showPassword} onClick={onShowHandler}/>}
         </>
         :
-        <textarea placeholder={'Provide your comment...'} value={value} onChange={onChangeHandler} name={name}></textarea>}
+        <textarea
+          placeholder={'Provide your comment...'}
+          value={value}
+          onChange={onChangeHandler}
+          name={name}
+          onFocus={onFocus}
+        >
+        </textarea>}
     </div>
   );
 };
