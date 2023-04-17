@@ -1,0 +1,23 @@
+@import "../../styles/sass/mixns";
+@import "../../styles/sass/variables";
+
+.notificationContainer {
+  width: 378px;
+  background-color: $secondBGColor;
+  .messageAndBtn {
+    display: flex;
+    flex-direction: column;
+    padding: 0 25px;
+    .message {
+      margin: 37px 0;
+      text-align: center;
+      @include text(400, 16px, 24px);
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 37px;
+    }
+  }
+
+}
