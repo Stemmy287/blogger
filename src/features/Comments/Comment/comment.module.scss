@@ -17,6 +17,7 @@
   .comment_content {
     display: flex;
     flex-direction: column;
+    width: 100%;
     row-gap: 20px;
     .user_info {
       display: flex;
@@ -37,6 +38,11 @@
       color: $secondFontColor;
       margin: 0;
 
+    }
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      column-gap: 20px;
     }
   }
   .burger_menu {
