@@ -1,0 +1,56 @@
+@import "../../common/styles/sass/variables";
+@import "../../common/styles/sass/mixns";
+
+.registration_container {
+  background-color: $mainColor;
+  display: flex;
+  justify-content: center;
+  column-gap: 150px;
+  padding-top: 81px;
+  .registration_form_block {
+    box-sizing: border-box;
+    display: flex;
+    row-gap: 20px;
+    flex-direction: column;
+    padding: 30px 20px;
+    width: 378px;
+    background-color: #FFF;
+    box-shadow: 0 5px 20px rgba(29, 33, 38, 0.03), 0 1px 2px rgba(29, 33, 38, 0.1);
+    border-radius: 2px;
+
+    .title {
+      margin: 0 0 10px 0;
+      @include text(500, 20px, 24px);
+      align-self: center;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      row-gap: 30px;
+      position: relative;
+      .button {
+        margin-top: 43px;
+      }
+      .error {
+        position: absolute;
+        @include text(400, 12px, 24px);
+        color: #F73636;
+        bottom: 25%;
+
+      }
+    }
+
+    .forgotPass {
+      @include text(400, 16px, 24px);
+      color: $fontColor;
+      align-self: center;
+    }
+
+    a {
+      @include text(500, 14px, 24px);
+      color: #F8346B;
+      align-self: center;
+    }
+  }
+}

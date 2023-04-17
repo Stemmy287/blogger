@@ -8,12 +8,14 @@ import {PATH} from "common/constans/path";
 import {Login} from "features/Login/Login";
 import {WithoutNav} from "app/WithoutNav";
 import {WithNav} from "app/WithNav";
+import {Registration} from "features/Registration/Registration";
 
 export const Pages = () => {
   return (
     <Routes>
       <Route element={<WithoutNav/>}>
         <Route path={PATH.LOGIN} element={<Login/>}/>
+        <Route path={PATH.REGISTRATION} element={<Registration/>}/>
       </Route>
       <Route element={<WithNav/>}>
         <Route path={PATH.MAIN} element={<Blogs/>}/>
