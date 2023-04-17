@@ -12,11 +12,13 @@ import {
   commentsTotalCountSelector
 } from "features/Comments/commentsSelectors";
 import {
-  createCommentTC,
+  createCommentTC, deleteCommentTC,
   fetchCommentsTC,
   setIsPaginationCommentsAC,
   setPageNumberCommentsAC
 } from "features/Comments/commentsSlice";
+import {PopUp} from "common/components/PopUp/PopUp";
+import {Notification} from "common/components/Notification/Notification";
 
 type PropsType = {
   postId: string
@@ -35,6 +37,8 @@ export const Comments:FC<PropsType> = ({postId}) => {
   const [content, setContent] = useState('')
 
   const [isButtonsShow, setIsButtonsShow] = useState(false)
+  const [isDeletePopUpActive, setIsDeletePopUpActive] = useState(false)
+  const [commentId, setCommentId] = useState('')
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.currentTarget.value)
@@ -58,6 +62,10 @@ export const Comments:FC<PropsType> = ({postId}) => {
     dispatch(setPageNumberCommentsAC({pageNumber: commentsPageNumber + 1}))
   }
 
+  const onDeleteHandler = () => {
+    dispatch(deleteCommentTC({commentId}))
+  }
+
   useEffect(() => {
     dispatch(fetchCommentsTC({postId}))
   }, [commentsPageNumber])
@@ -71,9 +79,22 @@ export const Comments:FC<PropsType> = ({postId}) => {
         <Button disabled={!content} title="Send a Comment" callback={onClickHandler}/>
       </div>}
       <div className={s.comments}>
-        {comments.map(cm => <Comment key={cm.id} comment={cm}/>)}
+        {comments.map(cm => <Comment
+          key={cm.id}
+          comment={cm}
+          setPopUpActive={setIsDeletePopUpActive}
+          setCommentId={setCommentId}
+        />)}
       </div>
       {commentsTotalCount > comments.length && <div className={s.pagination}><Pagination callback={onPaginationHandler}/></div>}
+      <PopUp isActive={isDeletePopUpActive} setIsActive={setIsDeletePopUpActive}>
+        <Notification
+          title="Delete Comment"
+          message="Are you sure you want to delete comment?"
+          callback={onDeleteHandler}
+          onClose={setIsDeletePopUpActive}
+        />
+      </PopUp>
     </div>
   );
 };

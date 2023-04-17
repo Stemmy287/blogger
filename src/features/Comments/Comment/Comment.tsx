@@ -7,11 +7,18 @@ import {CommentType} from "features/Comments/commentsApi";
 
 type PropsType = {
   comment: CommentType
+  setPopUpActive: (isActive: boolean) => void
+  setCommentId: (commentId: string) => void
 }
 
-export const Comment: FC<PropsType> = ({comment}) => {
+export const Comment: FC<PropsType> = ({comment, setPopUpActive, setCommentId}) => {
 
-  const {userLogin, createdAt, content} = comment
+  const {userLogin, createdAt, content, id} = comment
+
+  const onDeleteHandler = () => {
+    setPopUpActive(true)
+    setCommentId(id)
+  }
 
   return (
     <div className={s.comment_container}>
@@ -24,9 +31,9 @@ export const Comment: FC<PropsType> = ({comment}) => {
         <p>{content}</p>
       </div>
       <div className={s.burger_menu}>
-        <BurgerMenu onEditClick={() => {
-        }} onDeleteClick={() => {
-        }}/>
+        <BurgerMenu
+          onEditClick={() => {}}
+          onDeleteClick={onDeleteHandler}/>
       </div>
     </div>
   );
