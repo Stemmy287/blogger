@@ -49,7 +49,7 @@ export const Login = () => {
           </div>
         </form>
         <span className={s.forgotPass}>Don’t have an account?</span>
-        <NavLink to="">Sign Up</NavLink>
+        <NavLink to={PATH.REGISTRATION}>Sign Up</NavLink>
       </div>
       <img src={loginBanner} alt="login banner"/>
     </div>

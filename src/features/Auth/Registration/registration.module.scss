@@ -29,6 +29,13 @@
       flex-direction: column;
       row-gap: 30px;
       position: relative;
+
+      .successesNotify {
+        position: absolute;
+        @include text(400, 14px, 24px);
+        color: $fontColor;
+        bottom: 55px;
+      }
       .button {
         margin-top: 43px;
       }

@@ -30,6 +30,7 @@ export const registrationTC = createAsyncThunk('auth/registrationTC', async (par
 
   try {
     await apiAuth.registration(param)
+    return true
   } catch (e) {
     return  rejectWithValue(null)
   }

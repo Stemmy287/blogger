@@ -4,17 +4,27 @@ import {useAppDispatch} from "hooks/useAppDispatch";
 import {useFormik} from "formik";
 import {FormInput} from "common/components/FormInput/FormInput";
 import {Button} from "common/components/Button/Button";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import loginBanner from "common/image/rafiki.svg";
 import {PopUp} from "common/components/PopUp/PopUp";
 import {Notification} from "common/components/Notification/Notification";
 import {registrationTC} from "features/Auth/authSlice";
+import {PATH} from "common/constans/path";
 
 export const Registration = () => {
 
   const dispatch = useAppDispatch()
 
-  const [isPopUp, setIsPopUp] = useState(true)
+  const [isPopUp, setIsPopUp] = useState(false)
+  const [successes, setSuccesses] = useState(false)
+
+  const navigate = useNavigate()
+
+  const navToLoginHandler = () => {
+    setSuccesses(false)
+    setIsPopUp(false)
+    navigate(PATH.LOGIN)
+  }
 
   const formik = useFormik({
     initialValues: {
@@ -24,6 +34,12 @@ export const Registration = () => {
     },
     onSubmit(values) {
       dispatch(registrationTC(values))
+        .then(res => {
+          if(res.payload) {
+            setSuccesses(true)
+            setIsPopUp(true)
+          }
+        })
     }
   })
 
@@ -35,19 +51,20 @@ export const Registration = () => {
           <FormInput title="Username" component="input" {...formik.getFieldProps('login')}/>
           <FormInput title="Email" component="input" {...formik.getFieldProps('email')}/>
           <FormInput title="Password" component="input" password {...formik.getFieldProps('password')}/>
+          {successes && <span className={s.successesNotify}>The link has been sent by email.If you don’t receive an email, send link again</span>}
           <div className={s.button}>
             <Button type={"submit"} title="Sign Un"/>
           </div>
         </form>
         <span className={s.forgotPass}>Already a member?</span>
-        <NavLink to="">Sign In</NavLink>
+        <NavLink to={PATH.LOGIN}>Sign In</NavLink>
       </div>
       <img src={loginBanner} alt="login banner"/>
-      <PopUp isActive={isPopUp} setIsActive={setIsPopUp}>
+      <PopUp isActive={isPopUp} setIsActive={navToLoginHandler}>
         <Notification
           title="Email sent"
-          message="We have sent a link to confirm your email to epam@epam.com"
-          onClose={setIsPopUp}
+          message={`Successes you're registered on email ${formik.values.email} `}
+          onClose={navToLoginHandler}
           onlyNotify
         />
       </PopUp>
