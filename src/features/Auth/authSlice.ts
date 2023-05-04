@@ -13,6 +13,18 @@ export const loginTC = createAsyncThunk('auth/loginTC', async (param: LoginType,
   }
   
 })
+export const logoutTC = createAsyncThunk('auth/loginTC', async (param, {dispatch, rejectWithValue}) => {
+
+  try {
+    await apiAuth.logout()
+    localStorage.removeItem('accessToken')
+    dispatch(setIsLoggedIn({isLoggedIn: false}))
+    return true
+  } catch (e) {
+    return rejectWithValue(null)
+  }
+
+})
 export const authTC = createAsyncThunk('auth/authTC', async (param, {dispatch, rejectWithValue}) => {
 
   try {

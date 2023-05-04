@@ -6,6 +6,9 @@ export const apiAuth = {
     return instance.post<'', AxiosResponse<TokensType>, LoginType>('api/auth/login', data)
       .then(res => res.data)
   },
+  logout() {
+    return instance.post('api/auth/logout')
+  },
   auth() {
     return instance.get<UserType>('api/auth/me')
       .then(res => res.data)

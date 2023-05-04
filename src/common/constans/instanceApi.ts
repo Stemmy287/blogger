@@ -11,7 +11,7 @@ instance.interceptors.request.use(config => {
   return config;
 });
 
-/*instance.interceptors.response.use(config => {
+instance.interceptors.response.use(config => {
  return config
 },  async (error) => {
   const originalRequest = error.config
@@ -24,4 +24,4 @@ instance.interceptors.request.use(config => {
       console.log(e)
     }
   }
-});*/
+});
