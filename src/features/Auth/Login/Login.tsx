@@ -1,14 +1,14 @@
 import React from 'react';
-import s from './login.module.scss'
+import s from 'features/Auth/Login/login.module.scss'
 import {useFormik} from "formik";
 import {FormInput} from "common/components/FormInput/FormInput";
 import {Button} from "common/components/Button/Button";
 import {Navigate, NavLink} from "react-router-dom";
 import loginBanner from "common/image/rafiki.svg"
 import {useAppDispatch} from "hooks/useAppDispatch";
-import {loginTC} from "features/Login/loginSlice";
+import {loginTC} from "features/Auth/authSlice";
 import {useAppSelector} from "hooks/useAppSelector";
-import {isLoggedInSelector} from "features/Login/loginSelectors";
+import {isLoggedInSelector} from "features/Auth/authSelectors";
 import {PATH} from "common/constans/path";
 
 export const Login = () => {
@@ -31,8 +31,6 @@ export const Login = () => {
         })
     }
   })
-
-
 
   if(isLoggedIn) {
     return <Navigate to={PATH.BLOGS}/>

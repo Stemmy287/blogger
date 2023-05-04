@@ -81,6 +81,7 @@ const slice = createSlice({
     },
     createCommentAC(state, action: PayloadAction<{ comment: CommentType }>) {
       state.comments.items.unshift(action.payload.comment)
+      state.comments.totalCount += 1
     },
     updateCommentAC(state, action: PayloadAction<{ content: string, commentId: string }>) {
       const index = state.comments.items.findIndex(cm => cm.id === action.payload.commentId)
@@ -94,6 +95,7 @@ const slice = createSlice({
 
       if (index > -1) {
         state.comments.items.splice(index, 1)
+        state.comments.totalCount -= 1
       }
     },
     setPageNumberCommentsAC(state, action: PayloadAction<{ pageNumber: number }>) {

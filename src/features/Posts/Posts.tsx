@@ -16,7 +16,7 @@ import {
 import {Pagination} from "common/components/Pagination/Pagination";
 import {Navigate} from "react-router-dom";
 import {PATH} from "common/constans/path";
-import {isLoggedInSelector} from "features/Login/loginSelectors";
+import {isLoggedInSelector} from "features/Auth/authSelectors";
 
 export const Posts = () => {
 

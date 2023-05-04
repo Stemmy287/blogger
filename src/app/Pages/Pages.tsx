@@ -5,10 +5,10 @@ import {Posts} from "features/Posts/Posts";
 import {BlogPage} from "features/Blogs/BlogPage/BlogPage";
 import {PostPage} from "features/Posts/PostPage/PostPage";
 import {PATH} from "common/constans/path";
-import {Login} from "features/Login/Login";
+import {Login} from "features/Auth/Login/Login";
 import {WithoutNav} from "app/WithoutNav";
 import {WithNav} from "app/WithNav";
-import {Registration} from "features/Registration/Registration";
+import {Registration} from "features/Auth/Registration/Registration";
 
 export const Pages = () => {
   return (

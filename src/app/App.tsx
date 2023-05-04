@@ -2,7 +2,7 @@ import {Header} from "app/Header/Header";
 import {Pages} from "app/Pages/Pages";
 import React, {useEffect} from "react";
 import {useAppDispatch} from "hooks/useAppDispatch";
-import {authTC} from "features/Login/loginSlice";
+import {authTC} from "features/Auth/authSlice";
 import {useAppSelector} from "hooks/useAppSelector";
 import {isInitializedSelector} from "app/appSelectors";
 

@@ -3,7 +3,7 @@ import thunkMiddleware, {ThunkDispatch} from "redux-thunk";
 import {configureStore} from "@reduxjs/toolkit";
 import {blogsReducer} from "features/Blogs/blogsSlice";
 import {postsReducer} from "features/Posts/postsSlice";
-import {loginReducer} from "features/Login/loginSlice";
+import {authReducer} from "features/Auth/authSlice";
 import {appReducer} from "app/appSlice";
 import {commentsReducer} from "features/Comments/commentsSlice";
 
@@ -11,7 +11,7 @@ const rootReducers = combineReducers({
     app : appReducer,
     blogs: blogsReducer,
     posts: postsReducer,
-    login: loginReducer,
+    auth: authReducer,
     comments: commentsReducer
 })
 

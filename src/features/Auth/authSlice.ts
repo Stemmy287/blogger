@@ -1,11 +1,11 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {apiLogin, LoginType, UserType} from "features/Login/loginApi";
+import {apiAuth, LoginType, RegistrationDataType, UserType} from "features/Auth/authApi";
 import {setIsInitialized} from "app/appSlice";
 
-export const loginTC = createAsyncThunk('login/loginTC', async (param: LoginType, {dispatch, rejectWithValue}) => {
+export const loginTC = createAsyncThunk('auth/loginTC', async (param: LoginType, {dispatch, rejectWithValue}) => {
 
   try {
-    const res = await apiLogin.login(param)
+    const res = await apiAuth.login(param)
     localStorage.setItem('accessToken', res.accessToken)
     dispatch(authTC())
   } catch (e) {
@@ -13,10 +13,10 @@ export const loginTC = createAsyncThunk('login/loginTC', async (param: LoginType
   }
   
 })
-export const authTC = createAsyncThunk('login/authTC', async (param, {dispatch, rejectWithValue}) => {
+export const authTC = createAsyncThunk('auth/authTC', async (param, {dispatch, rejectWithValue}) => {
 
   try {
-    const res = await apiLogin.auth()
+    const res = await apiAuth.auth()
     dispatch(setUser(res))
     dispatch(setIsLoggedIn({isLoggedIn: true}))
   } catch (e) {
@@ -24,10 +24,20 @@ export const authTC = createAsyncThunk('login/authTC', async (param, {dispatch, 
   } finally {
     dispatch(setIsInitialized({isInitialized: true}))
   }
+
+})
+export const registrationTC = createAsyncThunk('auth/registrationTC', async (param: RegistrationDataType, {rejectWithValue}) => {
+
+  try {
+    await apiAuth.registration(param)
+  } catch (e) {
+    return  rejectWithValue(null)
+  }
+
 })
 
 const slice = createSlice({
-  name: 'login',
+  name: 'auth',
   initialState: {
     isLoggedIn: false,
     user: {} as UserType
@@ -42,5 +52,5 @@ const slice = createSlice({
   }
 })
 
-export const loginReducer = slice.reducer
+export const authReducer = slice.reducer
 export const {setIsLoggedIn, setUser} = slice.actions

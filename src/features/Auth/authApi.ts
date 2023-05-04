@@ -1,7 +1,7 @@
 import {instance} from "common/constans/instanceApi";
 import {AxiosResponse} from "axios";
 
-export const apiLogin = {
+export const apiAuth = {
   login(data: LoginType) {
     return instance.post<'', AxiosResponse<TokensType>, LoginType>('api/auth/login', data)
       .then(res => res.data)
@@ -9,6 +9,9 @@ export const apiLogin = {
   auth() {
     return instance.get<UserType>('api/auth/me')
       .then(res => res.data)
+  },
+  registration(data: RegistrationDataType) {
+    return instance.post<'', AxiosResponse, RegistrationDataType>('api/auth/registration', data)
   }
 }
 
@@ -27,4 +30,10 @@ export type UserType = {
 type TokensType = {
   accessToken: string
   refresh: string
+}
+
+export type RegistrationDataType = {
+  login: string
+  password: string
+  email: string
 }

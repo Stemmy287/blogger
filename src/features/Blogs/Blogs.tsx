@@ -24,7 +24,7 @@ import {Select} from "common/components/Select/Select";
 import {Input} from "common/components/Input/Input";
 import {Navigate} from "react-router-dom";
 import {PATH} from "common/constans/path";
-import {isLoggedInSelector} from "features/Login/loginSelectors";
+import {isLoggedInSelector} from "features/Auth/authSelectors";
 
 export const Blogs = () => {
 
