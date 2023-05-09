@@ -7,23 +7,12 @@ export const loginTC = createAsyncThunk('auth/loginTC', async (param: LoginType,
   try {
     const res = await apiAuth.login(param)
     localStorage.setItem('accessToken', res.accessToken)
+    localStorage.setItem('refreshToken', res.refresh)
     dispatch(authTC())
   } catch (e) {
     return rejectWithValue('The password or email or Username is incorrect. Please try again')
   }
   
-})
-export const logoutTC = createAsyncThunk('auth/loginTC', async (param, {dispatch, rejectWithValue}) => {
-
-  try {
-    await apiAuth.logout()
-    localStorage.removeItem('accessToken')
-    dispatch(setIsLoggedIn({isLoggedIn: false}))
-    return true
-  } catch (e) {
-    return rejectWithValue(null)
-  }
-
 })
 export const authTC = createAsyncThunk('auth/authTC', async (param, {dispatch, rejectWithValue}) => {
 
@@ -35,6 +24,18 @@ export const authTC = createAsyncThunk('auth/authTC', async (param, {dispatch, r
     return rejectWithValue(null)
   } finally {
     dispatch(setIsInitialized({isInitialized: true}))
+  }
+
+})
+export const logoutTC = createAsyncThunk('auth/loginTC', async (param, {dispatch, rejectWithValue}) => {
+
+  try {
+    await apiAuth.logout()
+    localStorage.removeItem('accessToken')
+    dispatch(setIsLoggedIn({isLoggedIn: false}))
+    return true
+  } catch (e) {
+    return rejectWithValue(null)
   }
 
 })

@@ -1,13 +1,20 @@
-@import "../common/styles/sass/variables";
+@import "../common/styles/variables";
 
-  .NavAndContent{
+
+
+
+  .NavAndContent {
     display: flex;
+
     .mainContent {
       background-color: $mainColor;
       width: 100%;
       padding: 0 75px 0 25px;
     }
   }
+
+
+
 
 
 
