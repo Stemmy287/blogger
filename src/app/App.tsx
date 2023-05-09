@@ -1,4 +1,3 @@
-import {Header} from "app/Header/Header";
 import {Pages} from "app/Pages/Pages";
 import React, {useEffect} from "react";
 import {useAppDispatch} from "hooks/useAppDispatch";
@@ -20,12 +19,7 @@ export function App() {
     return <div>...loading</div>
   }
 
-  return (
-    <div>
-      <Header/>
-      <Pages/>
-    </div>
-  );
+  return <Pages/>
 }
 
 
