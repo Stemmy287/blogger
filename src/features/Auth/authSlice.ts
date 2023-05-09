@@ -7,7 +7,6 @@ export const loginTC = createAsyncThunk('auth/loginTC', async (param: LoginType,
   try {
     const res = await apiAuth.login(param)
     localStorage.setItem('accessToken', res.accessToken)
-    localStorage.setItem('refreshToken', res.refresh)
     dispatch(authTC())
   } catch (e) {
     return rejectWithValue('The password or email or Username is incorrect. Please try again')
