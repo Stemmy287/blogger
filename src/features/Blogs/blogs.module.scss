@@ -1,6 +1,15 @@
 @import "../../common/styles/mixns";
 @import "../../common/styles/variables";
 
-.pagination {
-  margin-top: 60px;
+.searchBar {
+  margin-top: 23px;
+  display: flex;
+  justify-content: space-between;
+  .input {
+    width: 672px;
+  }
+
+  .select {
+    width: 256px;
+  }
 }

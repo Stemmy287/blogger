@@ -63,16 +63,20 @@ export const Blogs = () => {
     dispatch(setSearchNameTermBlogsAC({searchNameTerm}))
   }
 
-  if(!isLoggedIn) {
+  if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN}/>
   }
 
   return (
     <div>
       <Title title="Blogs" isDesc={false}/>
-      <div>
-        <Input searchValue={searchValue} onChange={setSearchValue} searchHandler={searchHandler}/>
-        <Select onChange={onChangeSelect} title={'blogs'} blogs/>
+      <div className={s.searchBar}>
+        <div className={s.input}>
+          <Input searchValue={searchValue} onChange={setSearchValue} searchHandler={searchHandler}/>
+        </div>
+        <div className={s.select}>
+          <Select onChange={onChangeSelect} title={'blogs'} blogs/>
+        </div>
       </div>
       {blogs?.map(bg => <Blog
         key={bg.id}
@@ -81,7 +85,7 @@ export const Blogs = () => {
         webSiteUrl={bg.websiteUrl}
         description={bg.description}
       />)}
-      {blogsTotalCount > blogs.length  && <div className={s.pagination}><Pagination callback={onPagination}/></div>}
+      {blogsTotalCount > blogs.length && <Pagination callback={onPagination}/>}
     </div>
   );
 };

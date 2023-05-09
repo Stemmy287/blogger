@@ -4,17 +4,16 @@
 .titleContainer {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
   column-gap: 10px;
   position: relative;
   &::after {
     content: '';
     position: absolute;
     background: $gray400;
-    width: 100%;
+    width: 106.8%;
     height: 1px;
-    bottom: 7px;
-    left: 50%;
+    bottom: -7px;
+    left: 53.4%;
     transform: translate(-50%);
   }
   .title {
