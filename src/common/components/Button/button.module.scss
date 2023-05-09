@@ -3,26 +3,25 @@
 
 .buttonContainer {
   .button {
-    background-color: #F8346B;
+    background-color: $red200;
     box-shadow: 0 4px 18px rgba(248, 52, 107, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
     border-radius: 3px;
     border: none;
     width: 100%;
-    color: white;
     height: 36px;
-    @include text(600, 14px, 20px);
+    @include text(600, 14px, 20px, $gray200);
     cursor: pointer;
     padding: 0 25px;
     &:disabled {
-      background-color: #FB85A6;
+      background-color: $red100;
       cursor: default;
     }
   }
   .noBorder {
-    background-color: $secondBGColor;
-    color: #F8346B;
-    border: 2px #F8346B solid;
+    background-color: $gray200;
+    color: $red200;
+    border: 2px $red200 solid;
     box-shadow: none;
   }
 }

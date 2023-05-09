@@ -3,7 +3,7 @@
 
 .headerContainer {
   height: 60px;
-  background-color: $secondBGColor;
+  background-color: $gray200;
   box-shadow: 0 5px 20px rgba(29, 33, 38, 0.03),
   0 1px 2px rgba(29, 33, 38, 0.1);
   display: flex;
@@ -22,8 +22,7 @@
     column-gap: 80px;
     .userName {
       @include text(600, 16px, 24px);
-      color: $secondFontColor;
-      border-bottom: 1px dashed $secondFontColor;
+      border-bottom: 1px dashed $gray1000;
     }
 
     .logout {
@@ -33,7 +32,6 @@
       cursor: pointer;
       > span {
         @include text(400, 14px, 24px);
-        color: $secondFontColor;
       }
     }
   }
@@ -41,6 +39,5 @@
   > a {
     text-decoration: none;
     @include text(600, 16px, 24px);
-    color: $secondFontColor;
   }
 }

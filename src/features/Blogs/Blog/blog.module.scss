@@ -1,4 +1,5 @@
 @import "../../../common/styles/mixns";
+@import "../../../common/styles/variables";
 
 .blogContainer {
   display: flex;
@@ -6,9 +7,8 @@
     img {
       width: 156px;
       height: 156px;
-      background-color: white;
       border-radius: 50%;
-      border: 1px solid #DEDBDC;
+      border: 1px solid $gray400;
     }
   }
 
@@ -22,21 +22,20 @@
       .title {
         margin: 0;
         @include text(600, 18px, 24px);
-        color: $secondFontColor;
       }
     }
     .website {
       margin-bottom: 20px;
-      @include text(400, 14px, 24px);
-      color: #3677F7;
+      @include text(400, 14px, 24px, $blue);
+
 
       b {
         font-weight: 400;
-        color: $fontColor;
+        color: $gray800;
       }
 
       a {
-        color: #3677F7;
+        color: $blue;
         margin-left: 5px;
       }
     }

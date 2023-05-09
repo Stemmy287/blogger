@@ -1,11 +1,10 @@
 @import "../../common/styles/variables";
-@import "../../common/styles/mixns";
 
 .navBarContainer {
   display: flex;
   flex-direction: column;
   row-gap: 25px;
-  background-color: $secondBGColor;
+  background-color: $gray200;
   width: 292px;
   padding: 39px 0 0 70px ;
   box-sizing: border-box;

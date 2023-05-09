@@ -5,18 +5,18 @@
   display: flex;
   flex-direction: column;
   position: relative;
+
   span {
-    @include text(400, 14px, 24px);
-    color: $fontColor
+    @include text(400, 14px, 24px, $gray800);
   }
 
   input {
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid #DEDBDC;
+    border-bottom: 1px solid $gray400;
     @include text(400, 16px, 24px);
-    color: #1A1718;
     outline: none;
+
     &[data-showpassword="true"] {
       -webkit-text-security: disc;
     }
@@ -25,9 +25,8 @@
 
   textarea {
     background-color: transparent;
-    border: 1px solid #DEDBDC;
+    border: 1px solid $gray400;
     @include text(400, 16px, 24px);
-    color: #1A1718;
     border-radius: 2px;
     height: 84px;
     resize: none;

@@ -1,13 +1,10 @@
 @import "../common/styles/variables";
 
-
-
-
   .NavAndContent {
     display: flex;
 
     .mainContent {
-      background-color: $mainColor;
+      background-color: $gray300;
       width: 100%;
       padding: 0 75px 0 25px;
     }

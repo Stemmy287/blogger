@@ -1,10 +1,11 @@
 @import "../../styles/mixns";
+@import "../../styles/variables";
 
 .navLink {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #000;
+  color: $gray1000;
 
   span {
     @include text(400, 14px, 24px);
