@@ -3,6 +3,7 @@
 
 .container {
   position: relative;
+
   .select {
     display: flex;
     align-items: center;
@@ -31,6 +32,9 @@
       cursor: pointer;
       @include text(400, 14px, 14px);
       background-color: $gray300;
+      &:hover {
+        background-color: $gray400;
+      }
     }
   }
 }

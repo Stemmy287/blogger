@@ -23,7 +23,7 @@ export const Blog: FC<BlogsPropsType> = ({
         <NavLink to={`/BlogPage/${blogId}`} className={s.navBlog}>
           <h3 className={s.title}>{title}</h3>
         </NavLink>
-        <span className={s.website}><b>Website:</b><a href="">{webSiteUrl}</a></span>
+        <span className={s.website}><b>Website:</b><a href={webSiteUrl} target='_blank'>{webSiteUrl}</a></span>
         <span className={s.text}>{description}</span>
       </div>
     </div>

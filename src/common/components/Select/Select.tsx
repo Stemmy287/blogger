@@ -1,41 +1,53 @@
-import React, {FC, MouseEvent, useState} from 'react';
+import React, {FC, MouseEvent, useRef, useState} from 'react';
 import s from "common/components/Select/select.module.scss";
 import {ReactComponent as ArrowDown} from "common/icons/arrowDown.svg";
 import {ReactComponent as ArrowUp} from "common/icons/arrowUp.svg";
+import {OptionsSelectorType} from "features/Blogs/types";
+import {useOutsideClick} from "hooks/useOutsideClick";
 
 type Props = {
-  selected: string
-  setSelected: (selected: string) => void
-  options: string[]
+  title: string
+  options: OptionsSelectorType[]
+  onChange: (data: OptionsSelectorType) => void
 }
-
-export const Select: FC<Props> = ({selected, setSelected, options}) => {
+export const Select: FC<Props> = ({title, options, onChange}) => {
 
   const [isActive, setIsActive] = useState(false)
+  const [selected, setSelected] = useState(title)
+
+  const selectRef = useRef<HTMLInputElement>(null)
+
+  useOutsideClick(selectRef, () => setIsActive(false), isActive)
 
   const onActiveHandler = () => {
     setIsActive(!isActive)
   }
   const onSelectHandler = (e: MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-    if (e.currentTarget.textContent) {
+    if (e.currentTarget.dataset.value && e.currentTarget.textContent) {
+      onChange({title: e.currentTarget.textContent, value: e.currentTarget.dataset.value})
       setSelected(e.currentTarget.textContent)
-      setIsActive(false)
+    } else if (e.currentTarget.textContent) {
+      onChange({title: e.currentTarget.textContent})
+      setSelected(e.currentTarget.textContent)
     }
+    setIsActive(false)
   }
 
+  const mappedOptions = options.filter(el => el.title !== selected).map(option =>
+    <div key={option.title} className={s.option} onClick={onSelectHandler} data-value={option.value && option.value}>
+      {option.title}
+    </div>
+  )
+
   return (
-    <div className={s.container}>
+    <div className={s.container} ref={selectRef}>
       <div className={s.select} onClick={onActiveHandler}>
-        {selected || options[0]}
+        {selected}
         {isActive ? <ArrowUp/> : <ArrowDown/>}
       </div>
       {isActive && (
         <div className={s.optionsList}>
-          {options.map(option =>
-            <div className={s.option} onClick={onSelectHandler}>
-              {option}
-            </div>
-          )}
+          {mappedOptions}
         </div>
       )}
     </div>
