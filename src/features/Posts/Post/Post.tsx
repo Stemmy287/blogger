@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import s from './post.module.scss'
 import {NavLink} from "react-router-dom";
-import defaultPostImage from 'common/image/Best-times-to-post-2022_BTTP-Social-Media.jpg'
-import defaultBlogImage from 'common/image/blog2.png'
+import defaultPostImage from 'common/image/defaultPostImg.png'
+import defaultBlogImage from 'common/image/defaultBlogImg.png'
 import {dateConvertor} from "common/utils/dateConvertor";
 
 type PostPropsType = {

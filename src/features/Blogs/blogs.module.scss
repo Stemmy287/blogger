@@ -2,9 +2,9 @@
 @import "../../common/styles/variables";
 
 .searchBar {
-  margin-top: 23px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 13px;
   .input {
     width: 672px;
   }
@@ -12,4 +12,8 @@
   .select {
     width: 256px;
   }
+}
+
+.pagination {
+  margin-top: 36px;
 }

@@ -3,30 +3,35 @@
 
 .blogContainer {
   display: flex;
-  height: 156px;
-  .photo {
-    img {
-      width: 156px;
-      height: 156px;
-      border-radius: 50%;
-      border: 1px solid $gray400;
-    }
+  padding: 11px 0;
+  border-bottom: 1px solid $gray400;
+  column-gap: 12px;
+  &:last-child {
+    border-bottom: none;
+  }
+
+  img {
+    width: 156px;
+    height: 156px;
+    border-radius: 50%;
+    border: 1px solid $gray400;
   }
 
   .content {
-    padding-top: 10px;
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
-    margin-left: 15px;
-    .navBlog{
+
+    .navBlog {
       text-decoration: none;
+
       .title {
-        margin: 0;
+        margin-bottom: 2px;
         @include text(600, 18px, 24px);
       }
     }
+
     .website {
-      margin-bottom: 20px;
       @include text(400, 14px, 24px, $blue);
 
 
@@ -38,8 +43,20 @@
       a {
         color: $blue;
         margin-left: 5px;
+        text-decoration: underline;
       }
     }
+
+    .text {
+      margin-top: 24px;
+      @include text(400, 14px, 24px);
+    }
+  }
+
+  .border {
+    height: 1px;
+    width: 100%;
+    background-color: $gray400;
   }
 }
 

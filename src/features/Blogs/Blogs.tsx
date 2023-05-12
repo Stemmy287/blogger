@@ -78,14 +78,14 @@ export const Blogs = () => {
           <Select onChange={onChangeSelect} title={'blogs'} blogs/>
         </div>
       </div>
-      {blogs?.map(bg => <Blog
-        key={bg.id}
-        blogId={bg.id}
-        title={bg.name}
-        webSiteUrl={bg.websiteUrl}
-        description={bg.description}
-      />)}
-      {blogsTotalCount > blogs.length && <Pagination callback={onPagination}/>}
+        {blogs?.map(bg => <Blog
+          key={bg.id}
+          blogId={bg.id}
+          title={bg.name}
+          webSiteUrl={bg.websiteUrl}
+          description={bg.description}
+        />)}
+      {blogsTotalCount > blogs.length && <div className={s.pagination}><Pagination callback={onPagination}/></div>}
     </div>
   );
 };

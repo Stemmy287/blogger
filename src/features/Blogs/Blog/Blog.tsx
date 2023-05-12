@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import s from './blog.module.scss'
 import {NavLink} from "react-router-dom";
-import defaultBlogImage from 'common/image/blog2.png'
+import defaultBlogImage from 'common/image/defaultBlogImg.png'
 
 type BlogsPropsType = {
   blogId: string
@@ -18,9 +18,7 @@ export const Blog: FC<BlogsPropsType> = ({
                                          }) => {
   return (
     <div className={s.blogContainer}>
-      <div className={s.photo}>
-        <img src={defaultBlogImage} alt="blog image"/>
-      </div>
+      <img src={defaultBlogImage} alt="blog image"/>
       <div className={s.content}>
         <NavLink to={`/BlogPage/${blogId}`} className={s.navBlog}>
           <h3 className={s.title}>{title}</h3>
