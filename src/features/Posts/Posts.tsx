@@ -3,7 +3,6 @@ import s from './posts.module.scss'
 import {Title} from "common/components/Title/Title";
 import {Post} from "./Post/Post";
 import {useAppSelector} from "hooks/useAppSelector";
-import {Select} from "common/components/Select/Select";
 import {fetchPostsTC, setIsPaginationPostsAC, setPageNumberPostsAC, setSortByPostsAC} from "features/Posts/postsSlice";
 import {useAppDispatch} from "hooks/useAppDispatch";
 import {
@@ -55,7 +54,7 @@ export const Posts = () => {
     <div>
       <Title title={'Posts'} isDesc={false}/>
       <div className={s.select}>
-        <Select title={'posts'} onChange={onChangeSelect}/>
+
       </div>
       <div className={s.posts}>
         {posts.map(ps =>

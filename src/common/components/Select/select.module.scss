@@ -1,16 +1,36 @@
 @import "../../styles/mixns";
 @import "../../styles/variables";
 
-.select {
-  height: 36px;
-  border: 1px solid $gray400;
-  border-radius: 3px;
-  background: transparent;
-  padding-left: 12px;
-  width: 100%;
-  @include text(400, 14px, 24px);
-  .option {
-    background-color: $gray400;
-    padding: 10px 0 10px 0
+.container {
+  position: relative;
+  .select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 18px 6px 12px;
+    border: 1px solid $gray400;
+    border-radius: 2px;
+    height: 36px;
+    cursor: pointer;
+    @include text(400, 14px, 14px);
+    user-select: none;
+  }
+
+  .optionsList {
+    position: absolute;
+    width: 100%;
+    border: 1px solid $gray400;
+    border-top: none;
+
+    .option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 36px;
+      padding: 6px 18px 6px 12px;
+      cursor: pointer;
+      @include text(400, 14px, 14px);
+      background-color: $gray300;
+    }
   }
 }

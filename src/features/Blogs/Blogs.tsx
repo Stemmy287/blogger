@@ -58,6 +58,8 @@ export const Blogs = () => {
 
   const [searchValue, setSearchValue] = useState('')
 
+  const [selected, setSelected] = useState('')
+
   const searchHandler = (searchNameTerm: string) => {
     dispatch(setPageNumberBlogsAC({pageNumber: 1}))
     dispatch(setSearchNameTermBlogsAC({searchNameTerm}))
@@ -75,9 +77,14 @@ export const Blogs = () => {
           <Input searchValue={searchValue} onChange={setSearchValue} searchHandler={searchHandler}/>
         </div>
         <div className={s.select}>
-          <Select onChange={onChangeSelect} title={'blogs'} blogs/>
+          <Select
+            selected={selected}
+            setSelected={setSelected}
+            options={['New blogs first', 'Old blogs first', 'From A to Z', 'From Z to A']}
+          />
         </div>
       </div>
+      <div>
         {blogs?.map(bg => <Blog
           key={bg.id}
           blogId={bg.id}
@@ -85,6 +92,7 @@ export const Blogs = () => {
           webSiteUrl={bg.websiteUrl}
           description={bg.description}
         />)}
+      </div>
       {blogsTotalCount > blogs.length && <div className={s.pagination}><Pagination callback={onPagination}/></div>}
     </div>
   );
