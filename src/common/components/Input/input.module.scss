@@ -1,14 +1,33 @@
 @import "../../styles/mixns";
 
-.input {
-  height: 36px;
-  width: 100%;
-  background: transparent;
-  border: 1px solid $gray400;
-  border-radius: 3px;
-  padding-left: 50px;
+.container {
+  position: relative;
+  .input {
+    height: 36px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid $gray400;
+    border-radius: 3px;
+    padding-left: 48px;
+    outline: none;
+    @include text(400, 14px, 24px);
 
-  &::placeholder {
-    @include text(400, 14px, 24px, $gray500);
+    &::placeholder {
+      @include text(400, 14px, 24px, $gray500);
+    }
+
+    &:hover {
+      border: 1px solid $gray700;
+    }
+
+    &:focus {
+      border: 1px solid $gray700;
+    }
+  }
+  .icon {
+    position: absolute;
+    left: 15px;
+    top: 9px;
   }
 }
+

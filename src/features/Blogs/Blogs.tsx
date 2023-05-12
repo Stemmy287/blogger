@@ -25,6 +25,7 @@ import {Input} from "common/components/Input/Input";
 import {Navigate} from "react-router-dom";
 import {PATH} from "common/constans/path";
 import {isLoggedInSelector} from "features/Auth/authSelectors";
+import {OptionsSelectorType} from "features/Blogs/types";
 
 export const Blogs = () => {
 
@@ -49,26 +50,30 @@ export const Blogs = () => {
     dispatch(setIsPaginationBlogsAC())
     dispatch(setPageNumberBlogsAC({pageNumber: pageNumber + 1}))
   }
-
-  const onChangeSelect = (sortBy: string) => {
-    const value = sortBy.split(' ')
-    dispatch(setPageNumberBlogsAC({pageNumber: 1}))
-    dispatch(setSortByBlogsAC({sortBy: value[1], sortDirection: value[0]}))
+  const onChangeSelect = (data: OptionsSelectorType) => {
+    if (data.value) {
+      console.log(data)
+      const value = data.value.split(' ')
+      dispatch(setPageNumberBlogsAC({pageNumber: 1}))
+      dispatch(setSortByBlogsAC({sortBy: value[1], sortDirection: value[0]}))
+    }
   }
 
   const [searchValue, setSearchValue] = useState('')
 
-  const [selected, setSelected] = useState('')
-
+  const [options] = useState([
+    {title: 'New blogs first', value: 'desc createdAt'},
+    {title: 'Old blogs first', value: 'asc createdAt'},
+    {title: 'From A to Z', value: 'asc name'},
+    {title: 'From Z to A', value: 'desc name'},
+  ])
   const searchHandler = (searchNameTerm: string) => {
     dispatch(setPageNumberBlogsAC({pageNumber: 1}))
     dispatch(setSearchNameTermBlogsAC({searchNameTerm}))
   }
-
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN}/>
   }
-
   return (
     <div>
       <Title title="Blogs" isDesc={false}/>
@@ -78,9 +83,9 @@ export const Blogs = () => {
         </div>
         <div className={s.select}>
           <Select
-            selected={selected}
-            setSelected={setSelected}
-            options={['New blogs first', 'Old blogs first', 'From A to Z', 'From Z to A']}
+            title={options[0].title}
+            onChange={onChangeSelect}
+            options={options}
           />
         </div>
       </div>
