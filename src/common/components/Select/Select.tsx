@@ -41,12 +41,12 @@ export const Select: FC<Props> = ({title, options, onChange}) => {
 
   return (
     <div className={s.container} ref={selectRef}>
-      <div className={s.select} onClick={onActiveHandler}>
+      <div className={isActive ? `${s.select} ${s.active}` : s.select} onClick={onActiveHandler}>
         {selected}
         {isActive ? <ArrowUp/> : <ArrowDown/>}
       </div>
       {isActive && (
-        <div className={s.optionsList}>
+        <div className={isActive ? `${s.optionsList} ${s.activeOptions}` : s.optionsList}>
           {mappedOptions}
         </div>
       )}

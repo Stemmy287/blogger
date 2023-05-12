@@ -15,6 +15,10 @@
     cursor: pointer;
     @include text(400, 14px, 14px);
     user-select: none;
+
+    &:hover {
+      border: 1px solid $gray700;
+    }
   }
 
   .optionsList {
@@ -32,9 +36,21 @@
       cursor: pointer;
       @include text(400, 14px, 14px);
       background-color: $gray300;
+
       &:hover {
         background-color: $gray400;
       }
     }
   }
+
+  .activeOptions {
+    border: 1px solid $gray700;
+    border-top: none;
+
+  }
+
+  .active {
+    border: 1px solid $gray700;
+  }
 }
+
