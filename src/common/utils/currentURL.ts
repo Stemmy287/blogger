@@ -1,9 +1,9 @@
 export const currentURL = (url: string) => {
 
   try {
-    return 'https://' + new URL(url).hostname.replace(/^www\./, '')
+    return 'https://www.' + new URL(url).hostname.replace(/^www\./, '')
   } catch (e) {
-    return 'https://' + url
+    return 'https://www.' + url
   }
 
 }
