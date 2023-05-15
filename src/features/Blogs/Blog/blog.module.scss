@@ -6,6 +6,7 @@
   padding: 11px 0;
   border-bottom: 1px solid $gray400;
   column-gap: 12px;
+
   &:last-child {
     border-bottom: none;
   }
@@ -22,12 +23,15 @@
     display: flex;
     flex-direction: column;
 
-    .navBlog {
-      text-decoration: none;
+    .navContainer {
+      display: inherit;
+      .navBlog {
+        text-decoration: none;
 
-      .title {
-        margin-bottom: 2px;
-        @include text(600, 18px, 24px);
+        .title {
+          margin-bottom: 2px;
+          @include text(600, 18px, 24px);
+        }
       }
     }
 
