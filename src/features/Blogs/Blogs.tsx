@@ -26,6 +26,7 @@ import {Navigate} from "react-router-dom";
 import {PATH} from "common/constans/path";
 import {isLoggedInSelector} from "features/Auth/authSelectors";
 import {OptionsSelectorType} from "features/Blogs/types";
+import {useSearch} from "hooks/useSearch";
 
 export const Blogs = () => {
 
@@ -59,27 +60,35 @@ export const Blogs = () => {
     }
   }
 
-  const [searchValue, setSearchValue] = useState('')
-
   const [options] = useState([
     {title: 'New blogs first', value: 'desc createdAt'},
     {title: 'Old blogs first', value: 'asc createdAt'},
     {title: 'From A to Z', value: 'asc name'},
     {title: 'From Z to A', value: 'desc name'},
   ])
-  const searchHandler = (searchNameTerm: string) => {
+
+  const searchHandler = (debouncedSearchValue: string) => {
     dispatch(setPageNumberBlogsAC({pageNumber: 1}))
-    dispatch(setSearchNameTermBlogsAC({searchNameTerm}))
+    dispatch(setSearchNameTermBlogsAC({searchNameTerm :debouncedSearchValue}))
   }
+
+  const {searchValue, setSearchValue} = useSearch(searchHandler)
+
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN}/>
   }
+
   return (
     <div>
       <Title title="Blogs" isDesc={false}/>
       <div className={s.searchBar}>
         <div className={s.input}>
-          <Input searchValue={searchValue} onChange={setSearchValue} searchHandler={searchHandler}/>
+          <Input
+            component={'searchInput'}
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.currentTarget.value)}
+            placeholder='Search'
+          />
         </div>
         <div className={s.select}>
           <Select
