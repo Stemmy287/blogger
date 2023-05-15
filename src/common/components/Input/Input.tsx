@@ -1,30 +1,54 @@
-import React, {ChangeEvent, FC, useEffect} from 'react';
+import React, {DetailedHTMLProps, FC, InputHTMLAttributes, TextareaHTMLAttributes, useState} from 'react';
 import s from './input.module.scss'
-import {useDebounce} from "hooks/useDebounce";
 import {ReactComponent as GlassMag} from "common/icons/glassMag.svg";
+import {ReactComponent as Eye} from "common/icons/visibility.svg";
 
 type Props = {
-  searchValue: string
-  onChange: (searchValue: string) => void
-  searchHandler: (searchValue: string) => void
+  component: 'input' | 'searchInput' | 'textarea'
+  title?: string
+  placeholder?: string
+  password?: boolean
 }
 
-export const Input:FC<Props> = ({searchValue, onChange, searchHandler}) => {
+type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> &
+  DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>
 
-  const debouncedSearchNameTerm = useDebounce(searchValue, 750)
+export const Input: FC<Props & DefaultInputPropsType> = ({
+                                                           component,
+                                                           title,
+                                                           placeholder,
+                                                           password,
+                                                           ...restProps
+                                                         }) => {
 
-  const onChangeSearchNameTermLocal = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange(e.currentTarget.value)
+  const [showPassword, setShowPassword] = useState(true)
+
+  const onShowHandler = () => {
+    setShowPassword(!showPassword)
   }
-
-  useEffect(() => {
-    searchHandler(debouncedSearchNameTerm)
-  }, [debouncedSearchNameTerm])
 
   return (
     <div className={s.container}>
-      <input className={s.input} value={searchValue} onChange={onChangeSearchNameTermLocal} placeholder="Search"/>
-      <GlassMag className={s.icon}/>
+      {component === 'input' || 'searchInput' ? (
+        <>
+          {title && <span>{title}</span>}
+          <input
+            className={component === 'input' ? s.input : s.searchInput}
+            placeholder={placeholder}
+            data-showpassword={password && showPassword}
+            {...restProps}
+          />
+          {component === 'searchInput' && <GlassMag className={s.glassMag}/>}
+          {password && <Eye className={s.showPassword} onClick={onShowHandler}/>}
+        </>
+      ) : (
+        <textarea
+          className={s.textarea}
+          placeholder={placeholder}
+          {...restProps}
+        />
+      )
+      }
     </div>
 
   );

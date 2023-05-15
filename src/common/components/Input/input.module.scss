@@ -2,7 +2,42 @@
 
 .container {
   position: relative;
+
+  > span {
+    @include text(400, 14px, 24px, $gray800);
+  }
+
   .input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $gray400;
+    @include text(400, 16px, 24px);
+    outline: none;
+    padding: 0 0 2px 0;
+    width: 100%;
+
+    &[data-showpassword="true"] {
+      -webkit-text-security: disc;
+    }
+
+    &:hover {
+      border-bottom: 1px solid $gray700;
+    }
+
+    &:focus {
+      border-bottom: 1px solid $gray700;
+    }
+
+  }
+
+  .showPassword {
+    position: absolute;
+    bottom: 7%;
+    right: 3%;
+    cursor: pointer;
+  }
+
+  .searchInput {
     height: 36px;
     width: 100%;
     background: transparent;
@@ -24,10 +59,23 @@
       border: 1px solid $gray700;
     }
   }
-  .icon {
+
+  .glassMag {
     position: absolute;
     left: 15px;
     top: 9px;
   }
+
+  .textarea {
+    background-color: transparent;
+    border: 1px solid $gray400;
+    @include text(400, 16px, 24px);
+    border-radius: 2px;
+    height: 84px;
+    resize: none;
+    outline: none;
+    padding: 5px 10px;
+  }
+
 }
 
