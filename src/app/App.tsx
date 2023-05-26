@@ -1,7 +1,7 @@
-import {Pages} from "app/Pages/Pages";
+import {Pages} from "Pages/Pages";
 import React, {useEffect} from "react";
 import {useAppDispatch} from "hooks/useAppDispatch";
-import {authTC} from "features/Auth/authSlice";
+import {authTC} from "modules/authModule/authSlice";
 import {useAppSelector} from "hooks/useAppSelector";
 import {isInitializedSelector} from "app/appSelectors";
 

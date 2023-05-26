@@ -1,0 +1,41 @@
+@import "../../../../common/styles/variables";
+@import "../../../../common/styles/mixns";
+
+.postDeployedContainer {
+  margin-top: 50px;
+  .blogInfo {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+    }
+    h3 {
+      @include text(600, 16px, 24px);
+    }
+  }
+  .postInfo {
+    margin: 41px 0 20px 0;
+    h2 {
+      margin: 0 0 9px 0;
+      @include text(600, 22px, 24px);
+    }
+    span {
+      @include text(400, 12px, 16px);
+      letter-spacing: 0.02em;
+      color: $gray700;
+    }
+  }
+  .content {
+    img {
+      background-color: white;
+      height: 432px;
+      width: 100%;
+    }
+    p {
+      @include text(400, 16px, 24px);
+    }
+  }
+}

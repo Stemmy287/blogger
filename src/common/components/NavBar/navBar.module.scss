@@ -1,0 +1,10 @@
+@import "../../styles/variables";
+
+.navBarContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  background-color: $gray200;
+  width: 252px;
+  padding: 43px 115px 0 67px ;
+}

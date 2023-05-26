@@ -2,7 +2,7 @@ import React, {FC, MouseEvent, useRef, useState} from 'react';
 import s from "common/components/Select/select.module.scss";
 import {ReactComponent as ArrowDown} from "common/icons/arrowDown.svg";
 import {ReactComponent as ArrowUp} from "common/icons/arrowUp.svg";
-import {OptionsSelectorType} from "features/Blogs/types";
+import {OptionsSelectorType} from "modules/blogsModule/types";
 import {useOutsideClick} from "hooks/useOutsideClick";
 
 type Props = {

@@ -4,19 +4,19 @@ import arrow from 'common/icons/arrowBackLink.svg'
 import {NavLink} from "react-router-dom";
 
 type BackLinkPropsType = {
-    link: string
-    where: string
+  link: string
+  to: string
 }
 
 export const BackLink: FC<BackLinkPropsType> = ({
-                                                    link,
-                                                    where
+                                                  link,
+                                                  to
                                                 }) => {
-    return (
-        <NavLink to={link} className={s.backLink}>
-            <img src={arrow} alt={'arrow'}/>
-            <span className={s.desc}>Back to {where}</span>
-        </NavLink>
-    );
+  return (
+    <NavLink to={link} className={s.backLink}>
+      <img src={arrow} alt={'arrow'}/>
+      Back to {to}
+    </NavLink>
+  );
 };
 
