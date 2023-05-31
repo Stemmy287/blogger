@@ -14,6 +14,7 @@ type PropsType = {
 
 export const BlogOnPage = ({ title, webSiteUrl, description, date }: PropsType) => {
 	const [isAllText, setIsAllText] = useState(false);
+	const [isShowButton, setIsShowButton] = useState(false);
 
 	const onAllTextHandler = () => {
 		setIsAllText(!isAllText);
@@ -41,10 +42,13 @@ export const BlogOnPage = ({ title, webSiteUrl, description, date }: PropsType) 
 					<p className={isAllText ? s.desc : `${s.desc} ${s.notAllText}`} ref={textBlock}>
 						{description}
 					</p>
+					{!isShowButton && (
 						<button className={s.showMore} onClick={onAllTextHandler}>
-							Show more
-							{isAllText ? <ArrowText className={s.iconRevert} /> : <ArrowText />}
+							{isAllText
+								? <>Show less <ArrowText className={s.iconRevert} /></>
+								: <>Show more <ArrowText /></>}
 						</button>
+					)}
 				</div>
 			</div>
 		</div>
