@@ -12,3 +12,13 @@
     margin-left: 15px;
   }
 }
+
+.active {
+  color: $red200;
+  span {
+    color: $red200;
+  }
+  .icon * {
+    fill: $red200;
+  }
+}
