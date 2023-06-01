@@ -97,7 +97,7 @@ const slice = createSlice({
 			state.blog = action.payload.blog;
 		},
 		setPostsForSpecificBlogAC(state, action: PayloadAction<{ posts: ResponseType<PostType[]> }>) {
-			if (state.isPagination) {
+			if (state.isPaginationForPosts) {
 				state.postsForSpecificBlog = {
 					...action.payload.posts,
 					items: [...state.postsForSpecificBlog.items, ...action.payload.posts.items]
