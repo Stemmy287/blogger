@@ -70,7 +70,12 @@ export const Posts = () => {
 					<Select title={options[0].title} options={options} onChange={onChangeSelect} />
 				</div>
 			</div>
-			<PostsList posts={posts} postsTotalCount={postsTotalCount} onPagination={onPagination} />
+			<PostsList
+				posts={posts}
+				postsTotalCount={postsTotalCount}
+				onPagination={onPagination}
+				navData={{ link: '/posts', title: 'posts'}}
+			/>
 		</>
 	);
 };

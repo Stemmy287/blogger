@@ -62,7 +62,17 @@ export const BlogPage = () => {
 					date={blog.createdAt}
 				/>
 			</div>
-			<PostsList posts={posts} postsTotalCount={postsTotalCount} onPagination={onPagination} />
+			<PostsList
+				posts={posts}
+				postsTotalCount={postsTotalCount}
+				onPagination={onPagination}
+				navData={{ link: `/BlogPage/${blogId}`, title: `blog "${blog.name}"` }}
+			/>
 		</div>
 	);
 };
+
+export type NavDataType = {
+	link: string
+	title: string
+}

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Title } from 'common/components/Title/Title';
 import { BackLink } from 'common/components/BackLink/BackLink';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { fetchPostTC } from 'modules/postsModule/postsSlice';
 import { useAppSelector } from 'hooks/useAppSelector';
@@ -11,12 +11,15 @@ import s from './postPage.module.scss';
 import defaultBlogImage from 'common/image/defaultBlogImg.png';
 import defaultPostImage from 'common/image/post-banner.png';
 import { dateConvertor } from '../../../../common/utils/dateConvertor';
-import { PATH } from '../../../../common/constans/path';
 
 export const PostPage = () => {
 	const { postId } = useParams();
+
 	const post = useAppSelector(postSelector);
+
 	const dispatch = useAppDispatch();
+
+	const { state } = useLocation();
 
 	useEffect(() => {
 		if (postId) {
@@ -31,7 +34,7 @@ export const PostPage = () => {
 			<div className={s.mainTitleWrapper}>
 				<Title title={'Posts'} isDesc={true} desc={post.blogName} />
 			</div>
-			<BackLink link={PATH.POSTS} to={'posts'} />
+			<BackLink link={state?.link || '/posts'} to={state?.title || 'posts'} />
 			<div className={s.postDeployedContainer}>
 				<div className={s.blogInfo}>
 					<img className={s.blogAvatar} src={defaultBlogImage} alt="blog avatar" />

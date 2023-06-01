@@ -1,19 +1,28 @@
-import React, { FC } from 'react';
+import React, { FC, MouseEvent } from 'react';
 import s from './post.module.scss';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import defaultPostImage from 'common/image/defaultPostImg.png';
 import defaultBlogImage from 'common/image/defaultBlogImg.png';
 import { dateConvertor } from 'common/utils/dateConvertor';
+import { NavDataType } from '../../../blogsModule/components/BlogPage/BlogPage';
 
 type PostPropsType = {
 	postId: string;
 	title: string;
 	blogName: string;
 	date: string;
+	navData: NavDataType;
 };
 
-export const Post: FC<PostPropsType> = ({ postId, title, blogName, date }) => {
+export const Post: FC<PostPropsType> = ({ postId, title, blogName, date, navData }) => {
 	const dateParsed = dateConvertor(date);
+
+	const navigate = useNavigate();
+
+	const onPostPageHandler = (e: MouseEvent<HTMLAnchorElement>) => {
+		e.preventDefault();
+		navigate(`/PostPage/${postId}`, { state: navData });
+	};
 
 	return (
 		<div className={s.postContainer}>
@@ -21,7 +30,9 @@ export const Post: FC<PostPropsType> = ({ postId, title, blogName, date }) => {
 			<div className={s.content}>
 				<img className={s.blogAvatar} src={defaultBlogImage} alt="blog avatar" />
 				<div className={s.text}>
-					<NavLink to={`/PostPage/${postId}`} className={s.navPost}>{title}</NavLink>
+					<a href={'/'} className={s.navPost} onClick={onPostPageHandler}>
+						{title}
+					</a>
 					<span className={s.description}>{blogName}</span>
 					<span className={s.date}>{dateParsed}</span>
 				</div>
@@ -29,4 +40,3 @@ export const Post: FC<PostPropsType> = ({ postId, title, blogName, date }) => {
 		</div>
 	);
 };
-
