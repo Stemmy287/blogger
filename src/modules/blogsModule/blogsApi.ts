@@ -3,13 +3,16 @@ import { PostType } from '../postsModule/postsApi';
 
 export const apiBlogs = {
 	getBlogs(data: QueryParamsType) {
-		return instance.get<ResponseType<BlogType[]>>('api/blogs', { params: data }).then(res => res.data);
+		return instance
+			.get<ResponseType<BlogType[]>>('api/blogs', { params: data }).then(res => res.data);
 	},
 	getBlog(blogId: string) {
-		return instance.get<BlogType>(`api/blogs/${blogId}`).then(res => res.data);
+		return instance
+			.get<BlogType>(`api/blogs/${blogId}`).then(res => res.data);
 	},
-	getPostsForSpecificBlog(blogId: string) {
-		return instance.get<ResponseType<PostType[]>>(`api/blogs/${blogId}/posts`).then(res => res.data);
+	getPostsForSpecificBlog(blogId: string, data: Pick<QueryParamsType, 'pageSize' | 'pageNumber'>) {
+		return instance
+			.get<ResponseType<PostType[]>>(`api/blogs/${blogId}/posts`, {params: data}).then(res => res.data);
 	},
 };
 
