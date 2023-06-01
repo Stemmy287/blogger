@@ -63,7 +63,7 @@ const slice = createSlice({
 			searchNameTerm: '',
 		},
 		isPagination: false,
-		posts: {
+		postsForSpecificBlog: {
 			items: [] as PostType[],
 		} as ResponseType<PostType[]>,
 		queryParamsForPosts: {
@@ -98,12 +98,21 @@ const slice = createSlice({
 		},
 		setPostsForSpecificBlogAC(state, action: PayloadAction<{ posts: ResponseType<PostType[]> }>) {
 			if (state.isPagination) {
-				state.posts = { ...action.payload.posts, items: [...state.posts.items, ...action.payload.posts.items] };
+				state.postsForSpecificBlog = {
+					...action.payload.posts,
+					items: [...state.postsForSpecificBlog.items, ...action.payload.posts.items]
+				};
 				state.isPagination = false;
 			} else {
-				state.posts = action.payload.posts;
+				state.postsForSpecificBlog = action.payload.posts;
 			}
-		}
+		},
+		setPageNumberPostsForSpecificBLogAC(state, action: PayloadAction<{ pageNumber: number }>) {
+			state.queryParamsForPosts.pageNumber = action.payload.pageNumber;
+		},
+		setIsPaginationPostsForSpecificBLogAC(state) {
+			state.isPaginationForPosts = true;
+		},
 	},
 });
 
@@ -115,5 +124,7 @@ export const {
 	setSortByBlogsAC,
 	setSearchNameTermBlogsAC,
 	setIsPaginationBlogsAC,
-	setPostsForSpecificBlogAC
+	setPostsForSpecificBlogAC,
+	setPageNumberPostsForSpecificBLogAC,
+	setIsPaginationPostsForSpecificBLogAC
 } = slice.actions;
