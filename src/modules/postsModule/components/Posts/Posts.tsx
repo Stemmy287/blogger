@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import s from './posts.module.scss';
 import { Title } from 'common/components/Title/Title';
-import { Post } from '../Post/Post';
 import { useAppSelector } from 'hooks/useAppSelector';
 import {
 	fetchPostsTC,
@@ -17,12 +16,12 @@ import {
 	postsSortDirectionSelector,
 	postsTotalCountSelector,
 } from 'modules/postsModule/postsSelectors';
-import { Pagination } from 'common/components/Pagination/Pagination';
 import { Navigate } from 'react-router-dom';
 import { PATH } from 'common/constans/path';
 import { isLoggedInSelector } from 'modules/authModule/authSelectors';
 import { Select } from '../../../../common/components/Select/Select';
 import { OptionsSelectorType } from '../../../blogsModule/types';
+import { PostsList } from '../PostsList/PostsList';
 
 export const Posts = () => {
 	const posts = useAppSelector(postsSelector);
@@ -64,23 +63,14 @@ export const Posts = () => {
 	}
 
 	return (
-		<div>
+		<>
 			<Title title={'Posts'} isDesc={false} />
 			<div className={s.selectWrapper}>
 				<div className={s.select}>
 					<Select title={options[0].title} options={options} onChange={onChangeSelect} />
 				</div>
 			</div>
-			<div className={s.posts}>
-				{posts.map(ps => (
-					<Post key={ps.id} postId={ps.id} title={ps.title} blogName={ps.blogName} date={ps.createdAt} />
-				))}
-			</div>
-			{postsTotalCount > posts.length && (
-				<div className={s.pagination}>
-					<Pagination callback={onPagination} />
-				</div>
-			)}
-		</div>
+			<PostsList posts={posts} postsTotalCount={postsTotalCount} onPagination={onPagination} />
+		</>
 	);
 };
