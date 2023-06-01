@@ -16,7 +16,8 @@ export const blogsSearchNameTermSelector = (state: AppRootStateType) => state.bl
 export const postsForSpecificBlogSelector = (state: AppRootStateType) => state.blogs.postsForSpecificBlog.items;
 
 //meta data for posts
-export const postsTotalCountForSpecificBlogSelector = (state: AppRootStateType) => state.blogs.blogs.totalCount;
+export const postsTotalCountForSpecificBlogSelector = (state: AppRootStateType) =>
+  state.blogs.postsForSpecificBlog.totalCount;
 
 //query params for posts
 export const postsPageNumberForSpecificBlogSelector = (state: AppRootStateType) =>

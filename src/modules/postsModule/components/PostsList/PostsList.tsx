@@ -11,6 +11,7 @@ type PropsType = {
 };
 
 export const PostsList = ({ posts, postsTotalCount, onPagination }: PropsType) => {
+
 	return (
 		<>
 			{posts.length ? (
