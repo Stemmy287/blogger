@@ -11,6 +11,7 @@ import s from './postPage.module.scss';
 import defaultBlogImage from 'common/image/defaultBlogImg.png';
 import defaultPostImage from 'common/image/post-banner.png';
 import { dateConvertor } from '../../../../common/utils/dateConvertor';
+import { PATH } from '../../../../common/constans/path';
 
 export const PostPage = () => {
 	const { postId } = useParams();
@@ -30,7 +31,7 @@ export const PostPage = () => {
 			<div className={s.mainTitleWrapper}>
 				<Title title={'Posts'} isDesc={true} desc={post.blogName} />
 			</div>
-			<BackLink link={'/postsModule'} to={'posts'} />
+			<BackLink link={PATH.POSTS} to={'posts'} />
 			<div className={s.postDeployedContainer}>
 				<div className={s.blogInfo}>
 					<img className={s.blogAvatar} src={defaultBlogImage} alt="blog avatar" />

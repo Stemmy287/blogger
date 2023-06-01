@@ -9,6 +9,7 @@ import { useAppSelector } from 'hooks/useAppSelector';
 import defaultBlogBanner from 'common/image/blog-banner.png';
 import { blogSelector } from 'modules/blogsModule/blogsSelectors';
 import { BlogOnPage } from 'modules/blogsModule/components/BlogPage/BlogOnPage/BlogOnPage';
+import { PATH } from '../../../../common/constans/path';
 
 export const BlogPage = () => {
 	const { blogId } = useParams();
@@ -23,15 +24,15 @@ export const BlogPage = () => {
 		<div className={s.blogPageContainer}>
 			<Title title={'Blogs'} isDesc={true} desc={blog.name} />
 			<div className={s.backLink}>
-				<BackLink link={'/blogsModule'} to={'Blogs'} />
+				<BackLink link={PATH.BLOGS} to={'Blogs'} />
 			</div>
 			<img src={defaultBlogBanner} alt={'banner'} className={s.banner} />
 			<BlogOnPage
-        title={blog.name}
-        webSiteUrl={blog.websiteUrl}
-        description={blog.description}
-        date={blog.createdAt}
-      />
+				title={blog.name}
+				webSiteUrl={blog.websiteUrl}
+				description={blog.description}
+				date={blog.createdAt}
+			/>
 		</div>
 	);
 };
