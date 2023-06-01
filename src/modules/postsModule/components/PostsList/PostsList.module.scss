@@ -8,6 +8,12 @@
   row-gap: 32px;
 }
 
+.empty {
+  display: flex;
+  justify-content: center;
+  color: $gray600;
+}
+
 .pagination {
   margin-top: 44px;
 }

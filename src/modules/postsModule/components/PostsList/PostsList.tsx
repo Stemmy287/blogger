@@ -13,11 +13,15 @@ type PropsType = {
 export const PostsList = ({ posts, postsTotalCount, onPagination }: PropsType) => {
 	return (
 		<>
-			<div className={s.posts}>
-				{posts.map(ps => (
-					<Post key={ps.id} postId={ps.id} title={ps.title} blogName={ps.blogName} date={ps.createdAt} />
-				))}
-			</div>
+			{posts.length ? (
+				<div className={s.posts}>
+					{posts.map(ps => (
+						<Post key={ps.id} postId={ps.id} title={ps.title} blogName={ps.blogName} date={ps.createdAt} />
+					))}
+				</div>
+			) : (
+				<h4 className={s.empty}>No Posts</h4>
+			)}
 			{postsTotalCount > posts.length && (
 				<div className={s.pagination}>
 					<Pagination callback={onPagination} />
