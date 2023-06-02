@@ -32,9 +32,9 @@ export const PostPage = () => {
 	return (
 		<div>
 			<div className={s.mainTitleWrapper}>
-				<Title title={'Posts'} isDesc={true} desc={post.blogName} />
+				<Title title={state?.title} isDesc={true} desc={post.blogName} />
 			</div>
-			<BackLink link={state?.link || '/posts'} to={state?.title || 'posts'} />
+			<BackLink link={state?.link || '/posts'} to={state?.title.toLowerCase() || 'posts'} />
 			<div className={s.postDeployedContainer}>
 				<div className={s.blogInfo}>
 					<img className={s.blogAvatar} src={defaultBlogImage} alt="blog avatar" />

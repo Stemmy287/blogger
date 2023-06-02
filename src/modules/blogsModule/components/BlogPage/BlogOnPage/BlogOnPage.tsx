@@ -14,13 +14,13 @@ type PropsType = {
 
 export const BlogOnPage = ({ title, webSiteUrl, description, date }: PropsType) => {
 	const [isAllText, setIsAllText] = useState(false);
-	const [isShowButton, setIsShowButton] = useState(false);
+	const [isShowButton] = useState(true);
 
 	const onAllTextHandler = () => {
 		setIsAllText(!isAllText);
 	};
 
-	const textBlock = useRef<HTMLParagraphElement>(null);
+	const textBlockRef = useRef<HTMLParagraphElement>(null);
 
 	return (
 		<div className={s.container}>
@@ -39,14 +39,20 @@ export const BlogOnPage = ({ title, webSiteUrl, description, date }: PropsType) 
 					</span>
 				</div>
 				<div className={s.descContainer}>
-					<p className={isAllText ? s.desc : `${s.desc} ${s.notAllText}`} ref={textBlock}>
+					<p id={'p'} className={isAllText ? s.desc : `${s.desc} ${s.notAllText}`} ref={textBlockRef}>
 						{description}
 					</p>
-					{!isShowButton && (
+					{isShowButton && (
 						<button className={s.showMore} onClick={onAllTextHandler}>
-							{isAllText
-								? <>Show less <ArrowText className={s.iconRevert} /></>
-								: <>Show more <ArrowText /></>}
+							{isAllText ? (
+								<>
+									Show less <ArrowText className={s.iconRevert} />
+								</>
+							) : (
+								<>
+									Show more <ArrowText />
+								</>
+							)}
 						</button>
 					)}
 				</div>

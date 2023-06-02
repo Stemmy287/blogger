@@ -74,7 +74,7 @@ export const Posts = () => {
 				posts={posts}
 				postsTotalCount={postsTotalCount}
 				onPagination={onPagination}
-				navData={{ link: '/posts', title: 'posts'}}
+				navData={{ link: '/posts', title: 'Posts'}}
 			/>
 		</>
 	);
