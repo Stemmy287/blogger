@@ -48,7 +48,7 @@
     @include text(400, 14px, 24px);
 
     &::placeholder {
-      @include text(400, 14px, 24px, $gray500);
+      color: $gray500;
     }
 
     &:hover {
@@ -71,11 +71,20 @@
     border: 1px solid $gray400;
     @include text(400, 16px, 24px);
     border-radius: 2px;
-    height: 84px;
     resize: none;
     outline: none;
-    padding: 5px 10px;
-  }
+    padding: 6px 12px;
+    height: 84px;
+    width: 100%;
+    @include text(400, 14px, 24px);
+    font-family: inherit;
+    &:hover {
+      border: 1px solid $gray700;
+    }
 
+    &:focus {
+      border: 1px solid $gray700;
+    }
+  }
 }
 

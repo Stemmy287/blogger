@@ -6,14 +6,13 @@ import { ReactComponent as Eye } from 'common/icons/visibility.svg';
 type Props = {
 	component: 'input' | 'searchInput' | 'textarea';
 	title?: string;
-	placeholder?: string;
 	password?: boolean;
 };
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> &
 	DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>;
 
-export const Input: FC<Props & DefaultInputPropsType> = ({ component, title, placeholder, password, ...restProps }) => {
+export const Input: FC<Props & DefaultInputPropsType> = ({ component, title, password, ...restProps }) => {
 	const [showPassword, setShowPassword] = useState(true);
 
 	const onShowHandler = () => {
@@ -22,23 +21,19 @@ export const Input: FC<Props & DefaultInputPropsType> = ({ component, title, pla
 
 	return (
 		<div className={s.container}>
-			{component === 'input' || 'searchInput' ? (
+			{((component === 'input' || 'searchInput') && (component !== 'textarea')) && (
 				<>
 					{title && <span>{title}</span>}
 					<input
 						className={component === 'input' ? s.input : s.searchInput}
-						placeholder={placeholder}
 						data-showpassword={password && showPassword}
 						{...restProps}
 					/>
 					{component === 'searchInput' && <GlassMag className={s.glassMag} />}
 					{password && <Eye className={s.showPassword} onClick={onShowHandler} />}
 				</>
-			) : (
-				<textarea className={s.textarea} placeholder={placeholder} {...restProps} />
 			)}
+			{component === 'textarea' && <textarea className={s.textarea} {...restProps} />}
 		</div>
 	);
 };
-
-
