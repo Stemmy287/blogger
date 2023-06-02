@@ -1,24 +1,9 @@
 @import "../../../../common/styles/variables";
 @import "../../../../common/styles/mixns";
 
-.login_container {
-  background-color: $gray300;
-  display: flex;
-  justify-content: center;
-  column-gap: 150px;
-  padding-top: 81px;
-  .login_form_block {
-    display: flex;
-    row-gap: 20px;
-    flex-direction: column;
-    padding: 30px 20px;
-    width: 378px;
-    background-color: $gray100;
-    box-shadow: 0 5px 20px rgba(29, 33, 38, 0.03), 0 1px 2px rgba(29, 33, 38, 0.1);
-    border-radius: 2px;
 
     .title {
-      margin: 0 0 10px 0;
+      margin-bottom: 31px;
       @include text(500, 20px, 24px, $gray1100);
       align-self: center;
     }
@@ -26,27 +11,22 @@
     .form {
       display: flex;
       flex-direction: column;
-      row-gap: 30px;
+      row-gap: 24px;
       position: relative;
+      margin-bottom: 18px;
       .button {
-        margin-top: 43px;
-      }
-      .error {
-        position: absolute;
-        @include text(400, 12px, 24px, $red300);
-        bottom: 25%;
-
+        margin-top: 48px;
       }
     }
 
     .forgotPass {
       @include text(400, 16px, 24px, $gray700);
       align-self: center;
+      margin-bottom: 12px;
     }
 
     a {
       @include text(500, 14px, 24px, $red200);
       align-self: center;
+      text-decoration: underline;
     }
-  }
-}
