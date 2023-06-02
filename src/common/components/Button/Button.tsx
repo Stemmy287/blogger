@@ -13,7 +13,7 @@ export const Button: FC<ButtonPropsType> = ({ callback, title, type, isNoBackGro
 	return (
 			<button
 				type={type || 'button'}
-				className={isNoBackGround ? `${s.button} ${s.noBorder}` : s.button}
+				className={isNoBackGround ? `${s.button} ${s.noBackground}` : s.button}
 				onClick={callback}
 				disabled={disabled}
 			>

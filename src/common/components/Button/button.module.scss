@@ -1,28 +1,50 @@
 @import "../../styles/mixns";
 @import "../../styles/variables";
 
-  .button {
-    background-color: $red200;
-    box-shadow: 0 4px 18px rgba(248, 52, 107, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
-    border: none;
-    width: 100%;
-    height: 36px;
-    @include text(600, 14px, 20px, $gray200);
-    cursor: pointer;
-    padding: 0 25px;
-    font-family: inherit;
-    &:disabled {
-      background-color: $red100;
-      cursor: default;
-    }
-  }
-  .noBorder {
-    background-color: $gray200;
-    color: $red200;
-    border: 2px $red200 solid;
+.button {
+  background-color: $red200;
+  box-shadow: 0 4px 18px rgba(248, 52, 107, 0.35),
+  inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  border: none;
+  width: 100%;
+  height: 36px;
+  @include text(600, 14px, 20px, $gray200);
+  cursor: pointer;
+  padding: 0 25px;
+  font-family: inherit;
+
+  &:disabled {
+    background-color: $red100;
+    cursor: default;
     box-shadow: none;
   }
+
+  &:hover {
+    background-color: $red400;
+    transition: .3s;
+  }
+}
+
+.noBackground {
+  background-color: $gray200;
+  color: $red200;
+  border: 2px $red200 solid;
+  box-shadow: none;
+
+  &:disabled {
+    background-color: $gray200;
+    cursor: default;
+    border: 2px $red100 solid;
+    color: $red100;
+  }
+  &:hover {
+    background-color: $red200;
+    color: $gray200;
+    border: 2px $red200 solid;
+    transition: .3s background-color;
+  }
+
+}
 
 
