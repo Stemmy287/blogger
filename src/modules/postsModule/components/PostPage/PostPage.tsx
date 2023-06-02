@@ -30,7 +30,7 @@ export const PostPage = () => {
 	const date = dateConvertor(post.createdAt, true);
 
 	return (
-		<div>
+		<>
 			<div className={s.mainTitleWrapper}>
 				<Title title={state?.title} isDesc={true} desc={post.blogName} />
 			</div>
@@ -53,6 +53,6 @@ export const PostPage = () => {
 				</div>
 			</div>
 			<Comments postId={postId || ''} />
-		</div>
+		</>
 	);
 };

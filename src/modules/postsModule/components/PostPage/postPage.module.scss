@@ -1,67 +1,66 @@
 @import "../../../../common/styles/mixns";
 @import "../../../../common/styles/variables";
 
-
-.mainTitleWrapper {
-  margin-bottom: 35px;
-}
-
-.postDeployedContainer {
-  margin-top: 36px;
-
-  .blogInfo {
-    display: flex;
-    align-items: center;
-    column-gap: 12px;
-
-    .blogAvatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-    }
-
-    .blogTitle {
-      @include text(600, 16px, 24px);
-    }
+  .mainTitleWrapper {
+    margin-bottom: 35px;
   }
 
-  .postInfo {
-    margin: 28px 0 20px 0;
+  .postDeployedContainer {
+    margin-top: 36px;
 
-    .titleWrapper {
+    .blogInfo {
       display: flex;
       align-items: center;
       column-gap: 12px;
 
-      .postTitle {
-        margin: 0 0 9px 0;
-        @include text(600, 22px, 24px);
+      .blogAvatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
       }
 
-      .typeOfPost {
-        @include text(400, 12px, 16px, $gray700);
+      .blogTitle {
+        @include text(600, 16px, 24px);
       }
     }
 
-    .date {
-      @include text(400, 12px, 16px);
-      letter-spacing: 0.02em;
-      color: $gray700;
-    }
-  }
+    .postInfo {
+      margin: 28px 0 20px 0;
 
-  .content {
-    .postBanner {
-      background-color: white;
-      height: 432px;
-      width: 940px;
+      .titleWrapper {
+        display: flex;
+        align-items: center;
+        column-gap: 12px;
+
+        .postTitle {
+          margin: 0 0 9px 0;
+          @include text(600, 22px, 24px);
+        }
+
+        .typeOfPost {
+          @include text(400, 12px, 16px, $gray700);
+        }
+      }
+
+      .date {
+        @include text(400, 12px, 16px);
+        letter-spacing: 0.02em;
+        color: $gray700;
+      }
     }
 
     .content {
-      @include text(400, 16px, 24px);
-      margin-top: 30px;
-    }
+      margin-bottom: 47px;
+      .postBanner {
+        background-color: white;
+        height: 432px;
+        width: 940px;
+      }
 
-    margin-bottom: 47px;
+      .content {
+        @include text(400, 16px, 24px);
+        margin-top: 30px;
+      }
+    }
   }
-}
+

@@ -1,13 +1,16 @@
 @import "../../../../common/styles/mixns";
 @import "../../../../common/styles/variables";
 
-.comments_container {
+.container {
   display: flex;
   flex-direction: column;
-  row-gap: 30px;
 
-  .header {
-    margin: 0 0 10px 0;
+  .textarea {
+    margin-bottom: 24px;
+  }
+
+  .count {
+    margin: 0 0 31px 0;
     @include text(600, 18px, 24px)
   }
 
@@ -15,15 +18,21 @@
     display: flex;
     justify-content: flex-end;
     column-gap: 20px;
+    margin-bottom: 24px;
+
+    > button:nth-child(1) {
+      width: 96px;
+    }
+
+    > button {
+      width: 158px;
+    }
   }
 
   .comments {
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
-  }
-
-  .pagination {
-    margin-top: 10px;
+    row-gap: 12px;
+    margin-bottom: 36px;
   }
 }

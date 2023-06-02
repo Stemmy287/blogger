@@ -1,6 +1,5 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import s from 'modules/commentsModule/components/Comments/comments.module.scss';
-import { FormInput } from 'common/components/FormInput/FormInput';
 import { Comment } from 'modules/commentsModule/components/Comment/Comment';
 import { Pagination } from 'common/components/Pagination/Pagination';
 import { useAppDispatch } from 'hooks/useAppDispatch';
@@ -20,6 +19,7 @@ import {
 } from 'modules/commentsModule/commentsSlice';
 import { PopUp } from 'common/components/PopUp/PopUp';
 import { Notification } from 'common/components/Notification/Notification';
+import { Input } from '../../../../common/components/Input/Input';
 
 type PropsType = {
 	postId: string;
@@ -68,14 +68,19 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 	}, [commentsPageNumber, dispatch, postId]);
 
 	return (
-		<div className={s.comments_container}>
-			<h3 className={s.header}>{`Comments (${commentsTotalCount || 0})`}</h3>
-			<FormInput
-				value={content}
-				onChange={onChangeHandler}
-				component={'textarea'}
-				onFocus={onCommentTypeOnHandler}
-			/>
+		<div className={s.container}>
+			<h3 className={s.count}>{`Comments (${commentsTotalCount || 0})`}</h3>
+			{!!comments.length && (
+				<div className={s.textarea}>
+					<Input
+						value={content}
+						onChange={onChangeHandler}
+						component="textarea"
+						onFocus={onCommentTypeOnHandler}
+						placeholder="Provide your comment..."
+					/>
+				</div>
+			)}
 			{isButtonsShow && (
 				<div className={s.buttons}>
 					<Button isNoBackGround title="Cancel" callback={onCommentTypeOffHandler} />
@@ -92,11 +97,7 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 					/>
 				))}
 			</div>
-			{commentsTotalCount > comments.length && (
-				<div className={s.pagination}>
-					<Pagination callback={onPaginationHandler} />
-				</div>
-			)}
+			{commentsTotalCount > comments.length && <Pagination callback={onPaginationHandler} />}
 			<PopUp isActive={isDeletePopUpActive} setIsActive={setIsDeletePopUpActive}>
 				<Notification
 					title="Delete Comment"
@@ -108,4 +109,3 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 		</div>
 	);
 };
-
