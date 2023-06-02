@@ -13,8 +13,10 @@
 
     .banner {
       height: 312px;
-      width: 106.8%;
+      width: calc(100% + 89px);
+      left: -24px;
       margin-bottom: 24px;
+      position: relative;
     }
   }
 }
