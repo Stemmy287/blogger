@@ -16,9 +16,6 @@ import {
 	postsSortDirectionSelector,
 	postsTotalCountSelector,
 } from 'modules/postsModule/postsSelectors';
-import { Navigate } from 'react-router-dom';
-import { PATH } from 'common/constans/path';
-import { isLoggedInSelector } from 'modules/authModule/authSelectors';
 import { Select } from '../../../../common/components/Select/Select';
 import { OptionsSelectorType } from '../../../blogsModule/types';
 import { PostsList } from '../PostsList/PostsList';
@@ -31,8 +28,6 @@ export const Posts = () => {
 	const sortDirection = useAppSelector(postsSortDirectionSelector);
 
 	const postsTotalCount = useAppSelector(postsTotalCountSelector);
-
-	const isLoggedIn = useAppSelector(isLoggedInSelector);
 
 	const dispatch = useAppDispatch();
 
@@ -58,10 +53,6 @@ export const Posts = () => {
 		dispatch(setPageNumberPostsAC({ pageNumber: pageNumber + 1 }));
 	};
 
-	if (!isLoggedIn) {
-		return <Navigate to={PATH.LOGIN} />;
-	}
-
 	return (
 		<>
 			<Title title={'Posts'} isDesc={false} />
@@ -74,7 +65,7 @@ export const Posts = () => {
 				posts={posts}
 				postsTotalCount={postsTotalCount}
 				onPagination={onPagination}
-				navData={{ link: '/posts', title: 'Posts'}}
+				navData={{ link: '/posts', title: 'Posts' }}
 			/>
 		</>
 	);

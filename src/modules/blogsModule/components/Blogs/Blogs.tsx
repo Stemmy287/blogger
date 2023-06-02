@@ -22,9 +22,6 @@ import { Pagination } from 'common/components/Pagination/Pagination';
 import s from './blogs.module.scss';
 import { Select } from 'common/components/Select/Select';
 import { Input } from 'common/components/Input/Input';
-import { Navigate } from 'react-router-dom';
-import { PATH } from 'common/constans/path';
-import { isLoggedInSelector } from 'modules/authModule/authSelectors';
 import { OptionsSelectorType } from 'modules/blogsModule/types';
 import { useSearch } from 'hooks/useSearch';
 
@@ -37,8 +34,6 @@ export const Blogs = () => {
 	const searchNameTerm = useAppSelector(blogsSearchNameTermSelector);
 
 	const blogsTotalCount = useAppSelector(blogsTotalCountSelector);
-
-	const isLoggedIn = useAppSelector(isLoggedInSelector);
 
 	const dispatch = useAppDispatch();
 
@@ -71,10 +66,6 @@ export const Blogs = () => {
 	};
 
 	const { searchValue, setSearchValue } = useSearch(searchHandler);
-
-	if (!isLoggedIn) {
-		return <Navigate to={PATH.LOGIN} />;
-	}
 
 	return (
 		<div>
