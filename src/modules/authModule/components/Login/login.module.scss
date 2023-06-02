@@ -2,31 +2,32 @@
 @import "../../../../common/styles/mixns";
 
 
-    .title {
-      margin-bottom: 31px;
-      @include text(500, 20px, 24px, $gray1100);
-      align-self: center;
-    }
+.title {
+  margin-bottom: 31px;
+  @include text(500, 20px, 24px, $gray1100);
+  align-self: center;
+}
 
-    .form {
-      display: flex;
-      flex-direction: column;
-      row-gap: 24px;
-      position: relative;
-      margin-bottom: 18px;
-      .button {
-        margin-top: 48px;
-      }
-    }
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  position: relative;
+  margin-bottom: 18px;
 
-    .forgotPass {
-      @include text(400, 16px, 24px, $gray700);
-      align-self: center;
-      margin-bottom: 12px;
-    }
+  .button {
+    margin-top: 48px;
+  }
+}
 
-    a {
-      @include text(500, 14px, 24px, $red200);
-      align-self: center;
-      text-decoration: underline;
-    }
+.forgotPass {
+  @include text(400, 16px, 24px, $gray700);
+  align-self: center;
+  margin-bottom: 12px;
+}
+
+a {
+  @include text(500, 14px, 24px, $red200);
+  align-self: center;
+  text-decoration: underline;
+}

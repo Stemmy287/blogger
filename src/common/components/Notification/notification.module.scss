@@ -7,16 +7,14 @@
   .messageAndBtn {
     display: flex;
     flex-direction: column;
-    padding: 0 25px;
+    padding: 30px 21px 36px 24px;
     .message {
-      margin: 37px 0;
-      text-align: center;
       @include text(400, 16px, 24px);
+      margin-bottom: 18px;
     }
-    .buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 37px;
+    .button {
+      align-self: flex-end;
+      width: 124px;
     }
   }
 
