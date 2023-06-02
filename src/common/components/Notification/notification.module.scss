@@ -16,6 +16,13 @@
       align-self: flex-end;
       width: 124px;
     }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      > button {
+        width: 124px;
+      }
+    }
   }
 
 }

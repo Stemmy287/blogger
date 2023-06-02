@@ -11,7 +11,6 @@ type ButtonPropsType = {
 
 export const Button: FC<ButtonPropsType> = ({ callback, title, type, isNoBackGround, disabled }) => {
 	return (
-		<div className={s.buttonContainer}>
 			<button
 				type={type || 'button'}
 				className={isNoBackGround ? `${s.button} ${s.noBorder}` : s.button}
@@ -20,7 +19,6 @@ export const Button: FC<ButtonPropsType> = ({ callback, title, type, isNoBackGro
 			>
 				{title}
 			</button>
-		</div>
 	);
 };
 

@@ -7,12 +7,12 @@
   background-color: $gray200;
   box-shadow: 0 5px 20px rgba(29, 33, 38, 0.03),
   0 1px 2px rgba(29, 33, 38, 0.1);
+  padding: 12px 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1px;
-  padding: 0 64px;
-
+  position: relative;
+  z-index: 100;
   > h2 {
     @include text(600, 26px, 36px);
   }
@@ -20,7 +20,7 @@
   .userAndLogout {
     display: flex;
     align-items: center;
-    column-gap: 80px;
+    column-gap: 63px;
     .userName {
       @include text(600, 16px, 24px);
       border-bottom: 1px dashed $gray1000;
