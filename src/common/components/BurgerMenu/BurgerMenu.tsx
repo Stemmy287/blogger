@@ -1,47 +1,50 @@
-import React, {FC, useState} from 'react';
+import React, { FC, useRef, useState } from 'react';
 import s from 'common/components/BurgerMenu/burgerMenu.module.scss';
 import burgerMenu from 'common/icons/BurgerMenu.svg';
-import editIcon from 'common/icons/Edit.svg'
-import deleteIcon from 'common/icons/Delete.svg'
+import editIcon from 'common/icons/Edit.svg';
+import deleteIcon from 'common/icons/Delete.svg';
+import { useOutsideClick } from '../../../hooks/useOutsideClick';
 
 type BurgerMenuType = {
-    onEditClick: () => void
-    onDeleteClick: () => void
-}
+	onEditClick: () => void;
+	onDeleteClick: () => void;
+};
 
-export const BurgerMenu: FC<BurgerMenuType> = ({
-                                                   onEditClick,
-                                                   onDeleteClick
-                                               }) => {
+export const BurgerMenu: FC<BurgerMenuType> = ({ onEditClick, onDeleteClick }) => {
+	const [isActive, setIsActive] = useState(false);
 
-    const [isMenu, setIsMenu] = useState(false)
+	const selectRef = useRef<HTMLDivElement>(null);
 
-    const onClickBurgerHandler = () => {
-        setIsMenu(true)
-    }
-    const onBlurButtonsHandler = () => {
-        setIsMenu(false)
-    }
-    const onClickEditHandler = () => {
-        onEditClick()
-    }
-    const onClickDeleteHandler = () => {
-        onDeleteClick()
-    }
+	useOutsideClick(selectRef, () => setIsActive(false), isActive);
 
-    return (
-        <div id="popUp" className={s.burgerMenuContainer}>
-            <img src={burgerMenu} alt={'burger menu'} className={s.burger} onClick={onClickBurgerHandler}/>
-            {isMenu && <div className={s.buttons} onBlur={onBlurButtonsHandler}>
-                <button className={s.button} onClick={onClickDeleteHandler}>
-                    <img src={deleteIcon} alt={'delete icon'}/>
-                    <span>Delete</span>
-                </button>
-                <button className={s.button} onClick={onClickEditHandler}>
-                    <img src={editIcon} alt={'edit icon'}/>
-                    <span>Edit</span>
-                </button>
-            </div>}
-        </div>
-    );
+	const onClickBurgerHandler = () => {
+		setIsActive(true);
+	};
+	const onBlurButtonsHandler = () => {
+		setIsActive(false);
+	};
+	const onClickEditHandler = () => {
+		onEditClick();
+	};
+	const onClickDeleteHandler = () => {
+		onDeleteClick();
+	};
+
+	return (
+		<div className={s.burgerMenuContainer} ref={selectRef}>
+			<img src={burgerMenu} alt={'burger menu'} className={s.burger} onClick={onClickBurgerHandler} />
+			{isActive && (
+				<div className={s.buttons} onBlur={onBlurButtonsHandler}>
+					<button className={s.button} onClick={onClickDeleteHandler}>
+						<img src={deleteIcon} alt={'delete icon'} />
+						<span>Delete</span>
+					</button>
+					<button className={s.button} onClick={onClickEditHandler}>
+						<img src={editIcon} alt={'edit icon'} />
+						<span>Edit</span>
+					</button>
+				</div>
+			)}
+		</div>
+	);
 };
