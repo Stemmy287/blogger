@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import s from 'common/components/Header/header.module.scss';
-import { NavLink } from 'react-router-dom';
-import { PATH } from 'common/constans/path';
 import { useAppSelector } from 'hooks/useAppSelector';
 import { isLoggedInSelector, userSelector } from 'modules/authModule/authSelectors';
 import { ReactComponent as LogoutIcon } from 'common/icons/Logout.svg';
@@ -25,7 +23,7 @@ export const Header = () => {
 	return (
 		<header className={s.headerContainer}>
 			<h2>Blogger Platform</h2>
-			{isLoggedIn ? (
+			{isLoggedIn && (
 				<div className={s.userAndLogout}>
 					<h3 className={s.userName}>{user.login}</h3>
 					<div className={s.logout} onClick={() => setIsActive(true)}>
@@ -33,8 +31,6 @@ export const Header = () => {
 						<span>login out</span>
 					</div>
 				</div>
-			) : (
-				<NavLink to={PATH.REGISTRATION}>Sing Up</NavLink>
 			)}
 			<PopUp isActive={isActive} setIsActive={setIsActive}>
 				<Notification
@@ -47,4 +43,3 @@ export const Header = () => {
 		</header>
 	);
 };
-
