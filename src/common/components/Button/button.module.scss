@@ -11,18 +11,17 @@
   height: 36px;
   @include text(600, 14px, 20px, $gray200);
   cursor: pointer;
-  padding: 0 25px;
   font-family: inherit;
+
+  &:hover {
+    background-color: $red400;
+    transition: .3s;
+  }
 
   &:disabled {
     background-color: $red100;
     cursor: default;
     box-shadow: none;
-  }
-
-  &:hover {
-    background-color: $red400;
-    transition: .3s;
   }
 }
 
