@@ -1,29 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Title } from 'common/components';
-import { Blog } from 'modules/blogsModule';
-import { useAppSelector } from 'hooks';
+import { Input, Pagination, Select, Title } from 'common/components';
 import {
-	fetchBlogs,
-	setIsPaginationBlogs,
-	setPageNumberBlogs,
-	setSearchNameTermBlogs,
-	setSortByBlogs,
-} from 'modules/blogsModule';
-import { useAppDispatch } from 'hooks';
-import {
+	BlogsList,
 	blogsPageNumberSelector,
 	blogsSearchNameTermSelector,
 	blogsSelector,
 	blogsSortBySelector,
 	blogsSortDirectionSelector,
 	blogsTotalCountSelector,
+	fetchBlogs,
+	OptionsSelectorType,
+	setIsPaginationBlogs,
+	setPageNumberBlogs,
+	setSearchNameTermBlogs,
+	setSortByBlogs,
 } from 'modules/blogsModule';
-import { Pagination } from 'common/components';
+import { useAppDispatch, useAppSelector, useSearch } from 'hooks';
 import s from './blogs.module.scss';
-import { Select } from 'common/components';
-import { Input } from 'common/components';
-import { OptionsSelectorType } from 'modules/blogsModule';
-import { useSearch } from 'hooks';
 
 export const Blogs = () => {
 	const blogs = useAppSelector(blogsSelector);
@@ -83,17 +76,7 @@ export const Blogs = () => {
 					<Select title={options[0].title} onChange={onChangeSelect} options={options} />
 				</div>
 			</div>
-			<div>
-				{blogs?.map(bg => (
-					<Blog
-						key={bg.id}
-						blogId={bg.id}
-						title={bg.name}
-						webSiteUrl={bg.websiteUrl}
-						description={bg.description}
-					/>
-				))}
-			</div>
+			<BlogsList blogs={blogs} />
 			{blogsTotalCount > blogs.length && (
 				<div className={s.pagination}>
 					<Pagination callback={onPagination} />
