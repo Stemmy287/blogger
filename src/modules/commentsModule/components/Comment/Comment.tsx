@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { ChangeEvent, FC, useRef, useState } from 'react';
 import s from 'modules/commentsModule/components/Comment/comment.module.scss';
 import noPhoto from 'common/image/no-image.svg';
 import { dateConvertor } from 'common/utils/dateConvertor';
@@ -46,6 +46,8 @@ export const Comment: FC<PropsType> = ({ comment, setPopUpActive, setCommentId }
 		setEditValue(e.currentTarget.value);
 	};
 
+	const burgerMenuRef = useRef<HTMLDivElement>(null)
+
 	return (
 		<div className={s.container}>
 			<img className={s.photo} src={noPhoto} alt="ava" />
@@ -62,8 +64,11 @@ export const Comment: FC<PropsType> = ({ comment, setPopUpActive, setCommentId }
 					</div>
 				)}
 			</div>
-			<div className={s.burger_menu}>
-				{!isEdit && <BurgerMenu onEditClick={onEditActiveHandler} onDeleteClick={onDeleteHandler} />}
+			<div className={s.burgerMenu} ref={burgerMenuRef}>
+				{!isEdit && <BurgerMenu
+					onEditClick={onEditActiveHandler}
+					onDeleteClick={onDeleteHandler}
+				/>}
 			</div>
 		</div>
 	);

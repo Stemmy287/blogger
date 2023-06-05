@@ -1,8 +1,8 @@
 import React, { FC, useRef, useState } from 'react';
 import s from 'common/components/BurgerMenu/burgerMenu.module.scss';
 import burgerMenu from 'common/icons/BurgerMenu.svg';
-import editIcon from 'common/icons/Edit.svg';
-import deleteIcon from 'common/icons/Delete.svg';
+import {ReactComponent as EditIcon } from 'common/icons/Edit.svg';
+import {ReactComponent as DeleteIcon} from 'common/icons/Delete.svg';
 import { useOutsideClick } from '../../../hooks/useOutsideClick';
 
 type BurgerMenuType = {
@@ -36,12 +36,12 @@ export const BurgerMenu: FC<BurgerMenuType> = ({ onEditClick, onDeleteClick }) =
 			{isActive && (
 				<div className={s.buttons} onBlur={onBlurButtonsHandler}>
 					<button className={s.button} onClick={onClickDeleteHandler}>
-						<img src={deleteIcon} alt={'delete icon'} />
 						<span>Delete</span>
+						<DeleteIcon className={s.icon}/>
 					</button>
 					<button className={s.button} onClick={onClickEditHandler}>
-						<img src={editIcon} alt={'edit icon'} />
 						<span>Edit</span>
+						<EditIcon className={s.icon}/>
 					</button>
 				</div>
 			)}
