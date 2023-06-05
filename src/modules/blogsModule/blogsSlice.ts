@@ -73,22 +73,22 @@ const slice = createSlice({
 		isPaginationForPosts: false,
 	},
 	reducers: {
-		setPageNumberBlogsAC(state, action: PayloadAction<{ pageNumber: number }>) {
+		setPageNumberBlogs(state, action: PayloadAction<{ pageNumber: number }>) {
 			state.queryParams.pageNumber = action.payload.pageNumber;
 		},
-		setSortByBlogsAC(state, action: PayloadAction<{ sortBy: string; sortDirection: string }>) {
+		setSortByBlogs(state, action: PayloadAction<{ sortBy: string; sortDirection: string }>) {
 			state.queryParams = { ...state.queryParams, ...action.payload };
 		},
-		setSearchNameTermBlogsAC(state, action: PayloadAction<{ searchNameTerm: string }>) {
+		setSearchNameTermBlogs(state, action: PayloadAction<{ searchNameTerm: string }>) {
 			state.queryParams.searchNameTerm = action.payload.searchNameTerm;
 		},
-		setIsPaginationBlogsAC(state) {
+		setIsPaginationBlogs(state) {
 			state.isPagination = true;
 		},
-		setPageNumberPostsForSpecificBLogAC(state, action: PayloadAction<{ pageNumber: number }>) {
+		setPageNumberPostsForSpecificBLog(state, action: PayloadAction<{ pageNumber: number }>) {
 			state.queryParamsForPosts.pageNumber = action.payload.pageNumber;
 		},
-		setIsPaginationPostsForSpecificBLogAC(state) {
+		setIsPaginationPostsForSpecificBLog(state) {
 			state.isPaginationForPosts = true;
 		},
 	},
@@ -120,10 +120,10 @@ const slice = createSlice({
 
 export const blogsReducer = slice.reducer;
 export const {
-	setPageNumberBlogsAC,
-	setSortByBlogsAC,
-	setSearchNameTermBlogsAC,
-	setIsPaginationBlogsAC,
-	setPageNumberPostsForSpecificBLogAC,
-	setIsPaginationPostsForSpecificBLogAC,
+	setPageNumberBlogs,
+	setSortByBlogs,
+	setSearchNameTermBlogs,
+	setIsPaginationBlogs,
+	setPageNumberPostsForSpecificBLog,
+	setIsPaginationPostsForSpecificBLog,
 } = slice.actions;

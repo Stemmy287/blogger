@@ -14,8 +14,8 @@ import {
 	createComment,
 	deleteComment,
 	fetchComments,
-	setIsPaginationCommentsAC,
-	setPageNumberCommentsAC,
+	setIsPaginationComments,
+	setPageNumberComments,
 } from 'modules/commentsModule';
 import { PopUp } from 'common/components';
 import { Notification } from 'common/components';
@@ -55,8 +55,8 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 	};
 
 	const onPaginationHandler = () => {
-		dispatch(setIsPaginationCommentsAC());
-		dispatch(setPageNumberCommentsAC({ pageNumber: commentsPageNumber + 1 }));
+		dispatch(setIsPaginationComments());
+		dispatch(setPageNumberComments({ pageNumber: commentsPageNumber + 1 }));
 	};
 
 	const onDeleteHandler = () => {

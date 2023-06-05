@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import s from './posts.module.scss';
 import { Title } from 'common/components';
 import { useAppSelector } from 'hooks';
-import { fetchPosts, setIsPaginationPostsAC, setPageNumberPostsAC, setSortByPostsAC } from 'modules/postsModule';
+import { fetchPosts, setIsPaginationPosts, setPageNumberPosts, setSortByPosts } from 'modules/postsModule';
 import { useAppDispatch } from 'hooks';
 import {
 	postsPageNumberSelector,
@@ -38,14 +38,14 @@ export const Posts = () => {
 	const onChangeSelect = (data: OptionsSelectorType) => {
 		if (data.value) {
 			const value = data.value.split(' ');
-			dispatch(setPageNumberPostsAC({ pageNumber: 1 }));
-			dispatch(setSortByPostsAC({ sortBy: value[1], sortDirection: value[0] }));
+			dispatch(setPageNumberPosts({ pageNumber: 1 }));
+			dispatch(setSortByPosts({ sortBy: value[1], sortDirection: value[0] }));
 		}
 	};
 
 	const onPagination = () => {
-		dispatch(setIsPaginationPostsAC());
-		dispatch(setPageNumberPostsAC({ pageNumber: pageNumber + 1 }));
+		dispatch(setIsPaginationPosts());
+		dispatch(setPageNumberPosts({ pageNumber: pageNumber + 1 }));
 	};
 
 	return (

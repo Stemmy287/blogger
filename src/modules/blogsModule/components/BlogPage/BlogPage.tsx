@@ -6,8 +6,8 @@ import { useParams } from 'react-router-dom';
 import {
 	fetchBlog,
 	fetchPostsForSpecificBlog,
-	setIsPaginationPostsForSpecificBLogAC,
-	setPageNumberPostsForSpecificBLogAC,
+	setIsPaginationPostsForSpecificBLog,
+	setPageNumberPostsForSpecificBLog,
 } from 'modules/blogsModule';
 import { useAppDispatch } from 'hooks';
 import { useAppSelector } from 'hooks';
@@ -43,8 +43,8 @@ export const BlogPage = () => {
 	}, [dispatch, blogId, pageNumber]);
 
 	const onPagination = () => {
-		dispatch(setIsPaginationPostsForSpecificBLogAC());
-		dispatch(setPageNumberPostsForSpecificBLogAC({ pageNumber: pageNumber + 1 }));
+		dispatch(setIsPaginationPostsForSpecificBLog());
+		dispatch(setPageNumberPostsForSpecificBLog({ pageNumber: pageNumber + 1 }));
 	};
 
 	return (

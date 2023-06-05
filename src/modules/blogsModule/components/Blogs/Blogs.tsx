@@ -4,10 +4,10 @@ import { Blog } from 'modules/blogsModule';
 import { useAppSelector } from 'hooks';
 import {
 	fetchBlogs,
-	setIsPaginationBlogsAC,
-	setPageNumberBlogsAC,
-	setSearchNameTermBlogsAC,
-	setSortByBlogsAC,
+	setIsPaginationBlogs,
+	setPageNumberBlogs,
+	setSearchNameTermBlogs,
+	setSortByBlogs,
 } from 'modules/blogsModule';
 import { useAppDispatch } from 'hooks';
 import {
@@ -42,14 +42,14 @@ export const Blogs = () => {
 	}, [pageNumber, sortBy, sortDirection, searchNameTerm, dispatch]);
 
 	const onPagination = () => {
-		dispatch(setIsPaginationBlogsAC());
-		dispatch(setPageNumberBlogsAC({ pageNumber: pageNumber + 1 }));
+		dispatch(setIsPaginationBlogs());
+		dispatch(setPageNumberBlogs({ pageNumber: pageNumber + 1 }));
 	};
 	const onChangeSelect = (data: OptionsSelectorType) => {
 		if (data.value) {
 			const value = data.value.split(' ');
-			dispatch(setPageNumberBlogsAC({ pageNumber: 1 }));
-			dispatch(setSortByBlogsAC({ sortBy: value[1], sortDirection: value[0] }));
+			dispatch(setPageNumberBlogs({ pageNumber: 1 }));
+			dispatch(setSortByBlogs({ sortBy: value[1], sortDirection: value[0] }));
 		}
 	};
 
@@ -61,8 +61,8 @@ export const Blogs = () => {
 	]);
 
 	const searchHandler = (debouncedSearchValue: string) => {
-		dispatch(setPageNumberBlogsAC({ pageNumber: 1 }));
-		dispatch(setSearchNameTermBlogsAC({ searchNameTerm: debouncedSearchValue }));
+		dispatch(setPageNumberBlogs({ pageNumber: 1 }));
+		dispatch(setSearchNameTermBlogs({ searchNameTerm: debouncedSearchValue }));
 	};
 
 	const { searchValue, setSearchValue } = useSearch(searchHandler);

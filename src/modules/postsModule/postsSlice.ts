@@ -46,13 +46,13 @@ const slice = createSlice({
 		isPagination: false,
 	},
 	reducers: {
-		setPageNumberPostsAC(state, action: PayloadAction<{ pageNumber: number }>) {
+		setPageNumberPosts(state, action: PayloadAction<{ pageNumber: number }>) {
 			state.queryParams.pageNumber = action.payload.pageNumber;
 		},
-		setSortByPostsAC(state, action: PayloadAction<{ sortBy: string; sortDirection: string }>) {
+		setSortByPosts(state, action: PayloadAction<{ sortBy: string; sortDirection: string }>) {
 			state.queryParams = { ...state.queryParams, ...action.payload };
 		},
-		setIsPaginationPostsAC(state) {
+		setIsPaginationPosts(state) {
 			state.isPagination = true;
 		},
 	},
@@ -73,4 +73,4 @@ const slice = createSlice({
 });
 
 export const postsReducer = slice.reducer;
-export const { setPageNumberPostsAC, setSortByPostsAC, setIsPaginationPostsAC } = slice.actions;
+export const { setPageNumberPosts, setSortByPosts, setIsPaginationPosts } = slice.actions;

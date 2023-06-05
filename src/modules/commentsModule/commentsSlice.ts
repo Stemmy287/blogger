@@ -87,10 +87,10 @@ const slice = createSlice({
 		isPagination: false,
 	},
 	reducers: {
-		setPageNumberCommentsAC(state, action: PayloadAction<{ pageNumber: number }>) {
+		setPageNumberComments(state, action: PayloadAction<{ pageNumber: number }>) {
 			state.queryParams.pageNumber = action.payload.pageNumber;
 		},
-		setIsPaginationCommentsAC(state) {
+		setIsPaginationComments(state) {
 			state.isPagination = true;
 		},
 	},
@@ -130,6 +130,6 @@ const slice = createSlice({
 
 export const commentsReducer = slice.reducer;
 export const {
-	setPageNumberCommentsAC,
-	setIsPaginationCommentsAC,
+	setPageNumberComments,
+	setIsPaginationComments,
 } = slice.actions;
