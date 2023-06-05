@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import s from './TitlePopUp.module.scss';
-import close from 'common/icons/Close.svg';
+import close from 'assets/icons/Close.svg';
 
 type TitlePopUpType = {
 	title: string;

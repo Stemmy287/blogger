@@ -1,8 +1,8 @@
 import React, { FC, useRef, useState } from 'react';
 import s from './BurgerMenu.module.scss';
-import burgerMenu from 'common/icons/BurgerMenu.svg';
-import {ReactComponent as EditIcon } from 'common/icons/Edit.svg';
-import {ReactComponent as DeleteIcon} from 'common/icons/Delete.svg';
+import burgerMenu from 'assets/icons/BurgerMenu.svg';
+import {ReactComponent as EditIcon } from 'assets/icons/Edit.svg';
+import {ReactComponent as DeleteIcon} from 'assets/icons/Delete.svg';
 import { useOutsideClick } from 'hooks';
 
 type BurgerMenuType = {

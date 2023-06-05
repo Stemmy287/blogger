@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import s from './Title.module.scss'
-import arrow from 'common/icons/arrow.svg'
+import arrow from 'assets/icons/arrow.svg'
 
 type TitlePropsType = {
   title: string

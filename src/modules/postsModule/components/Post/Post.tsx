@@ -1,8 +1,8 @@
 import React, { FC, MouseEvent } from 'react';
 import s from './Post.module.scss';
 import { useNavigate } from 'react-router-dom';
-import defaultPostImage from 'common/image/defaultPostImg.png';
-import defaultBlogImage from 'common/image/defaultBlogImg.png';
+import defaultPostImage from 'assets/image/defaultPostImg.png';
+import defaultBlogImage from 'assets/image/defaultBlogImg.png';
 import { dateConvertor } from 'common/utils';
 import { NavDataType } from 'app';
 

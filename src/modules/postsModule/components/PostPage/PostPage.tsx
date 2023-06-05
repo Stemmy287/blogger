@@ -8,8 +8,8 @@ import { useAppSelector } from 'hooks';
 import { postSelector } from 'modules/postsModule';
 import { Comments } from 'modules/commentsModule';
 import s from './PostPage.module.scss';
-import defaultBlogImage from 'common/image/defaultBlogImg.png';
-import defaultPostImage from 'common/image/post-banner.png';
+import defaultBlogImage from 'assets/image/defaultBlogImg.png';
+import defaultPostImage from 'assets/image/post-banner.png';
 import { dateConvertor } from 'common/utils';
 
 export const PostPage = () => {

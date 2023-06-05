@@ -1,7 +1,7 @@
 import React, { FC, MouseEvent, useRef, useState } from 'react';
 import s from './Select.module.scss';
-import { ReactComponent as ArrowDown } from 'common/icons/arrowDown.svg';
-import { ReactComponent as ArrowUp } from 'common/icons/arrowUp.svg';
+import { ReactComponent as ArrowDown } from 'assets/icons/arrowDown.svg';
+import { ReactComponent as ArrowUp } from 'assets/icons/arrowUp.svg';
 import { OptionsSelectorType } from 'modules/blogsModule';
 import { useOutsideClick } from 'hooks';
 

@@ -2,8 +2,8 @@ import React from 'react';
 import s from './NavBar.module.scss';
 import { PATH } from 'common/constans';
 import { Link } from 'common/components';
-import { ReactComponent as BurgerMenu } from 'common/icons/BurgerMenuNav.svg';
-import { ReactComponent as SquareMenu } from 'common/icons/SquareMenu.svg';
+import { ReactComponent as BurgerMenu } from 'assets/icons/BurgerMenuNav.svg';
+import { ReactComponent as SquareMenu } from 'assets/icons/SquareMenu.svg';
 
 export const NavBar = () => {
 	return (

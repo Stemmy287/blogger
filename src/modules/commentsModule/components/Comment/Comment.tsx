@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 import s from './Comment.module.scss';
-import noPhoto from 'common/image/no-image.svg';
+import noPhoto from 'assets/image/no-image.svg';
 import { dateConvertor } from 'common/utils';
 import { CommentType, deleteComment, updateComment } from 'modules/commentsModule';
 import { BurgerMenu, Button, Input, Notification, PopUp } from 'common/components';

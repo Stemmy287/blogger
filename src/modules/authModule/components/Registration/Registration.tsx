@@ -4,7 +4,7 @@ import { useAppDispatch } from 'hooks';
 import { useFormik } from 'formik';
 import { AuthWrapper, Button, Input, Notification, PopUp } from 'common/components';
 import { NavLink, useNavigate } from 'react-router-dom';
-import loginBanner from 'common/image/rafiki.svg';
+import loginBanner from 'assets/image/rafiki.svg';
 import { registration } from 'modules/authModule';
 import { PATH } from 'common/constans';
 

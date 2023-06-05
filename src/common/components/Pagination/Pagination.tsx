@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import s from './Pagination.module.scss';
-import { ReactComponent as Arrow } from 'common/icons/paginationArrow.svg';
+import { ReactComponent as Arrow } from 'assets/icons/paginationArrow.svg';
 
 type Props = {
   callback: () => void

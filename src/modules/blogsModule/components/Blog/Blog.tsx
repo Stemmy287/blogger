@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import s from './Blog.module.scss';
 import { NavLink } from 'react-router-dom';
-import defaultBlogImage from 'common/image/defaultBlogImg.png';
+import defaultBlogImage from 'assets/image/defaultBlogImg.png';
 import { currentURL } from 'common/utils';
 
 type BlogsPropsType = {

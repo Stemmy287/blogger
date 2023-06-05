@@ -11,7 +11,7 @@ import {
 } from 'modules/blogsModule';
 import { useAppDispatch } from 'hooks';
 import { useAppSelector } from 'hooks';
-import defaultBlogBanner from 'common/image/blog-banner.png';
+import defaultBlogBanner from 'assets/image/blog-banner.png';
 import {
 	blogSelector,
 	postsForSpecificBlogSelector,

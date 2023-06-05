@@ -1,7 +1,7 @@
 import React, { DetailedHTMLProps, FC, InputHTMLAttributes, TextareaHTMLAttributes, useState } from 'react';
 import s from './Input.module.scss';
-import { ReactComponent as GlassMag } from 'common/icons/glassMag.svg';
-import { ReactComponent as Eye } from 'common/icons/visibility.svg';
+import { ReactComponent as GlassMag } from 'assets/icons/glassMag.svg';
+import { ReactComponent as Eye } from 'assets/icons/visibility.svg';
 
 type Props = {
 	component: 'input' | 'searchInput' | 'textarea';

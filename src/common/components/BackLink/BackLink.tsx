@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import s from './BackLink.module.scss';
-import arrow from 'common/icons/arrowBackLink.svg';
+import arrow from 'assets/icons/arrowBackLink.svg';
 import { NavLink } from 'react-router-dom';
 
 type BackLinkPropsType = {

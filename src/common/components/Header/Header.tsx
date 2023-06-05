@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import s from './Header.module.scss';
 import { useAppSelector } from 'hooks';
 import { isLoggedInSelector, userSelector } from 'modules/authModule';
-import { ReactComponent as LogoutIcon } from 'common/icons/Logout.svg';
+import { ReactComponent as LogoutIcon } from 'assets/icons/Logout.svg';
 import { PopUp } from 'common/components';
 import { Notification } from 'common/components';
 import { useAppDispatch } from 'hooks';

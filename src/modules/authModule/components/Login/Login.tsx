@@ -3,7 +3,7 @@ import s from './Login.module.scss';
 import { useFormik } from 'formik';
 import { Button } from 'common/components';
 import { Navigate, NavLink } from 'react-router-dom';
-import loginBanner from 'common/image/rafiki.svg';
+import loginBanner from 'assets/image/rafiki.svg';
 import { useAppDispatch } from 'hooks';
 import { login } from 'modules/authModule';
 import { useAppSelector } from 'hooks';
