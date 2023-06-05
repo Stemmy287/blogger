@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import s from './comments.module.scss';
+import s from './Comments.module.scss';
 import {
 	CommentsList,
 	commentsPageNumberSelector,

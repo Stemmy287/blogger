@@ -1,11 +1,11 @@
-@import "common/styles/variables";
-@import "common/styles/mixns";
+@import 'common/styles/variables';
+@import 'common/styles/mixns';
 
 
 .title {
+  margin-bottom: 31px;
   @include text(500, 20px, 24px, $gray1100);
   align-self: center;
-  margin-bottom: 31px;
 }
 
 .form {
@@ -14,12 +14,6 @@
   row-gap: 24px;
   position: relative;
   margin-bottom: 18px;
-
-  .successesNotify {
-    position: absolute;
-    @include text(400, 14px, 24px, $gray700);
-    bottom: 55px;
-  }
 
   .button {
     margin-top: 48px;
@@ -33,8 +27,7 @@
 }
 
 a {
-  @include text(500, 14px, 24px, $red300);
-  text-decoration: underline;
+  @include text(500, 14px, 24px, $red200);
   align-self: center;
+  text-decoration: underline;
 }
-

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import s from './blogPage.module.scss';
+import s from './BlogPage.module.scss';
 import { Title } from 'common/components';
 import { BackLink } from 'common/components';
 import { useParams } from 'react-router-dom';

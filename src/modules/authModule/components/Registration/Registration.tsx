@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import s from './registration.module.scss';
+import s from './Registration.module.scss';
 import { useAppDispatch } from 'hooks';
 import { useFormik } from 'formik';
 import { AuthWrapper, Button, Input, Notification, PopUp } from 'common/components';

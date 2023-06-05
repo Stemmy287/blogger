@@ -1,5 +1,5 @@
 import React, { FC, useRef, useState } from 'react';
-import s from './burgerMenu.module.scss';
+import s from './BurgerMenu.module.scss';
 import burgerMenu from 'common/icons/BurgerMenu.svg';
 import {ReactComponent as EditIcon } from 'common/icons/Edit.svg';
 import {ReactComponent as DeleteIcon} from 'common/icons/Delete.svg';

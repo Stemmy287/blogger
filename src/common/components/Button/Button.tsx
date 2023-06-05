@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import s from './button.module.scss';
+import s from './Button.module.scss';
 
 type ButtonPropsType = {
 	callback?: () => void;

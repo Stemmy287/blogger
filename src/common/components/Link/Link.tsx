@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react';
-import s from './link.module.scss';
+import s from './Link.module.scss';
 import { NavLink, useLocation } from 'react-router-dom';
 
 type Props = {

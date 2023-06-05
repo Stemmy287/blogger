@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './navBar.module.scss';
+import s from './NavBar.module.scss';
 import { PATH } from 'common/constans';
 import { Link } from 'common/components';
 import { ReactComponent as BurgerMenu } from 'common/icons/BurgerMenuNav.svg';

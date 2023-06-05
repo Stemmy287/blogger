@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import s from './header.module.scss';
+import s from './Header.module.scss';
 import { useAppSelector } from 'hooks';
 import { isLoggedInSelector, userSelector } from 'modules/authModule';
 import { ReactComponent as LogoutIcon } from 'common/icons/Logout.svg';

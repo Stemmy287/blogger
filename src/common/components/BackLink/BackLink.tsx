@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import s from './backLink.module.scss';
+import s from './BackLink.module.scss';
 import arrow from 'common/icons/arrowBackLink.svg';
 import { NavLink } from 'react-router-dom';
 

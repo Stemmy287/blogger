@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC, useState } from 'react';
-import s from './comment.module.scss';
+import s from './Comment.module.scss';
 import noPhoto from 'common/image/no-image.svg';
 import { dateConvertor } from 'common/utils';
 import { CommentType, deleteComment, updateComment } from 'modules/commentsModule';

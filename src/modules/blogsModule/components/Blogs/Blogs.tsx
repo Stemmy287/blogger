@@ -16,7 +16,7 @@ import {
 	setSortByBlogs,
 } from 'modules/blogsModule';
 import { useAppDispatch, useAppSelector, useSearch } from 'hooks';
-import s from './blogs.module.scss';
+import s from './Blogs.module.scss';
 
 export const Blogs = () => {
 	const blogs = useAppSelector(blogsSelector);

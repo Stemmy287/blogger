@@ -1,5 +1,5 @@
 import React, { DetailedHTMLProps, FC, InputHTMLAttributes, TextareaHTMLAttributes, useState } from 'react';
-import s from './input.module.scss';
+import s from './Input.module.scss';
 import { ReactComponent as GlassMag } from 'common/icons/glassMag.svg';
 import { ReactComponent as Eye } from 'common/icons/visibility.svg';
 

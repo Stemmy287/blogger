@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import s from './pagination.module.scss';
+import s from './Pagination.module.scss';
 import { ReactComponent as Arrow } from 'common/icons/paginationArrow.svg';
 
 type Props = {

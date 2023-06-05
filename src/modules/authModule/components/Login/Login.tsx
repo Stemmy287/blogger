@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './login.module.scss';
+import s from './Login.module.scss';
 import { useFormik } from 'formik';
 import { Button } from 'common/components';
 import { Navigate, NavLink } from 'react-router-dom';

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import s from './notification.module.scss';
+import s from './Notification.module.scss';
 import { Button } from 'common/components';
 import { TitlePopUp } from 'common/components';
 

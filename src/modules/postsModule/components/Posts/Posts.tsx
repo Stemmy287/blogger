@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import s from './posts.module.scss';
+import s from './Posts.module.scss';
 import { Title } from 'common/components';
 import { useAppSelector } from 'hooks';
 import { fetchPosts, setIsPaginationPosts, setPageNumberPosts, setSortByPosts } from 'modules/postsModule';
