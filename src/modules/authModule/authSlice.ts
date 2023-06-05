@@ -18,7 +18,7 @@ export const auth = createAsyncThunk('auth/authTC', async (param, { dispatch, re
 	} catch (e) {
 		return rejectWithValue(null);
 	} finally {
-		dispatch(setIsInitialized({ isInitialized: true }));
+		dispatch(setIsInitialized());
 	}
 });
 export const logout = createAsyncThunk('auth/loginTC', async (param, { rejectWithValue }) => {

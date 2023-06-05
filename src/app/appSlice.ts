@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const slice = createSlice({
 	name: 'app',
@@ -6,8 +6,8 @@ const slice = createSlice({
 		isInitialized: false,
 	},
 	reducers: {
-		setIsInitialized(state, action: PayloadAction<{ isInitialized: boolean }>) {
-			state.isInitialized = action.payload.isInitialized;
+		setIsInitialized(state) {
+			state.isInitialized = true;
 		},
 	},
 });
