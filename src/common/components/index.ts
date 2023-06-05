@@ -12,3 +12,5 @@ export * from 'common/components/Title/Title'
 export * from 'common/components/Select/Select'
 export * from 'common/components/TitlePopUp/TitlePopUp'
 export * from 'common/components/PopUp/PopUp'
+export * from 'common/components/BurgerMenuButton/BurgerMenuButton'
+

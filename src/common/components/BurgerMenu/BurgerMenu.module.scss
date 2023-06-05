@@ -1,12 +1,14 @@
 @import 'common/styles/variables';
 @import 'common/styles/mixns';
 
-.burgerMenuContainer{
+.container {
   position: relative;
   z-index: 1;
+
   .burger {
     cursor: pointer;
   }
+
   .buttons {
     display: flex;
     flex-direction: column;
@@ -14,49 +16,7 @@
     border-radius: 2px;
     position: absolute;
     top: 25px;
-    transform:translate(-90%, 0%);
-
-    .button {
-      display: flex;
-      padding-left: 48px;
-      cursor: pointer;
-      align-items: center;
-      column-gap: 17px;
-      width: 149px;
-      height: 42px;
-      border: none;
-      background-color: $gray200;
-      @include text(400, 14px, 24px);
-      position: relative;
-      .icon {
-        position: absolute;
-        left: 17px;
-      }
-      &:hover {
-        background-color: $gray400;
-      }
-      &:nth-child(1):after, &:nth-child(1):before {
-        content: "";
-        border: solid transparent;
-        position: absolute;
-        bottom: 100%;
-        right: 7px;
-      }
-      &:nth-child(1):after {
-        border-bottom-color: #fff;
-        border-width: 5px;
-        margin-right: 0;
-      }
-      &:nth-child(1):before {
-        border-bottom-color: $gray400;
-        border-width: 6px;
-        margin-right: -1px;
-      }
-      &:hover:after {
-          border-bottom-color: $gray400;
-      }
-    }
-
+    transform: translate(-90%, 0%);
   }
 }
 

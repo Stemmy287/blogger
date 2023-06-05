@@ -8,15 +8,11 @@ type BackLinkPropsType = {
 	to: string;
 };
 
-export const BackLink: FC<BackLinkPropsType> = ({
-                                                  link,
-                                                  to
-                                                }) => {
-  return (
-      <NavLink to={link} className={s.backLink}>
-        <img src={arrow} alt={'arrow'}/>
-        Back to {to}
-      </NavLink>
-  );
+export const BackLink: FC<BackLinkPropsType> = ({ link, to }) => {
+	return (
+		<NavLink to={link} className={s.backLink}>
+			<img src={arrow} alt={'arrow'} />
+			Back to {to}
+		</NavLink>
+	);
 };
-

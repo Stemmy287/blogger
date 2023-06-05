@@ -1,9 +1,10 @@
 import React, { FC, useRef, useState } from 'react';
 import s from './BurgerMenu.module.scss';
 import burgerMenu from 'assets/icons/BurgerMenu.svg';
-import {ReactComponent as EditIcon } from 'assets/icons/Edit.svg';
-import {ReactComponent as DeleteIcon} from 'assets/icons/Delete.svg';
+import { ReactComponent as EditIcon } from 'assets/icons/Edit.svg';
+import { ReactComponent as DeleteIcon } from 'assets/icons/Delete.svg';
 import { useOutsideClick } from 'hooks';
+import { BurgerMenuButton } from 'common/components';
 
 type BurgerMenuType = {
 	onEditClick: () => void;
@@ -20,29 +21,21 @@ export const BurgerMenu: FC<BurgerMenuType> = ({ onEditClick, onDeleteClick }) =
 	const onClickBurgerHandler = () => {
 		setIsActive(true);
 	};
-	const onBlurButtonsHandler = () => {
-		setIsActive(false);
-	};
-	const onClickEditHandler = () => {
+
+	const onEditHandler = () => {
 		onEditClick();
 	};
-	const onClickDeleteHandler = () => {
+	const onDeleteHandler = () => {
 		onDeleteClick();
 	};
 
 	return (
-		<div className={s.burgerMenuContainer} ref={selectRef}>
-			<img src={burgerMenu} alt={'burger menu'} className={s.burger} onClick={onClickBurgerHandler} />
+		<div className={s.container} ref={selectRef}>
+			<img src={burgerMenu} alt="burger menu" className={s.burger} onClick={onClickBurgerHandler} />
 			{isActive && (
-				<div className={s.buttons} onBlur={onBlurButtonsHandler}>
-					<button className={s.button} onClick={onClickDeleteHandler}>
-						<span>Delete</span>
-						<DeleteIcon className={s.icon}/>
-					</button>
-					<button className={s.button} onClick={onClickEditHandler}>
-						<span>Edit</span>
-						<EditIcon className={s.icon}/>
-					</button>
+				<div className={s.buttons}>
+					<BurgerMenuButton title="Delete" callback={onDeleteHandler} icon={<DeleteIcon/>} />
+					<BurgerMenuButton title="Edit" callback={onEditHandler} icon={<EditIcon/>} />
 				</div>
 			)}
 		</div>
