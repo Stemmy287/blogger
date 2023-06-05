@@ -1,25 +1,18 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import s from './comments.module.scss';
-import { Comment } from 'modules/commentsModule';
-import { Pagination } from 'common/components';
-import { useAppDispatch } from 'hooks';
-import { useAppSelector } from 'hooks';
-import { Button } from 'common/components';
 import {
+	CommentsList,
 	commentsPageNumberSelector,
 	commentsSelector,
 	commentsTotalCountSelector,
-} from 'modules/commentsModule';
-import {
 	createComment,
 	deleteComment,
 	fetchComments,
 	setIsPaginationComments,
 	setPageNumberComments,
 } from 'modules/commentsModule';
-import { PopUp } from 'common/components';
-import { Notification } from 'common/components';
-import { Input } from 'common/components';
+import { Button, Input, Notification, Pagination, PopUp } from 'common/components';
+import { useAppDispatch, useAppSelector } from 'hooks';
 
 type PropsType = {
 	postId: string;
@@ -38,7 +31,7 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 
 	const [isButtonsShow, setIsButtonsShow] = useState(false);
 	const [isDeletePopUpActive, setIsDeletePopUpActive] = useState(false);
-	const [commentId, setCommentId] = useState('');
+	const [commentId] = useState('');
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
 		setContent(e.currentTarget.value);
 	};
@@ -70,31 +63,22 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 	return (
 		<div className={s.container}>
 			<h3 className={s.count}>{`Comments (${commentsTotalCount || 0})`}</h3>
-				<div className={s.textarea}>
-					<Input
-						value={content}
-						onChange={onChangeHandler}
-						component="textarea"
-						onFocus={onCommentTypeOnHandler}
-						placeholder="Provide your comment..."
-					/>
-				</div>
+			<div className={s.textarea}>
+				<Input
+					value={content}
+					onChange={onChangeHandler}
+					component="textarea"
+					onFocus={onCommentTypeOnHandler}
+					placeholder="Provide your comment..."
+				/>
+			</div>
 			{isButtonsShow && (
 				<div className={s.buttons}>
 					<Button isNoBackGround title="Cancel" callback={onCommentTypeOffHandler} />
 					<Button disabled={!content} title="Send a Comment" callback={onClickHandler} />
 				</div>
 			)}
-			<div className={s.comments}>
-				{comments.map(cm => (
-					<Comment
-						key={cm.id}
-						comment={cm}
-						setPopUpActive={setIsDeletePopUpActive}
-						setCommentId={setCommentId}
-					/>
-				))}
-			</div>
+			<CommentsList comments={comments} />
 			{commentsTotalCount > comments.length && <Pagination callback={onPaginationHandler} />}
 			<PopUp isActive={isDeletePopUpActive} setIsActive={setIsDeletePopUpActive}>
 				<Notification
