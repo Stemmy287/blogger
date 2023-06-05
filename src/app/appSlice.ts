@@ -1,16 +1,16 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const slice = createSlice({
-  name: 'app',
-  initialState: {
-    isInitialized: false
-  },
-  reducers: {
-    setIsInitialized(state, action: PayloadAction<{isInitialized: boolean}>) {
-      state.isInitialized = action.payload.isInitialized
-    }
-  }
-})
+	name: 'app',
+	initialState: {
+		isInitialized: false,
+	},
+	reducers: {
+		setIsInitialized(state, action: PayloadAction<{ isInitialized: boolean }>) {
+			state.isInitialized = action.payload.isInitialized;
+		},
+	},
+});
 
-export const appReducer = slice.reducer
-export const {setIsInitialized} = slice.actions
+export const appReducer = slice.reducer;
+export const { setIsInitialized } = slice.actions;

@@ -1,25 +1,24 @@
-import {Pages} from "Pages/Pages";
-import React, {useEffect} from "react";
-import {useAppDispatch} from "hooks/useAppDispatch";
-import {authTC} from "modules/authModule/authSlice";
-import {useAppSelector} from "hooks/useAppSelector";
-import {isInitializedSelector} from "app/appSelectors";
+import { Pages } from 'Pages/Pages';
+import React, { useEffect } from 'react';
+import { useAppDispatch } from 'hooks/useAppDispatch';
+import { authTC } from 'modules/authModule/authSlice';
+import { useAppSelector } from 'hooks/useAppSelector';
+import { isInitializedSelector } from 'app/appSelectors';
 
 export function App() {
+	const dispatch = useAppDispatch();
 
-  const dispatch = useAppDispatch()
+	const isInitialized = useAppSelector(isInitializedSelector);
 
-  const isInitialized = useAppSelector(isInitializedSelector)
+	useEffect(() => {
+		dispatch(authTC());
+	}, [dispatch]);
 
-  useEffect(() => {
-    dispatch(authTC())
-  }, [])
+	if (!isInitialized) {
+		return <div>...loading</div>;
+	}
 
-  if (!isInitialized) {
-    return <div>...loading</div>
-  }
-
-  return <Pages/>
+	return <Pages />;
 }
 
 
