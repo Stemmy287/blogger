@@ -1,18 +1,20 @@
-import React, { DetailedHTMLProps, FC, InputHTMLAttributes, TextareaHTMLAttributes, useState } from 'react';
+import React, { useState } from 'react';
 import s from './Input.module.scss';
 import { ReactComponent as GlassMag } from 'assets/icons/glassMag.svg';
 import { ReactComponent as Eye } from 'assets/icons/visibility.svg';
+import { DefaultInputPropsType, DefaultTextAreaPropsType } from 'app';
 
-type Props = {
+type PropsType = {
 	component: 'input' | 'searchInput' | 'textarea';
 	title?: string;
 	password?: boolean;
 };
-
-type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> &
-	DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>;
-
-export const Input: FC<Props & DefaultInputPropsType> = ({ component, title, password, ...restProps }) => {
+export const Input = ({
+	component,
+	title,
+	password,
+	...restProps
+}: PropsType & DefaultInputPropsType & DefaultTextAreaPropsType) => {
 	const [showPassword, setShowPassword] = useState(true);
 
 	const onShowHandler = () => {
@@ -21,7 +23,7 @@ export const Input: FC<Props & DefaultInputPropsType> = ({ component, title, pas
 
 	return (
 		<div className={s.container}>
-			{((component === 'input' || 'searchInput') && (component !== 'textarea')) && (
+			{(component === 'input' || 'searchInput') && component !== 'textarea' && (
 				<>
 					{title && <span>{title}</span>}
 					<input

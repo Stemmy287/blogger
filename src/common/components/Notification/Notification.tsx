@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
+import React from 'react';
 import s from './Notification.module.scss';
-import { Button } from 'common/components';
-import { TitlePopUp } from 'common/components';
+import { Button, TitlePopUp } from 'common/components';
 
-type NotificationPropsType = {
+type PropsType = {
 	title: string;
 	message: string;
 	callback?: () => void;
@@ -11,7 +10,7 @@ type NotificationPropsType = {
 	onlyNotify?: boolean;
 };
 
-export const Notification: FC<NotificationPropsType> = ({ title, message, callback, onClose, onlyNotify }) => {
+export const Notification = ({ title, message, callback, onClose, onlyNotify }: PropsType) => {
 	const onCloseHandler = () => {
 		onClose(false);
 	};
@@ -21,12 +20,10 @@ export const Notification: FC<NotificationPropsType> = ({ title, message, callba
 	};
 
 	return (
-		<div className={s.notificationContainer}>
-			<TitlePopUp title={title} onCloseHandler={onCloseHandler} />
+		<div className={s.container}>
+			<TitlePopUp title={title} onClose={onCloseHandler} />
 			<div className={s.messageAndBtn}>
-				<div className={s.message}>
-					<span>{message}</span>
-				</div>
+				<div className={s.message}>{message}</div>
 				{onlyNotify ? (
 					<div className={s.button}>
 						<Button title={'OK'} callback={onCloseHandler} />

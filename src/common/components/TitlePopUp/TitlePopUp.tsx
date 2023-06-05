@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
+import React from 'react';
 import s from './TitlePopUp.module.scss';
 import close from 'assets/icons/Close.svg';
 
-type TitlePopUpType = {
+type PropsType = {
 	title: string;
-	onCloseHandler: () => void;
+	onClose: () => void;
 };
 
-export const TitlePopUp: FC<TitlePopUpType> = ({ title, onCloseHandler }) => {
+export const TitlePopUp = ({ title, onClose }: PropsType) => {
 	return (
-		<div className={s.header}>
+		<div className={s.container}>
 			<h4>{title}</h4>
-			<img src={close} alt={'close'} onClick={onCloseHandler} />
+			<img src={close} alt={'close'} onClick={onClose} />
 		</div>
 	);
 };

@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React from 'react';
 import s from './Button.module.scss';
 
-type ButtonPropsType = {
+type PropsType = {
 	callback?: () => void;
 	title: string;
 	type?: 'button' | 'submit' | 'reset';
@@ -9,7 +9,7 @@ type ButtonPropsType = {
 	disabled?: boolean;
 };
 
-export const Button: FC<ButtonPropsType> = ({ callback, title, type, isNoBackGround, disabled }) => {
+export const Button = ({ callback, title, type, isNoBackGround, disabled }: PropsType) => {
 	return (
 			<button
 				type={type || 'button'}

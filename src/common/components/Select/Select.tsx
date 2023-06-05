@@ -1,16 +1,16 @@
-import React, { FC, MouseEvent, useRef, useState } from 'react';
+import React, { MouseEvent, useRef, useState } from 'react';
 import s from './Select.module.scss';
 import { ReactComponent as ArrowDown } from 'assets/icons/arrowDown.svg';
 import { ReactComponent as ArrowUp } from 'assets/icons/arrowUp.svg';
 import { OptionsSelectorType } from 'modules/blogsModule';
 import { useOutsideClick } from 'hooks';
 
-type Props = {
+type PropsType = {
 	title: string;
 	options: OptionsSelectorType[];
 	onChange: (data: OptionsSelectorType) => void;
 };
-export const Select: FC<Props> = ({ title, options, onChange }) => {
+export const Select = ({ title, options, onChange }: PropsType) => {
 	const [isActive, setIsActive] = useState(false);
 	const [selected, setSelected] = useState(title);
 

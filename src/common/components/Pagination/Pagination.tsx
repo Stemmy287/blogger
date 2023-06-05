@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import React from 'react';
 import s from './Pagination.module.scss';
 import { ReactComponent as Arrow } from 'assets/icons/paginationArrow.svg';
 
-type Props = {
+type PropsType = {
   callback: () => void
 }
 
-export const Pagination: FC<Props> = ({callback}) => {
+export const Pagination = ({callback}: PropsType) => {
 
   const onClickHandler = () => {
     callback()

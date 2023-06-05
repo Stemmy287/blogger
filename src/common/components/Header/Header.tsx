@@ -15,22 +15,23 @@ export const Header = () => {
 	const user = useAppSelector(userSelector);
 
 	const dispatch = useAppDispatch();
-
 	const logoutHandler = () => {
 		dispatch(logout());
 	};
-
 	const onCloseHandler = () => {
 		setIsActive(false);
 	};
+	const onModalHandler = () => {
+		setIsActive(true);
+	};
 
 	return (
-		<header className={s.headerContainer}>
+		<header className={s.container}>
 			<h2>Blogger Platform</h2>
 			{isLoggedIn && (
 				<div className={s.userAndLogout}>
 					<h3 className={s.userName}>{user.login}</h3>
-					<div className={s.logout} onClick={() => setIsActive(true)}>
+					<div className={s.logout} onClick={onModalHandler}>
 						<LogoutIcon />
 						<span>login out</span>
 					</div>

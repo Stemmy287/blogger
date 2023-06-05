@@ -1,14 +1,14 @@
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import s from './Link.module.scss';
 import { NavLink, useLocation } from 'react-router-dom';
 
-type Props = {
+type PropsType = {
 	to: string;
 	title: string;
 	icon: ReactNode;
 };
 
-export const Link: FC<Props> = ({ to, title, icon }) => {
+export const Link = ({ to, title, icon }: PropsType) => {
 
 	const {pathname, state} = useLocation()
 

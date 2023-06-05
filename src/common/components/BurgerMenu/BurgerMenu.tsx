@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import s from './BurgerMenu.module.scss';
 import burgerMenu from 'assets/icons/BurgerMenu.svg';
 import { ReactComponent as EditIcon } from 'assets/icons/Edit.svg';
@@ -6,12 +6,12 @@ import { ReactComponent as DeleteIcon } from 'assets/icons/Delete.svg';
 import { useOutsideClick } from 'hooks';
 import { BurgerMenuButton } from 'common/components';
 
-type BurgerMenuType = {
+type PropsType = {
 	onEditClick: () => void;
 	onDeleteClick: () => void;
 };
 
-export const BurgerMenu: FC<BurgerMenuType> = ({ onEditClick, onDeleteClick }) => {
+export const BurgerMenu = ({ onEditClick, onDeleteClick }: PropsType) => {
 	const [isActive, setIsActive] = useState(false);
 
 	const selectRef = useRef<HTMLDivElement>(null);

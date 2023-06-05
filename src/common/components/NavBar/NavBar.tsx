@@ -7,7 +7,7 @@ import { ReactComponent as SquareMenu } from 'assets/icons/SquareMenu.svg';
 
 export const NavBar = () => {
 	return (
-		<div className={s.navBarContainer}>
+		<div className={s.container}>
 			<Link to={PATH.BLOGS} title={'Blogs'} icon={<BurgerMenu />} />
 			<Link to={PATH.POSTS} title={'Posts'} icon={<SquareMenu />} />
 		</div>

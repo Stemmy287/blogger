@@ -8,7 +8,7 @@ type PropsType = {
 
 export const PopUp = ({ children, onClose }: PropsType) => {
 	return (
-		<div className={s.modal} onClick={onClose}>
+		<div className={s.container} onClick={onClose}>
 			<div
 				className={s.content}
 				onClick={e => {
