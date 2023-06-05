@@ -11,15 +11,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: scale(0);
   z-index: 100;
 
   .content {
     border-radius: 2px;
     background-color: white;
   }
-}
-
-.active {
-  transform: scale(1);
 }

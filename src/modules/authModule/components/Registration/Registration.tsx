@@ -11,14 +11,14 @@ import { PATH } from 'common/constans';
 export const Registration = () => {
 	const dispatch = useAppDispatch();
 
-	const [isPopUp, setIsPopUp] = useState(false);
+	const [isActive, setIsActive] = useState(false);
 	const [successes, setSuccesses] = useState(false);
 
 	const navigate = useNavigate();
 
 	const navToLoginHandler = () => {
 		setSuccesses(false);
-		setIsPopUp(false);
+		setIsActive(false);
 		navigate(PATH.LOGIN);
 	};
 
@@ -29,12 +29,8 @@ export const Registration = () => {
 			email: '',
 		},
 		onSubmit(values) {
-			dispatch(registration(values)).then(res => {
-				if (res.payload) {
-					setSuccesses(true);
-					setIsPopUp(true);
-				}
-			});
+			dispatch(registration(values));
+			setIsActive(true);
 		},
 	});
 
@@ -60,15 +56,16 @@ export const Registration = () => {
 				<NavLink to={PATH.LOGIN}>Sign In</NavLink>
 			</AuthWrapper>
 			<img src={loginBanner} alt="login banner" />
-			<PopUp isActive={isPopUp} setIsActive={navToLoginHandler}>
-				<Notification
-					title="Email sent"
-					message={`Successes you're registered on email ${formik.values.email} `}
-					onClose={navToLoginHandler}
-					onlyNotify
-				/>
-			</PopUp>
+			{isActive && (
+				<PopUp onClose={navToLoginHandler}>
+					<Notification
+						title="Email sent"
+						message={`Successes you're registered on email ${formik.values.email} `}
+						onClose={navToLoginHandler}
+						onlyNotify
+					/>
+				</PopUp>
+			)}
 		</>
 	);
 };
-

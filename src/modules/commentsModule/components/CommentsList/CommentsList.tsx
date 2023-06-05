@@ -9,7 +9,7 @@ export const CommentsList = ({ comments }: PropsType) => {
 	return (
 		<div className={s.comments}>
 			{comments.map(cm => (
-				<Comment key={cm.id} comment={cm} setPopUpActive={() => {}} setCommentId={() => {}} />
+				<Comment key={cm.id} comment={cm}/>
 			))}
 		</div>
 	);

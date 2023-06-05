@@ -1,24 +1,23 @@
-import React, {FC} from 'react';
-import s from './PopUp.module.scss'
+import React from 'react';
+import s from './PopUp.module.scss';
 
-type PopUp = {
-    isActive: boolean
-    setIsActive: (isActive: boolean) => void
-    children: JSX.Element
-}
+type PropsType = {
+	children: JSX.Element;
+	onClose: () => void;
+};
 
-export const PopUp: FC<PopUp> = ({
-                                           isActive,
-                                           setIsActive,
-                                           children
-                                       }) => {
-
-    return (
-        <div className={isActive ? `${s.modal} ${s.active}` : s.modal} onClick={() => setIsActive(false)}>
-            <div className={s.content} onClick={(e) => {e.stopPropagation()}}>
-                {children}
-            </div>
-        </div>
-    );
+export const PopUp = ({ children, onClose }: PropsType) => {
+	return (
+		<div className={s.modal} onClick={onClose}>
+			<div
+				className={s.content}
+				onClick={e => {
+					e.stopPropagation();
+				}}
+			>
+				{children}
+			</div>
+		</div>
+	);
 };
 

@@ -20,6 +20,10 @@ export const Header = () => {
 		dispatch(logout());
 	};
 
+	const onCloseHandler = () => {
+		setIsActive(false);
+	};
+
 	return (
 		<header className={s.headerContainer}>
 			<h2>Blogger Platform</h2>
@@ -32,14 +36,16 @@ export const Header = () => {
 					</div>
 				</div>
 			)}
-			<PopUp isActive={isActive} setIsActive={setIsActive}>
-				<Notification
-					title="login out"
-					message={`Do you really want to log out of your account: ${user.email}`}
-					onClose={setIsActive}
-					callback={logoutHandler}
-				/>
-			</PopUp>
+			{isActive && (
+				<PopUp onClose={onCloseHandler}>
+					<Notification
+						title="login out"
+						message={`Do you really want to log out of your account: ${user.email}`}
+						onClose={setIsActive}
+						callback={logoutHandler}
+					/>
+				</PopUp>
+			)}
 		</header>
 	);
 };

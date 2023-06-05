@@ -1,23 +1,17 @@
-import React, { ChangeEvent, FC, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import s from './comment.module.scss';
 import noPhoto from 'common/image/no-image.svg';
 import { dateConvertor } from 'common/utils';
-import { CommentType } from 'modules/commentsModule';
-import { Button } from 'common/components';
-import { BurgerMenu } from 'common/components';
-import { useAppDispatch } from 'hooks';
-import { updateComment } from 'modules/commentsModule';
-import { Input } from 'common/components';
-import { useAppSelector } from 'hooks';
+import { CommentType, deleteComment, updateComment } from 'modules/commentsModule';
+import { BurgerMenu, Button, Input, Notification, PopUp } from 'common/components';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { userSelector } from 'modules/authModule';
 
 type PropsType = {
 	comment: CommentType;
-	setPopUpActive: (isActive: boolean) => void;
-	setCommentId: (commentId: string) => void;
 };
 
-export const Comment: FC<PropsType> = ({ comment, setPopUpActive, setCommentId }) => {
+export const Comment: FC<PropsType> = ({ comment }) => {
 	const user = useAppSelector(userSelector);
 
 	const dispatch = useAppDispatch();
@@ -26,6 +20,7 @@ export const Comment: FC<PropsType> = ({ comment, setPopUpActive, setCommentId }
 
 	const [editValue, setEditValue] = useState(content);
 	const [isEdit, setIsEdit] = useState(false);
+	const [isActive, setIsActive] = useState(false);
 
 	const onEditHandler = () => {
 		dispatch(updateComment({ commentId: id, content: editValue }));
@@ -33,9 +28,12 @@ export const Comment: FC<PropsType> = ({ comment, setPopUpActive, setCommentId }
 	};
 
 	const onDeleteHandler = () => {
-		setPopUpActive(true);
-		setCommentId(id);
+		dispatch(deleteComment({ commentId: comment.id }));
 	};
+
+	const onModalHandler = () => {
+		setIsActive(true)
+	}
 
 	const onEditActiveHandler = () => {
 		setIsEdit(true);
@@ -50,29 +48,47 @@ export const Comment: FC<PropsType> = ({ comment, setPopUpActive, setCommentId }
 		setEditValue(e.currentTarget.value);
 	};
 
-	const burgerMenuRef = useRef<HTMLDivElement>(null);
+	const onCloseHandler = () => {
+		setIsActive(false)
+	}
 
 	return (
-		<div className={s.container}>
-			<img className={s.photo} src={noPhoto} alt="ava" />
-			<div className={s.content}>
-				<div className={s.userInfo}>
-					<h2 className={s.name}>{userLogin}</h2>
-					<span className={s.date}>{dateConvertor(createdAt)}</span>
+		<>
+			<div className={s.container}>
+				<img className={s.photo} src={noPhoto} alt="ava" />
+				<div className={s.content}>
+					<div className={s.userInfo}>
+						<h2 className={s.name}>{userLogin}</h2>
+						<span className={s.date}>{dateConvertor(createdAt)}</span>
+					</div>
+					{isEdit ? <Input
+						value={editValue}
+						onChange={onChangeValue}
+						component="textarea" />
+						: <p>{content}</p>}
+					{isEdit && (
+						<div className={s.buttons}>
+							<Button isNoBackGround title="Cancel" callback={onCancelHandler} />
+							<Button disabled={content === editValue} title="Edit Comment" callback={onEditHandler} />
+						</div>
+					)}
 				</div>
-				{isEdit ? <Input value={editValue} onChange={onChangeValue} component="textarea" /> : <p>{content}</p>}
-				{isEdit && (
-					<div className={s.buttons}>
-						<Button isNoBackGround title="Cancel" callback={onCancelHandler} />
-						<Button disabled={content === editValue} title="Edit Comment" callback={onEditHandler} />
+				{!isEdit && user.userId === comment.userId && (
+					<div className={s.burgerMenu}>
+						<BurgerMenu onEditClick={onEditActiveHandler} onDeleteClick={onModalHandler} />
 					</div>
 				)}
 			</div>
-			{!isEdit &&( user.userId === comment.userId) && (
-				<div className={s.burgerMenu} ref={burgerMenuRef}>
-					<BurgerMenu onEditClick={onEditActiveHandler} onDeleteClick={onDeleteHandler} />
-				</div>
+			{isActive && (
+				<PopUp onClose={onCloseHandler}>
+					<Notification
+						title="Delete Comment"
+						message="Are you sure you want to delete comment?"
+						callback={onDeleteHandler}
+						onClose={onCloseHandler}
+					/>
+				</PopUp>
 			)}
-		</div>
+		</>
 	);
 };

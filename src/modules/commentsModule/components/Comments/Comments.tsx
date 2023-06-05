@@ -6,12 +6,11 @@ import {
 	commentsSelector,
 	commentsTotalCountSelector,
 	createComment,
-	deleteComment,
 	fetchComments,
 	setIsPaginationComments,
 	setPageNumberComments,
 } from 'modules/commentsModule';
-import { Button, Input, Notification, Pagination, PopUp } from 'common/components';
+import { Button, Input, Pagination } from 'common/components';
 import { useAppDispatch, useAppSelector } from 'hooks';
 
 type PropsType = {
@@ -30,8 +29,6 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 	const [content, setContent] = useState('');
 
 	const [isButtonsShow, setIsButtonsShow] = useState(false);
-	const [isDeletePopUpActive, setIsDeletePopUpActive] = useState(false);
-	const [commentId] = useState('');
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
 		setContent(e.currentTarget.value);
 	};
@@ -50,10 +47,6 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 	const onPaginationHandler = () => {
 		dispatch(setIsPaginationComments());
 		dispatch(setPageNumberComments({ pageNumber: commentsPageNumber + 1 }));
-	};
-
-	const onDeleteHandler = () => {
-		dispatch(deleteComment({ commentId }));
 	};
 
 	useEffect(() => {
@@ -80,14 +73,6 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 			)}
 			<CommentsList comments={comments} />
 			{commentsTotalCount > comments.length && <Pagination callback={onPaginationHandler} />}
-			<PopUp isActive={isDeletePopUpActive} setIsActive={setIsDeletePopUpActive}>
-				<Notification
-					title="Delete Comment"
-					message="Are you sure you want to delete comment?"
-					callback={onDeleteHandler}
-					onClose={setIsDeletePopUpActive}
-				/>
-			</PopUp>
 		</div>
 	);
 };
