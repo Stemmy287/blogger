@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { apiAuth, LoginType, RegistrationDataType, UserType } from 'modules/authModule/authApi';
+import { LoginType, RegistrationDataType, UserType } from 'modules/authModule/types';
 import { setIsInitialized } from 'app/appSlice';
+import { apiAuth } from './authApi';
 
 export const loginTC = createAsyncThunk('auth/loginTC', async (param: LoginType, { dispatch, rejectWithValue }) => {
 	try {

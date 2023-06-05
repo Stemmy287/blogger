@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, useRef, useState } from 'react';
 import s from 'modules/commentsModule/components/Comment/comment.module.scss';
 import noPhoto from 'common/image/no-image.svg';
 import { dateConvertor } from 'common/utils/dateConvertor';
-import { CommentType } from 'modules/commentsModule/commentsApi';
+import { CommentType } from 'modules/commentsModule/types';
 import { Button } from 'common/components/Button/Button';
 import { BurgerMenu } from 'common/components/BurgerMenu/BurgerMenu';
 import { useAppDispatch } from 'hooks/useAppDispatch';

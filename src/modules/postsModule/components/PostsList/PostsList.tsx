@@ -2,8 +2,8 @@ import React from 'react';
 import s from './PostsList.module.scss';
 import { Post } from '../Post/Post';
 import { Pagination } from '../../../../common/components/Pagination/Pagination';
-import { PostType } from '../../postsApi';
-import { NavDataType } from '../../../blogsModule/components/BlogPage/BlogPage';
+import { NavDataType } from '../../../../app/types';
+import { PostType } from '../../types';
 
 type PropsType = {
 	posts: PostType[];
@@ -12,7 +12,7 @@ type PropsType = {
 	navData: NavDataType;
 };
 
-export const PostsList = ({ posts, postsTotalCount, onPagination , navData}: PropsType) => {
+export const PostsList = ({ posts, postsTotalCount, onPagination, navData }: PropsType) => {
 	return (
 		<>
 			{posts.length ? (

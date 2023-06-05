@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import defaultPostImage from 'common/image/defaultPostImg.png';
 import defaultBlogImage from 'common/image/defaultBlogImg.png';
 import { dateConvertor } from 'common/utils/dateConvertor';
-import { NavDataType } from '../../../blogsModule/components/BlogPage/BlogPage';
+import { NavDataType } from '../../../../app/types';
 
 type PostPropsType = {
 	postId: string;

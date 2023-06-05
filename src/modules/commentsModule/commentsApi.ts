@@ -1,7 +1,7 @@
-import { LikeInfoType } from 'modules/postsModule/postsApi';
 import { instance } from 'common/constans/instanceApi';
-import { ResponseType } from 'modules/blogsModule/blogsApi';
+import { ResponseType } from 'modules/blogsModule/types';
 import { AxiosResponse } from 'axios';
+import { CommentType } from './types';
 
 export const apiComments = {
 	getComments(postId: string, data: { pageNumber: number; pageSize: number }) {
@@ -20,14 +20,4 @@ export const apiComments = {
 	deleteComment(commentId: string) {
 		return instance.delete(`api/comments/${commentId}`);
 	},
-};
-
-//types
-export type CommentType = {
-	id: string;
-	content: string;
-	userId: string;
-	userLogin: string;
-	createdAt: string;
-	likesInfo: Omit<LikeInfoType, 'newestLikes'>;
 };

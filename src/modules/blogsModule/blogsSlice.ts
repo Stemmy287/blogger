@@ -1,7 +1,8 @@
-import { apiBlogs, BlogType, ResponseType } from 'modules/blogsModule/blogsApi';
+import { BlogType, ResponseType } from 'modules/blogsModule/types';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppRootStateType } from 'store/store';
-import { PostType } from '../postsModule/postsApi';
+import { PostType } from '../postsModule/types';
+import { apiBlogs } from './blogsApi';
 
 export const fetchBlogsTC = createAsyncThunk(
 	'blogs/fetchBlogs',
@@ -100,7 +101,7 @@ const slice = createSlice({
 			if (state.isPaginationForPosts) {
 				state.postsForSpecificBlog = {
 					...action.payload.posts,
-					items: [...state.postsForSpecificBlog.items, ...action.payload.posts.items]
+					items: [...state.postsForSpecificBlog.items, ...action.payload.posts.items],
 				};
 				state.isPagination = false;
 			} else {
@@ -126,5 +127,5 @@ export const {
 	setIsPaginationBlogsAC,
 	setPostsForSpecificBlogAC,
 	setPageNumberPostsForSpecificBLogAC,
-	setIsPaginationPostsForSpecificBLogAC
+	setIsPaginationPostsForSpecificBLogAC,
 } = slice.actions;

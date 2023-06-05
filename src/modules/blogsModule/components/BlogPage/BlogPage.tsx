@@ -71,8 +71,3 @@ export const BlogPage = () => {
 		</div>
 	);
 };
-
-export type NavDataType = {
-	link: string
-	title: string
-}
