@@ -21,7 +21,7 @@ export const Post: FC<PostPropsType> = ({ postId, title, blogName, date, navData
 
 	const onPostPageHandler = (e: MouseEvent<HTMLAnchorElement>) => {
 		e.preventDefault();
-		navigate(`/PostPage/${postId}`, { state: navData });
+		navigate(`/post-page/${postId}`, { state: navData });
 	};
 
 	return (

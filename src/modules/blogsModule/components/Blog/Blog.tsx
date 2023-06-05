@@ -17,7 +17,7 @@ export const Blog: FC<BlogsPropsType> = ({ blogId, title, webSiteUrl, descriptio
 			<img src={defaultBlogImage} alt="blog img" />
 			<div className={s.content}>
 				<div className={s.navContainer}>
-					<NavLink to={`/BlogPage/${blogId}`} className={s.navBlog}>
+					<NavLink to={`/blog-page/${blogId}`} className={s.navBlog}>
 						<h3 className={s.title}>{title}</h3>
 					</NavLink>
 				</div>

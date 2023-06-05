@@ -10,9 +10,9 @@ type Props = {
 
 export const Link: FC<Props> = ({ to, title, icon }) => {
 
-	const {pathname} = useLocation()
+	const {pathname, state} = useLocation()
 
-	const active = pathname === `/${title.toLowerCase()}`
+	const active = (state?.title?.toLowerCase()[0] || pathname[1]) === title.toLowerCase()[0]
 
 	return (
 		<NavLink to={to} className={active ? `${s.navLink} ${s.active}` : s.navLink}>

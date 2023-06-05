@@ -7,6 +7,10 @@
   text-decoration: none;
   color: $gray1000;
 
+  .icon {
+    display: flex;
+  }
+
   span {
     @include text(400, 14px, 24px);
     margin-left: 15px;

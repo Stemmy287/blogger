@@ -1,11 +1,11 @@
 export const PATH = {
   MAIN: '/',
-  LOGIN: '/Login',
-  REGISTRATION: '/Registration',
+  LOGIN: '/login',
+  REGISTRATION: '/registration',
   BLOGS: '/blogs',
   POSTS: '/posts',
-  BLOG_PAGE: '/BlogPage/:blogId?',
-  POST_PAGE: '/PostPage/:postId?',
-  ADD_BLOG: '/AddBlog',
-  EDIT_BLOG: '/EditBlog'
+  BLOG_PAGE: '/blog-page/:blogId?',
+  POST_PAGE: '/post-page/:postId?',
+  ADD_BLOG: '/add-blog',
+  EDIT_BLOG: '/edit-blog'
 } as const

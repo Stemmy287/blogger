@@ -44,7 +44,7 @@ export const Login = () => {
 					<Input title="Email or Username" component="input" {...formik.getFieldProps('loginOrEmail')} />
 					<Input title="Password" component="input" password {...formik.getFieldProps('password')} />
 					<div className={s.button}>
-						<Button type={'submit'} title="Sign in" />
+						<Button type="submit" title="Sign in" />
 					</div>
 				</form>
 				<span className={s.forgotPass}>Don’t have an account?</span>

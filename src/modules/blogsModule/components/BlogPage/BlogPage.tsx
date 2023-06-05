@@ -66,7 +66,7 @@ export const BlogPage = () => {
 				posts={posts}
 				postsTotalCount={postsTotalCount}
 				onPagination={onPagination}
-				navData={{ link: `/BlogPage/${blogId}`, title: `Blog "${blog.name}"` }}
+				navData={{ link: `/blog-page/${blogId}`, title: `Blog "${blog.name}"` }}
 			/>
 		</div>
 	);
