@@ -6,7 +6,7 @@ import { CommentType } from 'modules/commentsModule';
 import { Button } from 'common/components';
 import { BurgerMenu } from 'common/components';
 import { useAppDispatch } from 'hooks';
-import { updateCommentTC } from 'modules/commentsModule';
+import { updateComment } from 'modules/commentsModule';
 import { Input } from 'common/components';
 import { useAppSelector } from 'hooks';
 import { userSelector } from 'modules/authModule';
@@ -28,7 +28,7 @@ export const Comment: FC<PropsType> = ({ comment, setPopUpActive, setCommentId }
 	const [isEdit, setIsEdit] = useState(false);
 
 	const onEditHandler = () => {
-		dispatch(updateCommentTC({ commentId: id, content: editValue }));
+		dispatch(updateComment({ commentId: id, content: editValue }));
 		setIsEdit(false);
 	};
 

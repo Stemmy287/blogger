@@ -4,15 +4,15 @@ import { AppRootStateType } from 'store';
 import { apiComments } from 'modules/commentsModule';
 import { CommentType } from 'modules/commentsModule';
 
-export const fetchCommentsTC = createAsyncThunk(
+export const fetchComments = createAsyncThunk(
 	'postsModule/fetchComment',
-	async (param: { postId: string }, { dispatch, rejectWithValue, getState }) => {
+	async (param: { postId: string }, { rejectWithValue, getState }) => {
 		const state = getState() as AppRootStateType;
 		const queryParams = state.comments.queryParams;
 		const isPagination = state.comments.isPagination;
 
 		try {
-			const res = await apiComments.getComments(
+			return await apiComments.getComments(
 				param.postId,
 				isPagination
 					? queryParams
@@ -21,55 +21,53 @@ export const fetchCommentsTC = createAsyncThunk(
 							pageNumber: 1,
 					  }
 			);
-			dispatch(setCommentsAC({ comments: res }));
 		} catch (e) {
 			return rejectWithValue(null);
 		}
 	}
 );
 
-export const createCommentTC = createAsyncThunk(
+export const createComment = createAsyncThunk(
 	'postsModule/createComment',
 	async (
 		param: {
 			content: string;
 			postId: string;
 		},
-		{ dispatch, rejectWithValue }
+		{ rejectWithValue }
 	) => {
 		try {
-			const res = await apiComments.createComment({ content: param.content }, param.postId);
-			dispatch(createCommentAC({ comment: res }));
+			return await apiComments.createComment({ content: param.content }, param.postId);
 		} catch (e) {
 			return rejectWithValue(null);
 		}
 	}
 );
 
-export const updateCommentTC = createAsyncThunk(
+export const updateComment = createAsyncThunk(
 	'postsModule/updateComment',
 	async (
 		param: {
 			content: string;
 			commentId: string;
 		},
-		{ dispatch, rejectWithValue }
+		{ rejectWithValue }
 	) => {
 		try {
 			await apiComments.updateComment({ content: param.content }, param.commentId);
-			dispatch(updateCommentAC({ content: param.content, commentId: param.commentId }));
+			return { content: param.content, commentId: param.commentId };
 		} catch (e) {
 			return rejectWithValue(null);
 		}
 	}
 );
 
-export const deleteCommentTC = createAsyncThunk(
+export const deleteComment = createAsyncThunk(
 	'postsModule/deleteComment',
-	async (param: { commentId: string }, { dispatch, rejectWithValue }) => {
+	async (param: { commentId: string }, { rejectWithValue }) => {
 		try {
 			await apiComments.deleteComment(param.commentId);
-			dispatch(deleteCommentAC({ commentId: param.commentId }));
+			return { commentId: param.commentId };
 		} catch (e) {
 			return rejectWithValue(null);
 		}
@@ -89,36 +87,6 @@ const slice = createSlice({
 		isPagination: false,
 	},
 	reducers: {
-		setCommentsAC(state, action: PayloadAction<{ comments: ResponseType<CommentType[]> }>) {
-			if (state.isPagination) {
-				state.comments = {
-					...action.payload.comments,
-					items: [...state.comments.items, ...action.payload.comments.items],
-				};
-				state.isPagination = false;
-			} else {
-				state.comments = action.payload.comments;
-			}
-		},
-		createCommentAC(state, action: PayloadAction<{ comment: CommentType }>) {
-			state.comments.items.unshift(action.payload.comment);
-			state.comments.totalCount += 1;
-		},
-		updateCommentAC(state, action: PayloadAction<{ content: string; commentId: string }>) {
-			const index = state.comments.items.findIndex(cm => cm.id === action.payload.commentId);
-
-			if (index > -1) {
-				state.comments.items[index].content = action.payload.content;
-			}
-		},
-		deleteCommentAC(state, action: PayloadAction<{ commentId: string }>) {
-			const index = state.comments.items.findIndex(cm => cm.id === action.payload.commentId);
-
-			if (index > -1) {
-				state.comments.items.splice(index, 1);
-				state.comments.totalCount -= 1;
-			}
-		},
 		setPageNumberCommentsAC(state, action: PayloadAction<{ pageNumber: number }>) {
 			state.queryParams.pageNumber = action.payload.pageNumber;
 		},
@@ -126,14 +94,42 @@ const slice = createSlice({
 			state.isPagination = true;
 		},
 	},
+	extraReducers:(builder) => {
+		builder.addCase(fetchComments.fulfilled, (state, action) => {
+			if (state.isPagination) {
+				state.comments = {
+					...action.payload,
+					items: [...state.comments.items, ...action.payload.items],
+				};
+				state.isPagination = false;
+			} else {
+				state.comments = action.payload;
+			}
+		})
+		builder.addCase(createComment.fulfilled, (state, action) => {
+			state.comments.items.unshift(action.payload);
+			state.comments.totalCount += 1;
+		})
+		builder.addCase(updateComment.fulfilled, (state, action) => {
+			const index = state.comments.items.findIndex(cm => cm.id === action.payload.commentId);
+
+			if (index > -1) {
+				state.comments.items[index].content = action.payload.content;
+			}
+		})
+		builder.addCase(deleteComment.fulfilled, (state, action) => {
+			const index = state.comments.items.findIndex(cm => cm.id === action.payload.commentId);
+
+			if (index > -1) {
+				state.comments.items.splice(index, 1);
+				state.comments.totalCount -= 1;
+			}
+		})
+	}
 });
 
 export const commentsReducer = slice.reducer;
 export const {
-	setCommentsAC,
-	createCommentAC,
-	updateCommentAC,
-	deleteCommentAC,
 	setPageNumberCommentsAC,
 	setIsPaginationCommentsAC,
 } = slice.actions;

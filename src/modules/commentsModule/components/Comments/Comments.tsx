@@ -11,9 +11,9 @@ import {
 	commentsTotalCountSelector,
 } from 'modules/commentsModule';
 import {
-	createCommentTC,
-	deleteCommentTC,
-	fetchCommentsTC,
+	createComment,
+	deleteComment,
+	fetchComments,
 	setIsPaginationCommentsAC,
 	setPageNumberCommentsAC,
 } from 'modules/commentsModule';
@@ -43,7 +43,7 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 		setContent(e.currentTarget.value);
 	};
 	const onClickHandler = () => {
-		dispatch(createCommentTC({ postId, content }));
+		dispatch(createComment({ postId, content }));
 		setContent('');
 	};
 	const onCommentTypeOnHandler = () => {
@@ -60,11 +60,11 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 	};
 
 	const onDeleteHandler = () => {
-		dispatch(deleteCommentTC({ commentId }));
+		dispatch(deleteComment({ commentId }));
 	};
 
 	useEffect(() => {
-		dispatch(fetchCommentsTC({ postId }));
+		dispatch(fetchComments({ postId }));
 	}, [commentsPageNumber, dispatch, postId]);
 
 	return (
