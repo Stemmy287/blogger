@@ -70,7 +70,6 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 	return (
 		<div className={s.container}>
 			<h3 className={s.count}>{`Comments (${commentsTotalCount || 0})`}</h3>
-			{!!comments.length && (
 				<div className={s.textarea}>
 					<Input
 						value={content}
@@ -80,7 +79,6 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 						placeholder="Provide your comment..."
 					/>
 				</div>
-			)}
 			{isButtonsShow && (
 				<div className={s.buttons}>
 					<Button isNoBackGround title="Cancel" callback={onCommentTypeOffHandler} />
