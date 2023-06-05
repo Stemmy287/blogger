@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import s from './BlogOnPage.module.scss';
 import defaultBlogImage from 'common/image/defaultBlogImg.png';
 import { currentURL } from 'common/utils/currentURL';
@@ -13,14 +13,25 @@ type PropsType = {
 };
 
 export const BlogOnPage = ({ title, webSiteUrl, description, date }: PropsType) => {
-	const [isAllText, setIsAllText] = useState(false);
-	const [isShowButton] = useState(true);
+	const [isAllText, setIsAllText] = useState(true);
+	const [isShowButton, setIsShowButton] = useState(false);
 
 	const onAllTextHandler = () => {
 		setIsAllText(!isAllText);
 	};
 
 	const textBlockRef = useRef<HTMLParagraphElement>(null);
+
+	useEffect(() => {
+		if (description && textBlockRef.current) {
+			if (textBlockRef.current.offsetHeight > 48) {
+					setIsShowButton(true);
+					setIsAllText(false)
+			} else {
+				isShowButton && setIsShowButton(false)
+			}
+		}
+	}, [description]);
 
 	return (
 		<div className={s.container}>
