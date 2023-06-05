@@ -4,8 +4,8 @@ import { Title } from 'common/components';
 import { BackLink } from 'common/components';
 import { useParams } from 'react-router-dom';
 import {
-	fetchBlogTC,
-	fetchPostsForSpecificBlogTC,
+	fetchBlog,
+	fetchPostsForSpecificBlog,
 	setIsPaginationPostsForSpecificBLogAC,
 	setPageNumberPostsForSpecificBLogAC,
 } from 'modules/blogsModule';
@@ -37,8 +37,8 @@ export const BlogPage = () => {
 
 	useEffect(() => {
 		if (blogId) {
-			dispatch(fetchBlogTC({ blogId }));
-			dispatch(fetchPostsForSpecificBlogTC(blogId));
+			dispatch(fetchBlog({ blogId }));
+			dispatch(fetchPostsForSpecificBlog(blogId));
 		}
 	}, [dispatch, blogId, pageNumber]);
 

@@ -3,7 +3,7 @@ import { Title } from 'common/components';
 import { Blog } from 'modules/blogsModule';
 import { useAppSelector } from 'hooks';
 import {
-	fetchBlogsTC,
+	fetchBlogs,
 	setIsPaginationBlogsAC,
 	setPageNumberBlogsAC,
 	setSearchNameTermBlogsAC,
@@ -38,7 +38,7 @@ export const Blogs = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(fetchBlogsTC());
+		dispatch(fetchBlogs());
 	}, [pageNumber, sortBy, sortDirection, searchNameTerm, dispatch]);
 
 	const onPagination = () => {

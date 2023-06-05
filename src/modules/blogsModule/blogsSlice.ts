@@ -4,45 +4,44 @@ import { AppRootStateType } from 'store';
 import { PostType } from 'modules/postsModule';
 import { apiBlogs } from 'modules/blogsModule';
 
-export const fetchBlogsTC = createAsyncThunk(
+export const fetchBlogs = createAsyncThunk(
 	'blogs/fetchBlogs',
-	async (param, { dispatch, rejectWithValue, getState }) => {
+	async (param, { rejectWithValue, getState }) => {
 		const state = getState() as AppRootStateType;
 		const queryParams = state.blogs.queryParams;
+		const isPagination = state.blogs.isPagination
 
 		try {
-			const res = await apiBlogs.getBlogs(queryParams);
-			dispatch(setBlogsAC({ blogs: res }));
+			return await apiBlogs.getBlogs(isPagination ? queryParams : { ...queryParams, pageNumber: 1 });
 		} catch (e) {
 			return rejectWithValue(null);
 		}
 	}
 );
-export const fetchBlogTC = createAsyncThunk(
+export const fetchBlog = createAsyncThunk(
 	'blogs/fetchBlog',
-	async (param: { blogId: string }, { dispatch, rejectWithValue }) => {
+	async (param: { blogId: string }, { rejectWithValue }) => {
 		try {
-			const res = await apiBlogs.getBlog(param.blogId);
-			dispatch(setBlogAC({ blog: res }));
+			return await apiBlogs.getBlog(param.blogId);
 		} catch (e) {
 			return rejectWithValue(null);
 		}
 	}
 );
 
-export const fetchPostsForSpecificBlogTC = createAsyncThunk(
+export const fetchPostsForSpecificBlog = createAsyncThunk(
 	'blogs/fetchPosts',
-	async (param: string, { dispatch, rejectWithValue, getState }) => {
+	async (param: string, { rejectWithValue, getState }) => {
 		const state = getState() as AppRootStateType;
 		const queryParams = state.blogs.queryParamsForPosts;
 		const isPagination = state.blogs.isPaginationForPosts;
 
 		try {
-			const res = await apiBlogs.getPostsForSpecificBlog(
+			return  await apiBlogs.getPostsForSpecificBlog(
 				param,
 				isPagination ? queryParams : { ...queryParams, pageNumber: 1 }
 			);
-			dispatch(setPostsForSpecificBlogAC({ posts: res }));
+
 		} catch (e) {
 			return rejectWithValue(null);
 		}
@@ -74,14 +73,6 @@ const slice = createSlice({
 		isPaginationForPosts: false,
 	},
 	reducers: {
-		setBlogsAC(state, action: PayloadAction<{ blogs: ResponseType<BlogType[]> }>) {
-			if (state.isPagination) {
-				state.blogs = { ...action.payload.blogs, items: [...state.blogs.items, ...action.payload.blogs.items] };
-				state.isPagination = false;
-			} else {
-				state.blogs = action.payload.blogs;
-			}
-		},
 		setPageNumberBlogsAC(state, action: PayloadAction<{ pageNumber: number }>) {
 			state.queryParams.pageNumber = action.payload.pageNumber;
 		},
@@ -94,20 +85,6 @@ const slice = createSlice({
 		setIsPaginationBlogsAC(state) {
 			state.isPagination = true;
 		},
-		setBlogAC(state, action: PayloadAction<{ blog: BlogType }>) {
-			state.blog = action.payload.blog;
-		},
-		setPostsForSpecificBlogAC(state, action: PayloadAction<{ posts: ResponseType<PostType[]> }>) {
-			if (state.isPaginationForPosts) {
-				state.postsForSpecificBlog = {
-					...action.payload.posts,
-					items: [...state.postsForSpecificBlog.items, ...action.payload.posts.items],
-				};
-				state.isPagination = false;
-			} else {
-				state.postsForSpecificBlog = action.payload.posts;
-			}
-		},
 		setPageNumberPostsForSpecificBLogAC(state, action: PayloadAction<{ pageNumber: number }>) {
 			state.queryParamsForPosts.pageNumber = action.payload.pageNumber;
 		},
@@ -115,17 +92,38 @@ const slice = createSlice({
 			state.isPaginationForPosts = true;
 		},
 	},
+	extraReducers: builder => {
+		builder.addCase(fetchBlogs.fulfilled, (state, action) => {
+			if (state.isPagination) {
+				state.blogs = { ...action.payload, items: [...state.blogs.items, ...action.payload.items] };
+				state.isPagination = false;
+			} else {
+				state.blogs = action.payload;
+			}
+		});
+		builder.addCase(fetchBlog.fulfilled, (state, action) => {
+			state.blog = action.payload;
+		});
+		builder.addCase(fetchPostsForSpecificBlog.fulfilled, (state, action) => {
+			if (state.isPaginationForPosts) {
+				state.postsForSpecificBlog = {
+					...action.payload,
+					items: [...state.postsForSpecificBlog.items, ...action.payload.items],
+				};
+				state.isPagination = false;
+			} else {
+				state.postsForSpecificBlog = action.payload;
+			}
+		});
+	},
 });
 
 export const blogsReducer = slice.reducer;
 export const {
-	setBlogsAC,
-	setBlogAC,
 	setPageNumberBlogsAC,
 	setSortByBlogsAC,
 	setSearchNameTermBlogsAC,
 	setIsPaginationBlogsAC,
-	setPostsForSpecificBlogAC,
 	setPageNumberPostsForSpecificBLogAC,
 	setIsPaginationPostsForSpecificBLogAC,
 } = slice.actions;
