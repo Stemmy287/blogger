@@ -1,4 +1,4 @@
-import { LikeInfoType } from '../postsModule/types';
+import { LikeInfoType } from 'modules/postsModule';
 
 export type CommentType = {
 	id: string;

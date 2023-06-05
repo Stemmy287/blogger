@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ResponseType } from 'modules/blogsModule/types';
-import { AppRootStateType } from 'store/store';
-import { apiComments } from './commentsApi';
-import { CommentType } from './types';
+import { ResponseType } from 'modules/blogsModule';
+import { AppRootStateType } from 'store';
+import { apiComments } from 'modules/commentsModule';
+import { CommentType } from 'modules/commentsModule';
 
 export const fetchCommentsTC = createAsyncThunk(
 	'postsModule/fetchComment',

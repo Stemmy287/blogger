@@ -1,7 +1,7 @@
-import { instance } from 'common/constans/instanceApi';
-import { ResponseType } from 'modules/blogsModule/types';
+import { instance } from 'common/constans';
+import { ResponseType } from 'modules/blogsModule';
 import { AxiosResponse } from 'axios';
-import { CommentType } from './types';
+import { CommentType } from 'modules/commentsModule';
 
 export const apiComments = {
 	getComments(postId: string, data: { pageNumber: number; pageSize: number }) {

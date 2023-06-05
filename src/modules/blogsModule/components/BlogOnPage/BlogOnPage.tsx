@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import s from './BlogOnPage.module.scss';
 import defaultBlogImage from 'common/image/defaultBlogImg.png';
-import { currentURL } from 'common/utils/currentURL';
-import { dateConvertor } from 'common/utils/dateConvertor';
+import { currentURL } from 'common/utils';
+import { dateConvertor } from 'common/utils';
 import { ReactComponent as ArrowText } from 'common/icons/arrowText.svg';
 
 type PropsType = {

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import s from 'common/components/Notification/notification.module.scss';
-import { Button } from 'common/components/Button/Button';
-import { TitlePopUp } from 'common/components/TitlePopUp/TitlePopUp';
+import s from './notification.module.scss';
+import { Button } from 'common/components';
+import { TitlePopUp } from 'common/components';
 
 type NotificationPropsType = {
 	title: string;

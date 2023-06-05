@@ -1,4 +1,4 @@
-import { AppRootStateType } from 'store/store';
+import { AppRootStateType } from 'store';
 
 export const commentsSelector = (state: AppRootStateType) => state.comments.comments.items;
 

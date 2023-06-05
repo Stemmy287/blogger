@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Title } from 'common/components/Title/Title';
-import { Blog } from '../Blog/Blog';
-import { useAppSelector } from 'hooks/useAppSelector';
+import { Title } from 'common/components';
+import { Blog } from 'modules/blogsModule';
+import { useAppSelector } from 'hooks';
 import {
 	fetchBlogsTC,
 	setIsPaginationBlogsAC,
 	setPageNumberBlogsAC,
 	setSearchNameTermBlogsAC,
 	setSortByBlogsAC,
-} from 'modules/blogsModule/blogsSlice';
-import { useAppDispatch } from 'hooks/useAppDispatch';
+} from 'modules/blogsModule';
+import { useAppDispatch } from 'hooks';
 import {
 	blogsPageNumberSelector,
 	blogsSearchNameTermSelector,
@@ -17,13 +17,13 @@ import {
 	blogsSortBySelector,
 	blogsSortDirectionSelector,
 	blogsTotalCountSelector,
-} from 'modules/blogsModule/blogsSelectors';
-import { Pagination } from 'common/components/Pagination/Pagination';
+} from 'modules/blogsModule';
+import { Pagination } from 'common/components';
 import s from './blogs.module.scss';
-import { Select } from 'common/components/Select/Select';
-import { Input } from 'common/components/Input/Input';
-import { OptionsSelectorType } from 'modules/blogsModule/types';
-import { useSearch } from 'hooks/useSearch';
+import { Select } from 'common/components';
+import { Input } from 'common/components';
+import { OptionsSelectorType } from 'modules/blogsModule';
+import { useSearch } from 'hooks';
 
 export const Blogs = () => {
 	const blogs = useAppSelector(blogsSelector);

@@ -3,8 +3,8 @@ import s from './post.module.scss';
 import { useNavigate } from 'react-router-dom';
 import defaultPostImage from 'common/image/defaultPostImg.png';
 import defaultBlogImage from 'common/image/defaultBlogImg.png';
-import { dateConvertor } from 'common/utils/dateConvertor';
-import { NavDataType } from '../../../../app/types';
+import { dateConvertor } from 'common/utils';
+import { NavDataType } from 'app';
 
 type PostPropsType = {
 	postId: string;

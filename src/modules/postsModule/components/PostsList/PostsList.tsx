@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './PostsList.module.scss';
-import { Post } from '../Post/Post';
-import { Pagination } from '../../../../common/components/Pagination/Pagination';
-import { NavDataType } from '../../../../app/types';
-import { PostType } from '../../types';
+import { Post } from 'modules/postsModule';
+import { Pagination } from 'common/components';
+import { NavDataType } from 'app';
+import { PostType } from 'modules/postsModule';
 
 type PropsType = {
 	posts: PostType[];

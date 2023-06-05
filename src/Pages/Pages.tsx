@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Blogs } from 'modules/blogsModule/components/Blogs/Blogs';
-import { Posts } from 'modules/postsModule/components/Posts/Posts';
-import { BlogPage } from 'modules/blogsModule/components/BlogPage/BlogPage';
-import { PostPage } from 'modules/postsModule/components/PostPage/PostPage';
-import { PATH } from 'common/constans/path';
-import { Login } from 'modules/authModule/components/Login/Login';
-import { WithoutNav } from 'Pages/Layouts/WithoutNav/WithoutNav';
-import { WithNav } from 'Pages/Layouts/WithNav/WithNav';
-import { Registration } from 'modules/authModule/components/Registration/Registration';
+import { Blogs } from 'modules/blogsModule';
+import { Posts } from 'modules/postsModule';
+import { BlogPage } from 'modules/blogsModule';
+import { PostPage } from 'modules/postsModule';
+import { PATH } from 'common/constans';
+import { Login } from 'modules/authModule';
+import { WithoutNav } from 'Pages';
+import { WithNav } from 'Pages';
+import { Registration } from 'modules/authModule';
 
 export const Pages = () => {
 	return (

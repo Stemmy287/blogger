@@ -1,6 +1,6 @@
-import { instance } from 'common/constans/instanceApi';
-import { QueryParamsType, ResponseType } from 'modules/blogsModule/types';
-import { PostType } from './types';
+import { instance } from 'common/constans';
+import { QueryParamsType, ResponseType } from 'modules/blogsModule';
+import { PostType } from 'modules/postsModule';
 
 export const apiPosts = {
 	getPosts(data: QueryParamsType) {

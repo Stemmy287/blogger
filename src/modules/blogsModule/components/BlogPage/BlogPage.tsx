@@ -1,26 +1,26 @@
 import React, { useEffect } from 'react';
 import s from './blogPage.module.scss';
-import { Title } from 'common/components/Title/Title';
-import { BackLink } from 'common/components/BackLink/BackLink';
+import { Title } from 'common/components';
+import { BackLink } from 'common/components';
 import { useParams } from 'react-router-dom';
 import {
 	fetchBlogTC,
 	fetchPostsForSpecificBlogTC,
 	setIsPaginationPostsForSpecificBLogAC,
 	setPageNumberPostsForSpecificBLogAC,
-} from 'modules/blogsModule/blogsSlice';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import { useAppSelector } from 'hooks/useAppSelector';
+} from 'modules/blogsModule';
+import { useAppDispatch } from 'hooks';
+import { useAppSelector } from 'hooks';
 import defaultBlogBanner from 'common/image/blog-banner.png';
 import {
 	blogSelector,
 	postsForSpecificBlogSelector,
 	postsPageNumberForSpecificBlogSelector,
 	postsTotalCountForSpecificBlogSelector,
-} from 'modules/blogsModule/blogsSelectors';
-import { BlogOnPage } from 'modules/blogsModule/components/BlogPage/BlogOnPage/BlogOnPage';
-import { PATH } from '../../../../common/constans/path';
-import { PostsList } from '../../../postsModule/components/PostsList/PostsList';
+} from 'modules/blogsModule';
+import { BlogOnPage } from 'modules/blogsModule';
+import { PATH } from 'common/constans';
+import { PostsList } from 'modules/postsModule';
 
 export const BlogPage = () => {
 	const { blogId } = useParams();

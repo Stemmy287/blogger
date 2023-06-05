@@ -1,4 +1,4 @@
-import { AppRootStateType } from 'store/store';
+import { AppRootStateType } from 'store';
 
 export const blogsSelector = (state: AppRootStateType) => state.blogs.blogs.items;
 export const blogSelector = (state: AppRootStateType) => state.blogs.blog;

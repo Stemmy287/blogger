@@ -1,7 +1,7 @@
 import React from 'react';
-import s from 'common/components/NavBar/navBar.module.scss';
-import { PATH } from 'common/constans/path';
-import { Link } from 'common/components/Link/Link';
+import s from './navBar.module.scss';
+import { PATH } from 'common/constans';
+import { Link } from 'common/components';
 import { ReactComponent as BurgerMenu } from 'common/icons/BurgerMenuNav.svg';
 import { ReactComponent as SquareMenu } from 'common/icons/SquareMenu.svg';
 

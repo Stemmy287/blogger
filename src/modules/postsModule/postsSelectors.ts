@@ -1,4 +1,4 @@
-import { AppRootStateType } from 'store/store';
+import { AppRootStateType } from 'store';
 
 //posts
 export const postsSelector = (state: AppRootStateType) => state.posts.posts.items;

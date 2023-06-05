@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import s from './posts.module.scss';
-import { Title } from 'common/components/Title/Title';
-import { useAppSelector } from 'hooks/useAppSelector';
+import { Title } from 'common/components';
+import { useAppSelector } from 'hooks';
 import {
 	fetchPostsTC,
 	setIsPaginationPostsAC,
 	setPageNumberPostsAC,
 	setSortByPostsAC,
-} from 'modules/postsModule/postsSlice';
-import { useAppDispatch } from 'hooks/useAppDispatch';
+} from 'modules/postsModule';
+import { useAppDispatch } from 'hooks';
 import {
 	postsPageNumberSelector,
 	postsSelector,
 	postsSortBySelector,
 	postsSortDirectionSelector,
 	postsTotalCountSelector,
-} from 'modules/postsModule/postsSelectors';
-import { Select } from '../../../../common/components/Select/Select';
-import { OptionsSelectorType } from '../../../blogsModule/types';
-import { PostsList } from '../PostsList/PostsList';
+} from 'modules/postsModule';
+import { Select } from 'common/components';
+import { OptionsSelectorType } from 'modules/blogsModule';
+import { PostsList } from 'modules/postsModule';
 
 export const Posts = () => {
 	const posts = useAppSelector(postsSelector);

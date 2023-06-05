@@ -1,15 +1,15 @@
 import React, { ChangeEvent, FC, useRef, useState } from 'react';
-import s from 'modules/commentsModule/components/Comment/comment.module.scss';
+import s from './comment.module.scss';
 import noPhoto from 'common/image/no-image.svg';
-import { dateConvertor } from 'common/utils/dateConvertor';
-import { CommentType } from 'modules/commentsModule/types';
-import { Button } from 'common/components/Button/Button';
-import { BurgerMenu } from 'common/components/BurgerMenu/BurgerMenu';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import { updateCommentTC } from 'modules/commentsModule/commentsSlice';
-import { Input } from '../../../../common/components/Input/Input';
-import { useAppSelector } from '../../../../hooks/useAppSelector';
-import { userSelector } from '../../../authModule/authSelectors';
+import { dateConvertor } from 'common/utils';
+import { CommentType } from 'modules/commentsModule';
+import { Button } from 'common/components';
+import { BurgerMenu } from 'common/components';
+import { useAppDispatch } from 'hooks';
+import { updateCommentTC } from 'modules/commentsModule';
+import { Input } from 'common/components';
+import { useAppSelector } from 'hooks';
+import { userSelector } from 'modules/authModule';
 
 type PropsType = {
 	comment: CommentType;

@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import { Title } from 'common/components/Title/Title';
-import { BackLink } from 'common/components/BackLink/BackLink';
+import { Title } from 'common/components';
+import { BackLink } from 'common/components';
 import { useLocation, useParams } from 'react-router-dom';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import { fetchPostTC } from 'modules/postsModule/postsSlice';
-import { useAppSelector } from 'hooks/useAppSelector';
-import { postSelector } from 'modules/postsModule/postsSelectors';
-import { Comments } from 'modules/commentsModule/components/Comments/Comments';
+import { useAppDispatch } from 'hooks';
+import { fetchPostTC } from 'modules/postsModule';
+import { useAppSelector } from 'hooks';
+import { postSelector } from 'modules/postsModule';
+import { Comments } from 'modules/commentsModule';
 import s from './postPage.module.scss';
 import defaultBlogImage from 'common/image/defaultBlogImg.png';
 import defaultPostImage from 'common/image/post-banner.png';
-import { dateConvertor } from '../../../../common/utils/dateConvertor';
+import { dateConvertor } from 'common/utils';
 
 export const PostPage = () => {
 	const { postId } = useParams();

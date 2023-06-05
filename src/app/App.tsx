@@ -1,9 +1,9 @@
-import { Pages } from 'Pages/Pages';
+import { Pages } from 'Pages';
 import React, { useEffect } from 'react';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import { authTC } from 'modules/authModule/authSlice';
-import { useAppSelector } from 'hooks/useAppSelector';
-import { isInitializedSelector } from 'app/appSelectors';
+import { useAppDispatch } from 'hooks';
+import { authTC } from 'modules/authModule';
+import { useAppSelector } from 'hooks';
+import { isInitializedSelector } from 'app';
 
 export function App() {
 	const dispatch = useAppDispatch();

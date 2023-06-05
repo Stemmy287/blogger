@@ -1,16 +1,16 @@
 import React from 'react';
-import s from 'modules/authModule/components/Login/login.module.scss';
+import s from './login.module.scss';
 import { useFormik } from 'formik';
-import { Button } from 'common/components/Button/Button';
+import { Button } from 'common/components';
 import { Navigate, NavLink } from 'react-router-dom';
 import loginBanner from 'common/image/rafiki.svg';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import { loginTC } from 'modules/authModule/authSlice';
-import { useAppSelector } from 'hooks/useAppSelector';
-import { isLoggedInSelector } from 'modules/authModule/authSelectors';
-import { PATH } from 'common/constans/path';
-import { AuthWrapper } from '../../../../common/components/AuthWrapper/AuthWrapper';
-import { Input } from '../../../../common/components/Input/Input';
+import { useAppDispatch } from 'hooks';
+import { loginTC } from 'modules/authModule';
+import { useAppSelector } from 'hooks';
+import { isLoggedInSelector } from 'modules/authModule';
+import { PATH } from 'common/constans';
+import { AuthWrapper } from 'common/components';
+import { Input } from 'common/components';
 
 export const Login = () => {
 	const dispatch = useAppDispatch();

@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import s from 'modules/authModule/components/Registration/registration.module.scss';
-import { useAppDispatch } from 'hooks/useAppDispatch';
+import s from './registration.module.scss';
+import { useAppDispatch } from 'hooks';
 import { useFormik } from 'formik';
-import { Button } from 'common/components/Button/Button';
+import { Button } from 'common/components';
 import { NavLink, useNavigate } from 'react-router-dom';
 import loginBanner from 'common/image/rafiki.svg';
-import { PopUp } from 'common/components/PopUp/PopUp';
-import { Notification } from 'common/components/Notification/Notification';
-import { registrationTC } from 'modules/authModule/authSlice';
-import { PATH } from 'common/constans/path';
-import { AuthWrapper } from '../../../../common/components/AuthWrapper/AuthWrapper';
-import { Input } from '../../../../common/components/Input/Input';
+import { PopUp } from 'common/components';
+import { Notification } from 'common/components';
+import { registrationTC } from 'modules/authModule';
+import { PATH } from 'common/constans';
+import { AuthWrapper } from 'common/components';
+import { Input } from 'common/components';
 
 export const Registration = () => {
 	const dispatch = useAppDispatch();

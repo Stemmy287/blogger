@@ -1,11 +1,11 @@
 import { AnyAction, combineReducers } from 'redux';
 import thunkMiddleware, { ThunkDispatch } from 'redux-thunk';
 import { configureStore } from '@reduxjs/toolkit';
-import { blogsReducer } from 'modules/blogsModule/blogsSlice';
-import { postsReducer } from 'modules/postsModule/postsSlice';
-import { authReducer } from 'modules/authModule/authSlice';
+import { blogsReducer } from 'modules/blogsModule';
+import { postsReducer } from 'modules/postsModule';
+import { authReducer } from 'modules/authModule';
 import { appReducer } from 'app/appSlice';
-import { commentsReducer } from 'modules/commentsModule/commentsSlice';
+import { commentsReducer } from 'modules/commentsModule';
 
 const rootReducer = combineReducers({
 	app: appReducer,
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 	comments: commentsReducer,
 });
 
-export const store = configureStore({
+export const index = configureStore({
 	reducer: rootReducer,
 	middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 });

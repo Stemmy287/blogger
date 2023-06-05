@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import s from 'common/components/Header/header.module.scss';
-import { useAppSelector } from 'hooks/useAppSelector';
-import { isLoggedInSelector, userSelector } from 'modules/authModule/authSelectors';
+import s from './header.module.scss';
+import { useAppSelector } from 'hooks';
+import { isLoggedInSelector, userSelector } from 'modules/authModule';
 import { ReactComponent as LogoutIcon } from 'common/icons/Logout.svg';
-import { PopUp } from 'common/components/PopUp/PopUp';
-import { Notification } from 'common/components/Notification/Notification';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import { logoutTC } from 'modules/authModule/authSlice';
+import { PopUp } from 'common/components';
+import { Notification } from 'common/components';
+import { useAppDispatch } from 'hooks';
+import { logoutTC } from 'modules/authModule';
 
 export const Header = () => {
 	const [isActive, setIsActive] = useState(false);

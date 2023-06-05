@@ -1,25 +1,25 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import s from 'modules/commentsModule/components/Comments/comments.module.scss';
-import { Comment } from 'modules/commentsModule/components/Comment/Comment';
-import { Pagination } from 'common/components/Pagination/Pagination';
-import { useAppDispatch } from 'hooks/useAppDispatch';
-import { useAppSelector } from 'hooks/useAppSelector';
-import { Button } from 'common/components/Button/Button';
+import s from './comments.module.scss';
+import { Comment } from 'modules/commentsModule';
+import { Pagination } from 'common/components';
+import { useAppDispatch } from 'hooks';
+import { useAppSelector } from 'hooks';
+import { Button } from 'common/components';
 import {
 	commentsPageNumberSelector,
 	commentsSelector,
 	commentsTotalCountSelector,
-} from 'modules/commentsModule/commentsSelectors';
+} from 'modules/commentsModule';
 import {
 	createCommentTC,
 	deleteCommentTC,
 	fetchCommentsTC,
 	setIsPaginationCommentsAC,
 	setPageNumberCommentsAC,
-} from 'modules/commentsModule/commentsSlice';
-import { PopUp } from 'common/components/PopUp/PopUp';
-import { Notification } from 'common/components/Notification/Notification';
-import { Input } from '../../../../common/components/Input/Input';
+} from 'modules/commentsModule';
+import { PopUp } from 'common/components';
+import { Notification } from 'common/components';
+import { Input } from 'common/components';
 
 type PropsType = {
 	postId: string;

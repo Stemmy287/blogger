@@ -1,11 +1,11 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { NavBar } from 'common/components/NavBar/NavBar';
+import { NavBar } from 'common/components';
 import s from './WithNav.module.scss';
-import { Header } from 'common/components/Header/Header';
-import { PATH } from '../../../common/constans/path';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { isLoggedInSelector } from '../../../modules/authModule/authSelectors';
+import { Header } from 'common/components';
+import { PATH } from 'common/constans';
+import { useAppSelector } from 'hooks';
+import { isLoggedInSelector } from 'modules/authModule';
 
 export const WithNav = () => {
 	const isLoggedIn = useAppSelector(isLoggedInSelector);

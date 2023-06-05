@@ -1,6 +1,6 @@
-import { instance } from 'common/constans/instanceApi';
+import { instance } from 'common/constans';
 import { AxiosResponse } from 'axios';
-import { LoginType, RegistrationDataType, TokensType, UserType } from './types';
+import { LoginType, RegistrationDataType, TokensType, UserType } from 'modules/authModule';
 
 export const apiAuth = {
 	login(data: LoginType) {

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import s from 'common/components/PopUp/PopUp.module.scss'
+import s from './PopUp.module.scss'
 
 type PopUp = {
     isActive: boolean

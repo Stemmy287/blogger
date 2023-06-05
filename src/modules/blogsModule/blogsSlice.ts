@@ -1,8 +1,8 @@
-import { BlogType, ResponseType } from 'modules/blogsModule/types';
+import { BlogType, ResponseType } from 'modules/blogsModule';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppRootStateType } from 'store/store';
-import { PostType } from '../postsModule/types';
-import { apiBlogs } from './blogsApi';
+import { AppRootStateType } from 'store';
+import { PostType } from 'modules/postsModule';
+import { apiBlogs } from 'modules/blogsModule';
 
 export const fetchBlogsTC = createAsyncThunk(
 	'blogs/fetchBlogs',
