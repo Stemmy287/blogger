@@ -8,6 +8,8 @@ import { BurgerMenu } from 'common/components/BurgerMenu/BurgerMenu';
 import { useAppDispatch } from 'hooks/useAppDispatch';
 import { updateCommentTC } from 'modules/commentsModule/commentsSlice';
 import { Input } from '../../../../common/components/Input/Input';
+import { useAppSelector } from '../../../../hooks/useAppSelector';
+import { userSelector } from '../../../authModule/authSelectors';
 
 type PropsType = {
 	comment: CommentType;
@@ -16,6 +18,8 @@ type PropsType = {
 };
 
 export const Comment: FC<PropsType> = ({ comment, setPopUpActive, setCommentId }) => {
+	const user = useAppSelector(userSelector);
+
 	const dispatch = useAppDispatch();
 
 	const { userLogin, createdAt, content, id } = comment;
@@ -46,7 +50,7 @@ export const Comment: FC<PropsType> = ({ comment, setPopUpActive, setCommentId }
 		setEditValue(e.currentTarget.value);
 	};
 
-	const burgerMenuRef = useRef<HTMLDivElement>(null)
+	const burgerMenuRef = useRef<HTMLDivElement>(null);
 
 	return (
 		<div className={s.container}>
@@ -64,12 +68,11 @@ export const Comment: FC<PropsType> = ({ comment, setPopUpActive, setCommentId }
 					</div>
 				)}
 			</div>
-			<div className={s.burgerMenu} ref={burgerMenuRef}>
-				{!isEdit && <BurgerMenu
-					onEditClick={onEditActiveHandler}
-					onDeleteClick={onDeleteHandler}
-				/>}
-			</div>
+			{!isEdit &&( user.userId === comment.userId) && (
+				<div className={s.burgerMenu} ref={burgerMenuRef}>
+					<BurgerMenu onEditClick={onEditActiveHandler} onDeleteClick={onDeleteHandler} />
+				</div>
+			)}
 		</div>
 	);
 };

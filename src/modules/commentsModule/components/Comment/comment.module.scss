@@ -10,12 +10,6 @@
   position: relative;
   column-gap: 12px;
 
-  &:hover {
-    .burgerMenu {
-      display: block;
-    }
-  }
-
   .photo {
     width: 36px;
     height: 36px;
@@ -64,7 +58,6 @@
   }
 
   .burgerMenu {
-    display: none;
     position: absolute;
     top: 21px;
     right: 22px;
