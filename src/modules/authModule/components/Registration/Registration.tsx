@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import s from './registration.module.scss';
 import { useAppDispatch } from 'hooks';
 import { useFormik } from 'formik';
-import { Button } from 'common/components';
+import { AuthWrapper, Button, Input, Notification, PopUp } from 'common/components';
 import { NavLink, useNavigate } from 'react-router-dom';
 import loginBanner from 'common/image/rafiki.svg';
-import { PopUp } from 'common/components';
-import { Notification } from 'common/components';
-import { registrationTC } from 'modules/authModule';
+import { registration } from 'modules/authModule';
 import { PATH } from 'common/constans';
-import { AuthWrapper } from 'common/components';
-import { Input } from 'common/components';
 
 export const Registration = () => {
 	const dispatch = useAppDispatch();
@@ -33,7 +29,7 @@ export const Registration = () => {
 			email: '',
 		},
 		onSubmit(values) {
-			dispatch(registrationTC(values)).then(res => {
+			dispatch(registration(values)).then(res => {
 				if (res.payload) {
 					setSuccesses(true);
 					setIsPopUp(true);
@@ -52,7 +48,8 @@ export const Registration = () => {
 					<Input title="Password" component="input" password {...formik.getFieldProps('password')} />
 					{successes && (
 						<span className={s.successesNotify}>
-							The link has been sent by email. <br/>If you don’t receive an email, send link again
+							The link has been sent by email. <br />
+							If you don’t receive an email, send link again
 						</span>
 					)}
 					<div className={s.button}>

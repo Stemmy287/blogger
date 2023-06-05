@@ -6,7 +6,7 @@ import { ReactComponent as LogoutIcon } from 'common/icons/Logout.svg';
 import { PopUp } from 'common/components';
 import { Notification } from 'common/components';
 import { useAppDispatch } from 'hooks';
-import { logoutTC } from 'modules/authModule';
+import { logout } from 'modules/authModule';
 
 export const Header = () => {
 	const [isActive, setIsActive] = useState(false);
@@ -17,7 +17,7 @@ export const Header = () => {
 	const dispatch = useAppDispatch();
 
 	const logoutHandler = () => {
-		dispatch(logoutTC());
+		dispatch(logout());
 	};
 
 	return (

@@ -1,7 +1,7 @@
 import { Pages } from 'Pages';
 import React, { useEffect } from 'react';
 import { useAppDispatch } from 'hooks';
-import { authTC } from 'modules/authModule';
+import { auth } from 'modules/authModule';
 import { useAppSelector } from 'hooks';
 import { isInitializedSelector } from 'app';
 
@@ -11,7 +11,7 @@ export function App() {
 	const isInitialized = useAppSelector(isInitializedSelector);
 
 	useEffect(() => {
-		dispatch(authTC());
+		dispatch(auth());
 	}, [dispatch]);
 
 	if (!isInitialized) {

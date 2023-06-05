@@ -1,44 +1,40 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LoginType, RegistrationDataType, UserType } from 'modules/authModule';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { apiAuth, LoginType, RegistrationDataType, UserType } from 'modules/authModule';
 import { setIsInitialized } from 'app';
-import { apiAuth } from 'modules/authModule';
 
-export const loginTC = createAsyncThunk('auth/loginTC', async (param: LoginType, { dispatch, rejectWithValue }) => {
+export const login = createAsyncThunk('auth/loginTC', async (param: LoginType, { dispatch, rejectWithValue }) => {
 	try {
 		const res = await apiAuth.login(param);
 		localStorage.setItem('accessToken', res.accessToken);
-		dispatch(authTC());
+		dispatch(auth());
 	} catch (e) {
 		return rejectWithValue('The password or email or Username is incorrect. Please try again');
 	}
 });
-export const authTC = createAsyncThunk('auth/authTC', async (param, { dispatch, rejectWithValue }) => {
+export const auth = createAsyncThunk('auth/authTC', async (param, { dispatch, rejectWithValue }) => {
 	try {
 		const res = await apiAuth.auth();
-		dispatch(setUser(res));
-		dispatch(setIsLoggedIn({ isLoggedIn: true }));
+		return {user: res, isLoggedIn: true}
 	} catch (e) {
 		return rejectWithValue(null);
 	} finally {
 		dispatch(setIsInitialized({ isInitialized: true }));
 	}
 });
-export const logoutTC = createAsyncThunk('auth/loginTC', async (param, { dispatch, rejectWithValue }) => {
+export const logout = createAsyncThunk('auth/loginTC', async (param, { rejectWithValue }) => {
 	try {
 		await apiAuth.logout();
 		localStorage.removeItem('accessToken');
-		dispatch(setIsLoggedIn({ isLoggedIn: false }));
-		return true;
+		return
 	} catch (e) {
 		return rejectWithValue(null);
 	}
 });
-export const registrationTC = createAsyncThunk(
+export const registration = createAsyncThunk(
 	'auth/registrationTC',
 	async (param: RegistrationDataType, { rejectWithValue }) => {
 		try {
 			await apiAuth.registration(param);
-			return true;
 		} catch (e) {
 			return rejectWithValue(null);
 		}
@@ -51,15 +47,16 @@ const slice = createSlice({
 		isLoggedIn: false,
 		user: {} as UserType,
 	},
-	reducers: {
-		setIsLoggedIn(state, action: PayloadAction<{ isLoggedIn: boolean }>) {
-			state.isLoggedIn = action.payload.isLoggedIn;
-		},
-		setUser(state, action: PayloadAction<UserType>) {
-			state.user = action.payload;
-		},
-	},
+	reducers: {},
+	extraReducers: (builder) => {
+		builder.addCase(auth.fulfilled, (state, action) => {
+			state.isLoggedIn = action.payload.isLoggedIn
+			state.user = action.payload.user
+		})
+		builder.addCase(logout.fulfilled, (state) => {
+			state.isLoggedIn = false
+		})
+	}
 });
 
 export const authReducer = slice.reducer;
-export const { setIsLoggedIn, setUser } = slice.actions;

@@ -5,7 +5,7 @@ import { Button } from 'common/components';
 import { Navigate, NavLink } from 'react-router-dom';
 import loginBanner from 'common/image/rafiki.svg';
 import { useAppDispatch } from 'hooks';
-import { loginTC } from 'modules/authModule';
+import { login } from 'modules/authModule';
 import { useAppSelector } from 'hooks';
 import { isLoggedInSelector } from 'modules/authModule';
 import { PATH } from 'common/constans';
@@ -24,7 +24,7 @@ export const Login = () => {
 		},
 		onSubmit(values) {
 			dispatch(
-				loginTC({
+				login({
 					loginOrEmail: values.loginOrEmail.toLowerCase(),
 					password: values.password,
 				})
