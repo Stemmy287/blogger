@@ -3,7 +3,7 @@ import { Title } from 'common/components';
 import { BackLink } from 'common/components';
 import { useLocation, useParams } from 'react-router-dom';
 import { useAppDispatch } from 'hooks';
-import { fetchPostTC } from 'modules/postsModule';
+import { fetchPost } from 'modules/postsModule';
 import { useAppSelector } from 'hooks';
 import { postSelector } from 'modules/postsModule';
 import { Comments } from 'modules/commentsModule';
@@ -23,7 +23,7 @@ export const PostPage = () => {
 
 	useEffect(() => {
 		if (postId) {
-			dispatch(fetchPostTC({ postId }));
+			dispatch(fetchPost({ postId }));
 		}
 	}, [postId, dispatch]);
 

@@ -4,28 +4,26 @@ import { apiPosts } from 'modules/postsModule';
 import { AppRootStateType } from 'store';
 import { ResponseType } from 'modules/blogsModule';
 
-export const fetchPostsTC = createAsyncThunk(
+export const fetchPosts = createAsyncThunk(
 	'postsModule/fetchPosts',
-	async (param, { dispatch, rejectWithValue, getState }) => {
+	async (param, { rejectWithValue, getState }) => {
 		const state = getState() as AppRootStateType;
 		const queryParams = state.posts.queryParams;
 		const isPagination = state.posts.isPagination;
 
 		try {
-			const res = await apiPosts.getPosts(isPagination ? queryParams : { ...queryParams, pageNumber: 1 });
-			dispatch(setPostsAC({ posts: res }));
+			return await apiPosts.getPosts(isPagination ? queryParams : { ...queryParams, pageNumber: 1 });
 		} catch (e) {
 			return rejectWithValue(null);
 		}
 	}
 );
 
-export const fetchPostTC = createAsyncThunk(
+export const fetchPost = createAsyncThunk(
 	'postsModule/fetchPost',
-	async (param: { postId: string }, { dispatch, rejectWithValue }) => {
+	async (param: { postId: string }, { rejectWithValue }) => {
 		try {
-			const res = await apiPosts.getPost(param.postId);
-			dispatch(setPostAC({ post: res }));
+			return  await apiPosts.getPost(param.postId);
 		} catch (e) {
 			return rejectWithValue(null);
 		}
@@ -48,14 +46,6 @@ const slice = createSlice({
 		isPagination: false,
 	},
 	reducers: {
-		setPostsAC(state, action: PayloadAction<{ posts: ResponseType<PostType[]> }>) {
-			if (state.isPagination) {
-				state.posts = { ...action.payload.posts, items: [...state.posts.items, ...action.payload.posts.items] };
-				state.isPagination = false;
-			} else {
-				state.posts = action.payload.posts;
-			}
-		},
 		setPageNumberPostsAC(state, action: PayloadAction<{ pageNumber: number }>) {
 			state.queryParams.pageNumber = action.payload.pageNumber;
 		},
@@ -65,17 +55,22 @@ const slice = createSlice({
 		setIsPaginationPostsAC(state) {
 			state.isPagination = true;
 		},
-		setPostAC(state, action: PayloadAction<{ post: PostType }>) {
-			state.post = action.payload.post;
-		},
 	},
+	extraReducers: builder => {
+		builder.addCase(fetchPosts.fulfilled, (state, action) => {
+			if (state.isPagination) {
+				state.posts = { ...action.payload, items: [...state.posts.items, ...action.payload.items] };
+				state.isPagination = false;
+			} else {
+				state.posts = action.payload;
+			}
+		});
+		builder.addCase(fetchPost.fulfilled, (state, action) => {
+			state.post = action.payload;
+		});
+	},
+
 });
 
 export const postsReducer = slice.reducer;
-export const {
-	setPostsAC,
-	setPostAC,
-	setPageNumberPostsAC,
-	setSortByPostsAC,
-	setIsPaginationPostsAC
-} = slice.actions;
+export const { setPageNumberPostsAC, setSortByPostsAC, setIsPaginationPostsAC } = slice.actions;

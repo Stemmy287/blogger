@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 import s from './posts.module.scss';
 import { Title } from 'common/components';
 import { useAppSelector } from 'hooks';
-import {
-	fetchPostsTC,
-	setIsPaginationPostsAC,
-	setPageNumberPostsAC,
-	setSortByPostsAC,
-} from 'modules/postsModule';
+import { fetchPosts, setIsPaginationPostsAC, setPageNumberPostsAC, setSortByPostsAC } from 'modules/postsModule';
 import { useAppDispatch } from 'hooks';
 import {
 	postsPageNumberSelector,
@@ -32,7 +27,7 @@ export const Posts = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(fetchPostsTC());
+		dispatch(fetchPosts());
 	}, [pageNumber, sortBy, sortDirection, dispatch]);
 
 	const [options] = useState([
