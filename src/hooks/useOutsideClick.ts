@@ -1,6 +1,6 @@
 import { RefObject, useEffect } from 'react';
 
-export const useOutsideClick = (elementRef: RefObject<HTMLDivElement>, callback: () => void, isActive: boolean) => {
+export const useOutsideClick = (elementRef: RefObject<HTMLElement>, callback: () => void, isActive: boolean) => {
 	useEffect(() => {
 		if (!isActive) return;
 		const onClickHandler = (e: Event) => {
