@@ -21,9 +21,11 @@ export const Input = ({
 		setShowPassword(!showPassword);
 	};
 
+	const isInput = (component === 'input' || 'searchInput') && (component !== 'textarea')
+
 	return (
 		<div className={s.container}>
-			{(component === 'input' || 'searchInput') && component !== 'textarea' && (
+			{ isInput && (
 				<>
 					{title && <span>{title}</span>}
 					<input
