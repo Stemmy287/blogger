@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
 	comments: commentsReducer,
 });
 
-export const index = configureStore({
+export const store = configureStore({
 	reducer: rootReducer,
 	middleware: getDefaultMiddleware => getDefaultMiddleware().prepend(thunkMiddleware),
 });
