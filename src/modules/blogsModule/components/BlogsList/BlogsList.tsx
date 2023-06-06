@@ -1,6 +1,6 @@
 import React from 'react';
-import { Blog } from '../Blog/Blog';
-import { BlogType } from '../../types';
+import { Blog } from 'modules/blogsModule';
+import { BlogType } from 'modules/blogsModule';
 
 type PropsType = {
 	blogs: BlogType[];

@@ -37,24 +37,24 @@ export const BlogPage = () => {
 
 	useEffect(() => {
 		if (blogId) {
-			dispatch(fetchBlog({ blogId }));
+			dispatch(fetchBlog(blogId));
 			dispatch(fetchPostsForSpecificBlog(blogId));
 		}
 	}, [dispatch, blogId, pageNumber]);
 
 	const onPagination = () => {
 		dispatch(setIsPaginationPostsForSpecificBLog());
-		dispatch(setPageNumberPostsForSpecificBLog({ pageNumber: pageNumber + 1 }));
+		dispatch(setPageNumberPostsForSpecificBLog(pageNumber + 1));
 	};
 
 	return (
 		<div className={s.container}>
 			<div className={s.blog}>
-				<Title title={'Blogs'} isDesc={true} desc={blog.name} />
+				<Title title="Blogs" isDesc={true} desc={blog.name} />
 				<div className={s.backLink}>
-					<BackLink link={PATH.BLOGS} to={'Blogs'} />
+					<BackLink link={PATH.BLOGS} to="Blogs" />
 				</div>
-				<img src={defaultBlogBanner} alt={'banner'} className={s.banner} />
+				<img src={defaultBlogBanner} alt="banner" className={s.banner} />
 				<BlogOnPage
 					title={blog.name}
 					webSiteUrl={blog.websiteUrl}

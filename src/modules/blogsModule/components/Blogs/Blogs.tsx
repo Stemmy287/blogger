@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Input, Pagination, Select, Title } from 'common/components';
 import {
 	BlogsList,
@@ -36,26 +36,26 @@ export const Blogs = () => {
 
 	const onPagination = () => {
 		dispatch(setIsPaginationBlogs());
-		dispatch(setPageNumberBlogs({ pageNumber: pageNumber + 1 }));
+		dispatch(setPageNumberBlogs(pageNumber + 1));
 	};
 	const onChangeSelect = (data: OptionsSelectorType) => {
 		if (data.value) {
 			const value = data.value.split(' ');
-			dispatch(setPageNumberBlogs({ pageNumber: 1 }));
+			dispatch(setPageNumberBlogs(1));
 			dispatch(setSortByBlogs({ sortBy: value[1], sortDirection: value[0] }));
 		}
 	};
 
-	const [options] = useState([
+	const options = [
 		{ title: 'New blogs first', value: 'desc createdAt' },
 		{ title: 'Old blogs first', value: 'asc createdAt' },
 		{ title: 'From A to Z', value: 'asc name' },
 		{ title: 'From Z to A', value: 'desc name' },
-	]);
+	];
 
 	const searchHandler = (debouncedSearchValue: string) => {
-		dispatch(setPageNumberBlogs({ pageNumber: 1 }));
-		dispatch(setSearchNameTermBlogs({ searchNameTerm: debouncedSearchValue }));
+		dispatch(setPageNumberBlogs(1));
+		dispatch(setSearchNameTermBlogs(debouncedSearchValue));
 	};
 
 	const { searchValue, setSearchValue } = useSearch(searchHandler);

@@ -22,4 +22,4 @@ export const index = configureStore({
 
 //types
 export type AppRootStateType = ReturnType<typeof rootReducer>;
-export type AppThunkDispatchType = ThunkDispatch<AppRootStateType, any, AnyAction>;
+export type AppThunkDispatchType = ThunkDispatch<AppRootStateType, void, AnyAction>;

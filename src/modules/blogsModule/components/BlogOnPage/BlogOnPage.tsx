@@ -50,9 +50,7 @@ export const BlogOnPage = ({ title, webSiteUrl, description, date }: PropsType) 
 					</span>
 				</div>
 				<div className={s.descContainer}>
-					<p id={'p'} className={isAllText ? s.desc : `${s.desc} ${s.notAllText}`} ref={textBlockRef}>
-						{description}
-					</p>
+					<p className={isAllText ? s.desc : `${s.desc} ${s.notAllText}`} ref={textBlockRef}>{description}</p>
 					{isShowButton && (
 						<button className={s.showMore} onClick={onAllTextHandler}>
 							{isAllText ? (

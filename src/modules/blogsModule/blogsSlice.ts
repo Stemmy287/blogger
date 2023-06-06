@@ -20,9 +20,9 @@ export const fetchBlogs = createAsyncThunk(
 );
 export const fetchBlog = createAsyncThunk(
 	'blogs/fetchBlog',
-	async (param: { blogId: string }, { rejectWithValue }) => {
+	async (param: string , { rejectWithValue }) => {
 		try {
-			return await apiBlogs.getBlog(param.blogId);
+			return await apiBlogs.getBlog(param);
 		} catch (e) {
 			return rejectWithValue(null);
 		}
@@ -73,20 +73,20 @@ const slice = createSlice({
 		isPaginationForPosts: false,
 	},
 	reducers: {
-		setPageNumberBlogs(state, action: PayloadAction<{ pageNumber: number }>) {
-			state.queryParams.pageNumber = action.payload.pageNumber;
+		setPageNumberBlogs(state, action: PayloadAction<number>) {
+			state.queryParams.pageNumber = action.payload;
 		},
 		setSortByBlogs(state, action: PayloadAction<{ sortBy: string; sortDirection: string }>) {
 			state.queryParams = { ...state.queryParams, ...action.payload };
 		},
-		setSearchNameTermBlogs(state, action: PayloadAction<{ searchNameTerm: string }>) {
-			state.queryParams.searchNameTerm = action.payload.searchNameTerm;
+		setSearchNameTermBlogs(state, action: PayloadAction<string>) {
+			state.queryParams.searchNameTerm = action.payload;
 		},
 		setIsPaginationBlogs(state) {
 			state.isPagination = true;
 		},
-		setPageNumberPostsForSpecificBLog(state, action: PayloadAction<{ pageNumber: number }>) {
-			state.queryParamsForPosts.pageNumber = action.payload.pageNumber;
+		setPageNumberPostsForSpecificBLog(state, action: PayloadAction<number>) {
+			state.queryParamsForPosts.pageNumber = action.payload;
 		},
 		setIsPaginationPostsForSpecificBLog(state) {
 			state.isPaginationForPosts = true;
