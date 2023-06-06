@@ -48,9 +48,7 @@ export const Registration = () => {
 							If you don’t receive an email, send link again
 						</span>
 					)}
-					<div className={s.button}>
-						<Button type="submit" title="Sign Up" />
-					</div>
+					<Button type="submit" title="Sign Up" />
 				</form>
 				<span className={s.forgotPass}>Already a member?</span>
 				<NavLink to={PATH.LOGIN}>Sign In</NavLink>

@@ -43,9 +43,7 @@ export const Login = () => {
 				<form onSubmit={formik.handleSubmit} className={s.form}>
 					<Input title="Email or Username" component="input" {...formik.getFieldProps('loginOrEmail')} />
 					<Input title="Password" component="input" password {...formik.getFieldProps('password')} />
-					<div className={s.button}>
-						<Button type="submit" title="Sign in" />
-					</div>
+					<Button type="submit" title="Sign in" />
 				</form>
 				<span className={s.forgotPass}>Don’t have an account?</span>
 				<NavLink to={PATH.REGISTRATION}>Sign Up</NavLink>
