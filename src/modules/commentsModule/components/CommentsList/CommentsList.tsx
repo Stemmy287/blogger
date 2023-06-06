@@ -1,6 +1,6 @@
 import React from 'react';
 import { Comment, CommentType } from 'modules/commentsModule';
-import s from '../Comments/Comments.module.scss';
+import s from './CommentsList.module.scss';
 
 type PropsType = {
 	comments: CommentType[];

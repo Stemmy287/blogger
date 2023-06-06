@@ -9,13 +9,13 @@ export const apiComments = {
 			.get<ResponseType<CommentType[]>>(`api/posts/${postId}/comments`, { params: data })
 			.then(res => res.data);
 	},
-	createComment(data: { content: string }, postId: string) {
+	createComment(content: string , postId: string) {
 		return instance
-			.post<'', AxiosResponse<CommentType>, { content: string }>(`api/posts/${postId}/comments`, data)
+			.post<'', AxiosResponse<CommentType>, { content: string }>(`api/posts/${postId}/comments`, { content })
 			.then(res => res.data);
 	},
-	updateComment(data: { content: string }, commentId: string) {
-		return instance.put<'', AxiosResponse, { content: string }>(`api/comments/${commentId}`, data);
+	updateComment(content: string , commentId: string) {
+		return instance.put<'', AxiosResponse, { content: string }>(`api/comments/${commentId}`, {content});
 	},
 	deleteComment(commentId: string) {
 		return instance.delete(`api/comments/${commentId}`);

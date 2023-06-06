@@ -6,14 +6,14 @@ import { CommentType } from 'modules/commentsModule';
 
 export const fetchComments = createAsyncThunk(
 	'postsModule/fetchComment',
-	async (param: { postId: string }, { rejectWithValue, getState }) => {
+	async (param: string , { rejectWithValue, getState }) => {
 		const state = getState() as AppRootStateType;
 		const queryParams = state.comments.queryParams;
 		const isPagination = state.comments.isPagination;
 
 		try {
 			return await apiComments.getComments(
-				param.postId,
+				param,
 				isPagination
 					? queryParams
 					: {
@@ -37,7 +37,7 @@ export const createComment = createAsyncThunk(
 		{ rejectWithValue }
 	) => {
 		try {
-			return await apiComments.createComment({ content: param.content }, param.postId);
+			return await apiComments.createComment(param.content, param.postId);
 		} catch (e) {
 			return rejectWithValue(null);
 		}
@@ -54,7 +54,7 @@ export const updateComment = createAsyncThunk(
 		{ rejectWithValue }
 	) => {
 		try {
-			await apiComments.updateComment({ content: param.content }, param.commentId);
+			await apiComments.updateComment(param.content, param.commentId);
 			return { content: param.content, commentId: param.commentId };
 		} catch (e) {
 			return rejectWithValue(null);
@@ -64,10 +64,10 @@ export const updateComment = createAsyncThunk(
 
 export const deleteComment = createAsyncThunk(
 	'postsModule/deleteComment',
-	async (param: { commentId: string }, { rejectWithValue }) => {
+	async (param: string, { rejectWithValue }) => {
 		try {
-			await apiComments.deleteComment(param.commentId);
-			return { commentId: param.commentId };
+			await apiComments.deleteComment(param);
+			return param;
 		} catch (e) {
 			return rejectWithValue(null);
 		}
@@ -87,8 +87,8 @@ const slice = createSlice({
 		isPagination: false,
 	},
 	reducers: {
-		setPageNumberComments(state, action: PayloadAction<{ pageNumber: number }>) {
-			state.queryParams.pageNumber = action.payload.pageNumber;
+		setPageNumberComments(state, action: PayloadAction< number >) {
+			state.queryParams.pageNumber = action.payload;
 		},
 		setIsPaginationComments(state) {
 			state.isPagination = true;
@@ -118,7 +118,7 @@ const slice = createSlice({
 			}
 		})
 		builder.addCase(deleteComment.fulfilled, (state, action) => {
-			const index = state.comments.items.findIndex(cm => cm.id === action.payload.commentId);
+			const index = state.comments.items.findIndex(cm => cm.id === action.payload);
 
 			if (index > -1) {
 				state.comments.items.splice(index, 1);

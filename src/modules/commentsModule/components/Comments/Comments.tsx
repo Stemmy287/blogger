@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import s from './Comments.module.scss';
 import {
 	CommentsList,
@@ -17,48 +17,49 @@ type PropsType = {
 	postId: string;
 };
 
-export const Comments: FC<PropsType> = ({ postId }) => {
+export const Comments = ({ postId }: PropsType) => {
 	const comments = useAppSelector(commentsSelector);
 
-	const commentsTotalCount = useAppSelector(commentsTotalCountSelector);
+	const totalCount = useAppSelector(commentsTotalCountSelector);
 
-	const commentsPageNumber = useAppSelector(commentsPageNumberSelector);
+	const pageNumber = useAppSelector(commentsPageNumberSelector);
 
 	const dispatch = useAppDispatch();
 
-	const [content, setContent] = useState('');
-
 	const [isButtonsShow, setIsButtonsShow] = useState(false);
+
+	const [value, setValue] = useState('');
+
 	const onChangeHandler = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) => {
-		setContent(e.currentTarget.value);
+		setValue(e.currentTarget.value);
 	};
 	const onClickHandler = () => {
-		dispatch(createComment({ postId, content }));
-		setContent('');
+		dispatch(createComment({ postId, content: value }));
+		setValue('');
 	};
 	const onCommentTypeOnHandler = () => {
 		setIsButtonsShow(true);
 	};
 	const onCommentTypeOffHandler = () => {
 		setIsButtonsShow(false);
-		setContent('');
+		setValue('');
 	};
 
 	const onPaginationHandler = () => {
 		dispatch(setIsPaginationComments());
-		dispatch(setPageNumberComments({ pageNumber: commentsPageNumber + 1 }));
+		dispatch(setPageNumberComments(pageNumber + 1));
 	};
 
 	useEffect(() => {
-		dispatch(fetchComments({ postId }));
-	}, [commentsPageNumber, dispatch, postId]);
+		dispatch(fetchComments(postId));
+	}, [pageNumber, dispatch, postId]);
 
 	return (
 		<div className={s.container}>
-			<h3 className={s.count}>{`Comments (${commentsTotalCount || 0})`}</h3>
+			<h3 className={s.count}>{`Comments (${totalCount || 0})`}</h3>
 			<div className={s.textarea}>
 				<Input
-					value={content}
+					value={value}
 					onChange={onChangeHandler}
 					component="textarea"
 					onFocus={onCommentTypeOnHandler}
@@ -68,11 +69,11 @@ export const Comments: FC<PropsType> = ({ postId }) => {
 			{isButtonsShow && (
 				<div className={s.buttons}>
 					<Button isNoBackGround title="Cancel" callback={onCommentTypeOffHandler} />
-					<Button disabled={!content} title="Send a Comment" callback={onClickHandler} />
+					<Button disabled={!value} title="Send a Comment" callback={onClickHandler} />
 				</div>
 			)}
 			<CommentsList comments={comments} />
-			{commentsTotalCount > comments.length && <Pagination callback={onPaginationHandler} />}
+			{totalCount > comments.length && <Pagination callback={onPaginationHandler} />}
 		</div>
 	);
 };
