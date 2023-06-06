@@ -21,9 +21,9 @@ export const fetchPosts = createAsyncThunk(
 
 export const fetchPost = createAsyncThunk(
 	'postsModule/fetchPost',
-	async (param: { postId: string }, { rejectWithValue }) => {
+	async (param: string , { rejectWithValue }) => {
 		try {
-			return  await apiPosts.getPost(param.postId);
+			return  await apiPosts.getPost(param);
 		} catch (e) {
 			return rejectWithValue(null);
 		}
@@ -46,8 +46,8 @@ const slice = createSlice({
 		isPagination: false,
 	},
 	reducers: {
-		setPageNumberPosts(state, action: PayloadAction<{ pageNumber: number }>) {
-			state.queryParams.pageNumber = action.payload.pageNumber;
+		setPageNumberPosts(state, action: PayloadAction<number>) {
+			state.queryParams.pageNumber = action.payload;
 		},
 		setSortByPosts(state, action: PayloadAction<{ sortBy: string; sortDirection: string }>) {
 			state.queryParams = { ...state.queryParams, ...action.payload };

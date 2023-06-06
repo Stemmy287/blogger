@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import s from './Post.module.scss';
 import { useNavigate } from 'react-router-dom';
 import defaultPostImage from 'assets/image/defaultPostImg.png';
@@ -6,7 +6,7 @@ import defaultBlogImage from 'assets/image/defaultBlogImg.png';
 import { dateConvertor } from 'common/utils';
 import { NavDataType } from 'app';
 
-type PostPropsType = {
+type PropsType = {
 	postId: string;
 	title: string;
 	blogName: string;
@@ -14,8 +14,7 @@ type PostPropsType = {
 	navData: NavDataType;
 };
 
-export const Post: FC<PostPropsType> = ({ postId, title, blogName, date, navData }) => {
-	const dateParsed = dateConvertor(date);
+export const Post = ({ postId, title, blogName, date, navData }: PropsType) => {
 
 	const navigate = useNavigate();
 
@@ -24,8 +23,10 @@ export const Post: FC<PostPropsType> = ({ postId, title, blogName, date, navData
 		navigate(`/post-page/${postId}`, { state: navData });
 	};
 
+	const dateParsed = dateConvertor(date);
+
 	return (
-		<div className={s.postContainer}>
+		<div className={s.container}>
 			<img className={s.postBanner} src={defaultPostImage} alt="banner" />
 			<div className={s.content}>
 				<img className={s.blogAvatar} src={defaultBlogImage} alt="blog avatar" />

@@ -23,7 +23,7 @@ export const PostPage = () => {
 
 	useEffect(() => {
 		if (postId) {
-			dispatch(fetchPost({ postId }));
+			dispatch(fetchPost(postId));
 		}
 	}, [postId, dispatch]);
 
@@ -35,7 +35,7 @@ export const PostPage = () => {
 				<Title title={state?.title} isDesc={true} desc={post.blogName} />
 			</div>
 			<BackLink link={state?.link || '/posts'} to={state?.title.toLowerCase() || 'posts'} />
-			<div className={s.postDeployedContainer}>
+			<div className={s.postContainer}>
 				<div className={s.blogInfo}>
 					<img className={s.blogAvatar} src={defaultBlogImage} alt="blog avatar" />
 					<h3 className={s.blogTitle}>{post.blogName}</h3>
@@ -48,7 +48,7 @@ export const PostPage = () => {
 					<span className={s.date}>{date}</span>
 				</div>
 				<div className={s.content}>
-					<img className={s.postBanner} src={defaultPostImage} alt={'banner'} />
+					<img className={s.postBanner} src={defaultPostImage} alt="banner" />
 					<p className={s.content}>{post.content}</p>
 				</div>
 			</div>

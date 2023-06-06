@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import s from './Posts.module.scss';
-import { Title } from 'common/components';
-import { useAppSelector } from 'hooks';
-import { fetchPosts, setIsPaginationPosts, setPageNumberPosts, setSortByPosts } from 'modules/postsModule';
-import { useAppDispatch } from 'hooks';
+import { Select, Title } from 'common/components';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import {
+	fetchPosts,
+	PostsList,
 	postsPageNumberSelector,
 	postsSelector,
 	postsSortBySelector,
 	postsSortDirectionSelector,
 	postsTotalCountSelector,
+	setIsPaginationPosts,
+	setPageNumberPosts,
+	setSortByPosts,
 } from 'modules/postsModule';
-import { Select } from 'common/components';
 import { OptionsSelectorType } from 'modules/blogsModule';
-import { PostsList } from 'modules/postsModule';
 
 export const Posts = () => {
 	const posts = useAppSelector(postsSelector);
@@ -30,22 +31,22 @@ export const Posts = () => {
 		dispatch(fetchPosts());
 	}, [pageNumber, sortBy, sortDirection, dispatch]);
 
-	const [options] = useState([
+	const options = [
 		{ title: 'New blogs first', value: 'desc createdAt' },
 		{ title: 'Old blogs first', value: 'asc createdAt' },
-	]);
+	];
 
 	const onChangeSelect = (data: OptionsSelectorType) => {
 		if (data.value) {
 			const value = data.value.split(' ');
-			dispatch(setPageNumberPosts({ pageNumber: 1 }));
+			dispatch(setPageNumberPosts(1));
 			dispatch(setSortByPosts({ sortBy: value[1], sortDirection: value[0] }));
 		}
 	};
 
 	const onPagination = () => {
 		dispatch(setIsPaginationPosts());
-		dispatch(setPageNumberPosts({ pageNumber: pageNumber + 1 }));
+		dispatch(setPageNumberPosts(pageNumber + 1));
 	};
 
 	return (
