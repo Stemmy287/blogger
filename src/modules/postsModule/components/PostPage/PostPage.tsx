@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
-import { Title } from 'common/components';
-import { BackLink } from 'common/components';
+import { BackLink, Title } from 'common/components';
 import { useLocation, useParams } from 'react-router-dom';
-import { useAppDispatch } from 'hooks';
-import { fetchPost } from 'modules/postsModule';
-import { useAppSelector } from 'hooks';
-import { postSelector } from 'modules/postsModule';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { fetchPost, postSelector } from 'modules/postsModule';
 import { Comments } from 'modules/commentsModule';
 import s from './PostPage.module.scss';
 import defaultBlogImage from 'assets/image/defaultBlogImg.png';

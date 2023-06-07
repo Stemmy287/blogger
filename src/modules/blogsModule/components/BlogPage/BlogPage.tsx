@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import s from './BlogPage.module.scss';
-import { Title } from 'common/components';
+import { Preloader, Title } from 'common/components';
 import { BackLink } from 'common/components';
 import { useParams } from 'react-router-dom';
 import {
@@ -21,6 +21,7 @@ import {
 import { BlogOnPage } from 'modules/blogsModule';
 import { PATH } from 'common/constans';
 import { PostsList } from 'modules/postsModule';
+import { isLoadingSelector } from 'app';
 
 export const BlogPage = () => {
 	const { blogId } = useParams();
@@ -30,6 +31,8 @@ export const BlogPage = () => {
 	const posts = useAppSelector(postsForSpecificBlogSelector);
 
 	const postsTotalCount = useAppSelector(postsTotalCountForSpecificBlogSelector);
+
+	const isLoading = useAppSelector(isLoadingSelector);
 
 	const pageNumber = useAppSelector(postsPageNumberForSpecificBlogSelector);
 
@@ -47,7 +50,7 @@ export const BlogPage = () => {
 		dispatch(setPageNumberPostsForSpecificBLog(pageNumber + 1));
 	};
 
-	return (
+	return !isLoading ? (
 		<div className={s.container}>
 			<div className={s.blog}>
 				<Title title="Blogs" isDesc={true} desc={blog.name} />
@@ -69,5 +72,7 @@ export const BlogPage = () => {
 				navData={{ link: `/blog-page/${blogId}`, title: `Blog "${blog.name}"` }}
 			/>
 		</div>
+	) : (
+		<Preloader />
 	);
 };

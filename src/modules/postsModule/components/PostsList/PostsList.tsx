@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './PostsList.module.scss';
 import { Post, PostType } from 'modules/postsModule';
-import { Pagination } from 'common/components';
+import { Empty, Pagination } from 'common/components';
 import { NavDataType } from 'app';
 
 type PropsType = {
@@ -28,7 +28,7 @@ export const PostsList = ({ posts, postsTotalCount, onPagination, navData }: Pro
 					))}
 				</div>
 			) : (
-				<h4 className={s.empty}>No Posts</h4>
+				<Empty title="No Posts" />
 			)}
 			{postsTotalCount > posts.length && (
 				<div className={s.pagination}>

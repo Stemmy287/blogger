@@ -7,15 +7,16 @@ type PropsType = {
 };
 
 export const BlogsList = ({ blogs }: PropsType) => {
+
 	return (
 		<>
 			{blogs?.map(bg => (
-				<Blog 
-					key={bg.id} 
-					blogId={bg.id} 
-					title={bg.name} 
-					webSiteUrl={bg.websiteUrl} 
-					description={bg.description} 
+				<Blog
+					key={bg.id}
+					blogId={bg.id}
+					title={bg.name}
+					webSiteUrl={bg.websiteUrl}
+					description={bg.description}
 				/>
 			))}
 		</>

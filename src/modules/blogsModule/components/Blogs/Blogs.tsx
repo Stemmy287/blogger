@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Input, Pagination, Preloader, Select, Title } from 'common/components';
+import { Empty, Input, Pagination, Preloader, Select, Title } from 'common/components';
 import {
 	BlogsList,
 	blogsPageNumberSelector,
@@ -17,6 +17,7 @@ import {
 } from 'modules/blogsModule';
 import { useAppDispatch, useAppSelector, useSearch } from 'hooks';
 import s from './Blogs.module.scss';
+import { isLoadingSelector } from 'app';
 
 export const Blogs = () => {
 	const blogs = useAppSelector(blogsSelector);
@@ -25,6 +26,8 @@ export const Blogs = () => {
 	const sortBy = useAppSelector(blogsSortBySelector);
 	const sortDirection = useAppSelector(blogsSortDirectionSelector);
 	const searchNameTerm = useAppSelector(blogsSearchNameTermSelector);
+
+	const isLoading = useAppSelector(isLoadingSelector);
 
 	const blogsTotalCount = useAppSelector(blogsTotalCountSelector);
 
@@ -63,7 +66,9 @@ export const Blogs = () => {
 	return (
 		<div>
 			<Title title="Blogs" isDesc={false} />
-			{blogs.length ? (
+			{!blogs.length && !searchNameTerm ? (
+				<Preloader />
+			) : (
 				<div className={s.searchBar}>
 					<div className={s.input}>
 						<Input
@@ -74,17 +79,26 @@ export const Blogs = () => {
 						/>
 					</div>
 					<div className={s.select}>
-						<Select title={options[0].title} onChange={onChangeSelect} options={options} />
+						<Select
+							title={options[0].title}
+							onChange={onChangeSelect}
+							options={options}
+							disabled={!blogs.length || isLoading}
+						/>
 					</div>
 				</div>
-			) : (
-				<Preloader />
 			)}
-			<BlogsList blogs={blogs} />
-			{blogsTotalCount > blogs.length && (
-				<div className={s.pagination}>
-					<Pagination callback={onPagination} />
-				</div>
+			{!blogs.length && !isLoading ? (
+				<Empty title="No Blogs" />
+			) : (
+				<>
+					<BlogsList blogs={blogs} />
+					{blogsTotalCount > blogs.length && (
+						<div className={s.pagination}>
+							<Pagination callback={onPagination} />
+						</div>
+					)}
+				</>
 			)}
 		</div>
 	);

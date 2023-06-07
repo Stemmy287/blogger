@@ -3,19 +3,17 @@ import s from './Select.module.scss';
 import { ReactComponent as ArrowDown } from 'assets/icons/arrowDown.svg';
 import { ReactComponent as ArrowUp } from 'assets/icons/arrowUp.svg';
 import { OptionsSelectorType } from 'modules/blogsModule';
-import { useAppSelector, useOutsideClick } from 'hooks';
-import { isLoadingSelector } from 'app';
+import { useOutsideClick } from 'hooks';
 
 type PropsType = {
 	title: string;
 	options: OptionsSelectorType[];
 	onChange: (data: OptionsSelectorType) => void;
+	disabled?: boolean
 };
-export const Select = ({ title, options, onChange }: PropsType) => {
+export const Select = ({ title, options, onChange, disabled }: PropsType) => {
 	const [isActive, setIsActive] = useState(false);
 	const [selected, setSelected] = useState(title);
-
-	const isLoading = useAppSelector(isLoadingSelector)
 	
 	const selectRef = useRef<HTMLDivElement>(null);
 
@@ -53,7 +51,7 @@ export const Select = ({ title, options, onChange }: PropsType) => {
 			<div
 				className={isActive ? `${s.select} ${s.active}` : s.select}
 				onClick={onActiveHandler}
-				data-disabled={isLoading}
+				data-disabled={disabled}
 			>
 				{selected}
 				{isActive ? <ArrowUp /> : <ArrowDown />}
