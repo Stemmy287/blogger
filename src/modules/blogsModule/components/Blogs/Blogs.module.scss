@@ -1,19 +1,20 @@
 @import 'common/styles/variables';
 @import 'common/styles/mixns';
 
-.searchBar {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 13px;
-  .input {
-    width: 672px;
+  .searchBar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 13px;
+    .input {
+      width: 672px;
+    }
+
+    .select {
+      width: 256px;
+    }
   }
 
-  .select {
-    width: 256px;
+  .pagination {
+    margin-top: 36px;
   }
-}
 
-.pagination {
-  margin-top: 36px;
-}

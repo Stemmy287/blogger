@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import s from './Posts.module.scss';
-import { Select, Title } from 'common/components';
+import { Preloader, Select, Title } from 'common/components';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import {
 	fetchPosts,
@@ -51,18 +51,24 @@ export const Posts = () => {
 
 	return (
 		<>
-			<Title title={'Posts'} isDesc={false} />
-			<div className={s.selectWrapper}>
-				<div className={s.select}>
-					<Select title={options[0].title} options={options} onChange={onChangeSelect} />
-				</div>
-			</div>
-			<PostsList
-				posts={posts}
-				postsTotalCount={postsTotalCount}
-				onPagination={onPagination}
-				navData={{ link: '/posts', title: 'Posts' }}
-			/>
+			<Title title="Posts" isDesc={false} />
+			{posts.length ? (
+				<>
+					<div className={s.selectWrapper}>
+						<div className={s.select}>
+							<Select title={options[0].title} options={options} onChange={onChangeSelect} />
+						</div>
+					</div>
+					<PostsList
+						posts={posts}
+						postsTotalCount={postsTotalCount}
+						onPagination={onPagination}
+						navData={{ link: '/posts', title: 'Posts' }}
+					/>
+				</>
+			) : (
+				<Preloader />
+			)}
 		</>
 	);
 };

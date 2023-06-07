@@ -4,6 +4,7 @@ import { useAppDispatch } from 'hooks';
 import { auth } from 'modules/authModule';
 import { useAppSelector } from 'hooks';
 import { isInitializedSelector } from 'app';
+import { Preloader } from 'common/components';
 
 export function App() {
 	const dispatch = useAppDispatch();
@@ -15,10 +16,8 @@ export function App() {
 	}, [dispatch]);
 
 	if (!isInitialized) {
-		return <div>...loading</div>;
+		return <Preloader />
 	}
 
 	return <Pages />;
 }
-
-

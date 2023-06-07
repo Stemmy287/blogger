@@ -7,11 +7,14 @@ import { PopUp } from 'common/components';
 import { Notification } from 'common/components';
 import { useAppDispatch } from 'hooks';
 import { logout } from 'modules/authModule';
+import { LoadingLine } from 'common/components';
+import { isLoadingSelector } from 'app';
 
 export const Header = () => {
 	const [isActive, setIsActive] = useState(false);
 
 	const isLoggedIn = useAppSelector(isLoggedInSelector);
+	const isLoading = useAppSelector(isLoadingSelector);
 	const user = useAppSelector(userSelector);
 
 	const dispatch = useAppDispatch();
@@ -47,6 +50,7 @@ export const Header = () => {
 					/>
 				</PopUp>
 			)}
+			{isLoading && <LoadingLine />}
 		</header>
 	);
 };

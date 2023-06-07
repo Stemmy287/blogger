@@ -1,9 +1,8 @@
 import React from 'react';
 import s from './PostsList.module.scss';
-import { Post } from 'modules/postsModule';
+import { Post, PostType } from 'modules/postsModule';
 import { Pagination } from 'common/components';
 import { NavDataType } from 'app';
-import { PostType } from 'modules/postsModule';
 
 type PropsType = {
 	posts: PostType[];
@@ -14,7 +13,7 @@ type PropsType = {
 
 export const PostsList = ({ posts, postsTotalCount, onPagination, navData }: PropsType) => {
 	return (
-		<>
+		<div className={s.container}>
 			{posts.length ? (
 				<div className={s.posts}>
 					{posts.map(ps => (
@@ -36,6 +35,6 @@ export const PostsList = ({ posts, postsTotalCount, onPagination, navData }: Pro
 					<Pagination callback={onPagination} />
 				</div>
 			)}
-		</>
+		</div>
 	);
 };

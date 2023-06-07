@@ -1,19 +1,23 @@
 @import 'common/styles/variables';
 @import 'common/styles/mixns';
 
-.posts {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 20px;
-  row-gap: 32px;
+.container {
+  position: relative;
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 32px;
+  }
+
+  .empty {
+    display: flex;
+    justify-content: center;
+    color: $gray600;
+  }
+
+  .pagination {
+    margin-top: 44px;
+  }
 }
 
-.empty {
-  display: flex;
-  justify-content: center;
-  color: $gray600;
-}
-
-.pagination {
-  margin-top: 44px;
-}

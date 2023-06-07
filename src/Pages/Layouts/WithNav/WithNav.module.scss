@@ -7,10 +7,12 @@
     display: flex;
     box-shadow: 0 5px 20px rgba(29, 33, 38, 0.03),
     0 1px 2px rgba(29, 33, 38, 0.1);
+    min-height: 100vh;
     .mainContent {
       background-color: $gray300;
       width: 100%;
       padding: 29px 64px 43px 24px;
+      position: relative;
     }
   }
 }

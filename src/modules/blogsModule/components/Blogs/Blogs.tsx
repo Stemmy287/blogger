@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Input, Pagination, Select, Title } from 'common/components';
+import { Input, Pagination, Preloader, Select, Title } from 'common/components';
 import {
 	BlogsList,
 	blogsPageNumberSelector,
@@ -63,19 +63,23 @@ export const Blogs = () => {
 	return (
 		<div>
 			<Title title="Blogs" isDesc={false} />
-			<div className={s.searchBar}>
-				<div className={s.input}>
-					<Input
-						component="searchInput"
-						value={searchValue}
-						onChange={e => setSearchValue(e.currentTarget.value)}
-						placeholder="Search"
-					/>
+			{blogs.length ? (
+				<div className={s.searchBar}>
+					<div className={s.input}>
+						<Input
+							component="searchInput"
+							value={searchValue}
+							onChange={e => setSearchValue(e.currentTarget.value)}
+							placeholder="Search"
+						/>
+					</div>
+					<div className={s.select}>
+						<Select title={options[0].title} onChange={onChangeSelect} options={options} />
+					</div>
 				</div>
-				<div className={s.select}>
-					<Select title={options[0].title} onChange={onChangeSelect} options={options} />
-				</div>
-			</div>
+			) : (
+				<Preloader />
+			)}
 			<BlogsList blogs={blogs} />
 			{blogsTotalCount > blogs.length && (
 				<div className={s.pagination}>
