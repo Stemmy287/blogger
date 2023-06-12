@@ -9,9 +9,10 @@ type PropsType = {
 	postsTotalCount: number;
 	onPagination: () => void;
 	navData: NavDataType;
+	isPagination: boolean;
 };
 
-export const PostsList = ({ posts, postsTotalCount, onPagination, navData }: PropsType) => {
+export const PostsList = ({ posts, postsTotalCount, onPagination, navData, isPagination }: PropsType) => {
 	return (
 		<div className={s.container}>
 			{posts?.length ? (
@@ -32,7 +33,7 @@ export const PostsList = ({ posts, postsTotalCount, onPagination, navData }: Pro
 			)}
 			{postsTotalCount > posts?.length && (
 				<div className={s.pagination}>
-					<Pagination callback={onPagination} />
+					<Pagination callback={onPagination} isLoading={isPagination} />
 				</div>
 			)}
 		</div>

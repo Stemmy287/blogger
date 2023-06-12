@@ -8,6 +8,7 @@ import {
 	createComment,
 	fetchComments,
 	isLoadingCommentsSelector,
+	isPaginationCommentsSelector,
 	setIsPaginationComments,
 	setPageNumberComments,
 } from 'modules/commentsModule';
@@ -27,6 +28,8 @@ export const Comments = ({ postId }: PropsType) => {
 	const pageNumber = useAppSelector(commentsPageNumberSelector);
 
 	const isLoadingComments = useAppSelector(isLoadingCommentsSelector);
+
+	const isPagination = useAppSelector(isPaginationCommentsSelector);
 
 	const isLoading = useAppSelector(isLoadingSelector);
 
@@ -80,7 +83,7 @@ export const Comments = ({ postId }: PropsType) => {
 				</div>
 			)}
 			<CommentsList comments={comments} />
-			{totalCount > comments?.length && <Pagination callback={onPaginationHandler} />}
+			{totalCount > comments?.length && <Pagination callback={onPaginationHandler} isLoading={isPagination} />}
 		</div>
 	);
 };

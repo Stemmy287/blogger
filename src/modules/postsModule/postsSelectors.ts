@@ -11,3 +11,4 @@ export const postsTotalCountSelector = (state: AppRootStateType) => state.posts.
 export const postsPageNumberSelector = (state: AppRootStateType) => state.posts.queryParams.pageNumber;
 export const postsSortBySelector = (state: AppRootStateType) => state.posts.queryParams.sortBy;
 export const postsSortDirectionSelector = (state: AppRootStateType) => state.posts.queryParams.sortDirection;
+export const isPaginationPostsSelector = (state: AppRootStateType) => state.posts.isPagination

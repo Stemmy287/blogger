@@ -9,6 +9,7 @@ import {
 	blogsSortDirectionSelector,
 	blogsTotalCountSelector,
 	fetchBlogs,
+	isPaginationBlogsSelector,
 	OptionsSelectorType,
 	setIsPaginationBlogs,
 	setPageNumberBlogs,
@@ -26,6 +27,8 @@ export const Blogs = () => {
 	const sortBy = useAppSelector(blogsSortBySelector);
 	const sortDirection = useAppSelector(blogsSortDirectionSelector);
 	const searchNameTerm = useAppSelector(blogsSearchNameTermSelector);
+
+	const isPagination = useAppSelector(isPaginationBlogsSelector);
 
 	const isLoading = useAppSelector(isLoadingSelector);
 
@@ -95,7 +98,7 @@ export const Blogs = () => {
 					<BlogsList blogs={blogs} />
 					{blogsTotalCount > blogs.length && (
 						<div className={s.pagination}>
-							<Pagination callback={onPagination} />
+							<Pagination callback={onPagination} isLoading={isPagination} />
 						</div>
 					)}
 				</>

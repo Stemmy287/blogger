@@ -1,6 +1,11 @@
 @import 'common/styles/variables';
 @import 'common/styles/mixns';
 
+.preloader {
+  position: relative;
+  height: 30px;
+}
+
 .paginationButton {
   height: 36px;
   width: 153px;

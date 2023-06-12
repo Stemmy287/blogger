@@ -9,6 +9,7 @@ import {
 	clearPostsForSpecificBLog,
 	fetchBlog,
 	fetchPostsForSpecificBlog,
+	isPaginationPostsForSpecificBlogSelector,
 	postsForSpecificBlogSelector,
 	postsPageNumberForSpecificBlogSelector,
 	postsTotalCountForSpecificBlogSelector,
@@ -30,6 +31,8 @@ export const BlogPage = () => {
 	const postsTotalCount = useAppSelector(postsTotalCountForSpecificBlogSelector);
 
 	const pageNumber = useAppSelector(postsPageNumberForSpecificBlogSelector);
+
+	const isPagination = useAppSelector(isPaginationPostsForSpecificBlogSelector);
 
 	const dispatch = useAppDispatch();
 
@@ -69,6 +72,7 @@ export const BlogPage = () => {
 				postsTotalCount={postsTotalCount}
 				onPagination={onPagination}
 				navData={{ link: `/blog-page/${blogId}`, title: `Blog "${blog.name}"` }}
+				isPagination={isPagination}
 			/>
 		</div>
 	) : (

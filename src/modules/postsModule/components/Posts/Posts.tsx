@@ -4,6 +4,7 @@ import { Preloader, Select, Title } from 'common/components';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import {
 	fetchPosts,
+	isPaginationPostsSelector,
 	PostsList,
 	postsPageNumberSelector,
 	postsSelector,
@@ -22,6 +23,7 @@ export const Posts = () => {
 	const pageNumber = useAppSelector(postsPageNumberSelector);
 	const sortBy = useAppSelector(postsSortBySelector);
 	const sortDirection = useAppSelector(postsSortDirectionSelector);
+	const isPagination = useAppSelector(isPaginationPostsSelector);
 
 	const postsTotalCount = useAppSelector(postsTotalCountSelector);
 
@@ -64,6 +66,7 @@ export const Posts = () => {
 						postsTotalCount={postsTotalCount}
 						onPagination={onPagination}
 						navData={{ link: '/posts', title: 'Posts' }}
+						isPagination={isPagination}
 					/>
 				</>
 			) : (
