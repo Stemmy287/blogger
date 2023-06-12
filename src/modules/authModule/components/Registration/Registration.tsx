@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import s from './Registration.module.scss';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { useFormik } from 'formik';
 import { AuthWrapper, Button, Input, Notification, PopUp } from 'common/components';
 import { NavLink, useNavigate } from 'react-router-dom';
 import loginBanner from 'assets/image/rafiki.svg';
 import { registration } from 'modules/authModule';
 import { PATH } from 'common/constans';
+import { isLoadingSelector } from 'app';
 
 export const Registration = () => {
 	const dispatch = useAppDispatch();
 
 	const [isActive, setIsActive] = useState(false);
 	const [successes, setSuccesses] = useState(false);
+
+	const isLoading = useAppSelector(isLoadingSelector);
 
 	const navigate = useNavigate();
 
@@ -48,7 +51,7 @@ export const Registration = () => {
 							If you don’t receive an email, send link again
 						</span>
 					)}
-					<Button type="submit" title="Sign Up" />
+					<Button type="submit" title="Sign Up" disabled={isLoading} />
 				</form>
 				<span className={s.forgotPass}>Already a member?</span>
 				<NavLink to={PATH.LOGIN}>Sign In</NavLink>

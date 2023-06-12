@@ -85,6 +85,13 @@
     &:focus {
       border: 1px solid $gray700;
     }
+
+    &:disabled {
+      border: 1px solid $gray400;
+      &::placeholder {
+        color: $gray400;
+      }
+    }
   }
 }
 

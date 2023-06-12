@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { BackLink, Title } from 'common/components';
+import { BackLink, Preloader, Title } from 'common/components';
 import { useLocation, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { fetchPost, postSelector } from 'modules/postsModule';
-import { Comments } from 'modules/commentsModule';
+import { clearPost, fetchPost, postSelector } from 'modules/postsModule';
+import { clearComments, Comments } from 'modules/commentsModule';
 import s from './PostPage.module.scss';
 import defaultBlogImage from 'assets/image/defaultBlogImg.png';
 import defaultPostImage from 'assets/image/post-banner.png';
@@ -22,11 +22,15 @@ export const PostPage = () => {
 		if (postId) {
 			dispatch(fetchPost(postId));
 		}
+		return () => {
+			dispatch(clearPost());
+			dispatch(clearComments());
+		};
 	}, [postId, dispatch]);
 
 	const date = dateConvertor(post.createdAt, true);
 
-	return (
+	return post.id ? (
 		<>
 			<div className={s.mainTitleWrapper}>
 				<Title title={state?.title} isDesc={true} desc={post.blogName} />
@@ -51,5 +55,7 @@ export const PostPage = () => {
 			</div>
 			<Comments postId={postId || ''} />
 		</>
+	) : (
+		<Preloader />
 	);
 };

@@ -11,11 +11,13 @@ import { isLoggedInSelector } from 'modules/authModule';
 import { PATH } from 'common/constans';
 import { AuthWrapper } from 'common/components';
 import { Input } from 'common/components';
+import { isLoadingSelector } from 'app';
 
 export const Login = () => {
 	const dispatch = useAppDispatch();
 
 	const isLoggedIn = useAppSelector(isLoggedInSelector);
+	const isLoading = useAppSelector(isLoadingSelector);
 
 	const formik = useFormik({
 		initialValues: {
@@ -43,7 +45,7 @@ export const Login = () => {
 				<form onSubmit={formik.handleSubmit} className={s.form}>
 					<Input title="Email or Username" component="input" {...formik.getFieldProps('loginOrEmail')} />
 					<Input title="Password" component="input" password {...formik.getFieldProps('password')} />
-					<Button type="submit" title="Sign in" />
+					<Button type="submit" title="Sign in" disabled={isLoading} />
 				</form>
 				<span className={s.forgotPass}>Don’t have an account?</span>
 				<NavLink to={PATH.REGISTRATION}>Sign Up</NavLink>

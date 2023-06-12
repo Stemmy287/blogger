@@ -6,21 +6,24 @@ import { CommentType } from 'modules/commentsModule';
 
 export const fetchComments = createAsyncThunk(
 	'postsModule/fetchComment',
-	async (param: string , { rejectWithValue, getState }) => {
+	async (param: string, {dispatch , rejectWithValue, getState }) => {
 		const state = getState() as AppRootStateType;
 		const queryParams = state.comments.queryParams;
 		const isPagination = state.comments.isPagination;
 
+		dispatch(setIsLoadingComments(true))
 		try {
-			return await apiComments.getComments(
+			const res = await apiComments.getComments(
 				param,
 				isPagination
 					? queryParams
 					: {
-							...queryParams,
-							pageNumber: 1,
-					  }
+						...queryParams,
+						pageNumber: 1,
+					}
 			);
+			dispatch(setIsLoadingComments(false))
+			return res
 		} catch (e) {
 			return rejectWithValue(null);
 		}
@@ -85,16 +88,23 @@ const slice = createSlice({
 			pageSize: 15,
 		},
 		isPagination: false,
+		isLoadingComments: false,
 	},
 	reducers: {
-		setPageNumberComments(state, action: PayloadAction< number >) {
+		setPageNumberComments(state, action: PayloadAction<number>) {
 			state.queryParams.pageNumber = action.payload;
 		},
 		setIsPaginationComments(state) {
 			state.isPagination = true;
 		},
+		setIsLoadingComments(state, action: PayloadAction<boolean>) {
+			state.isLoadingComments = action.payload
+		},
+		clearComments(state) {
+			state.comments = {} as ResponseType<CommentType[]>;
+		},
 	},
-	extraReducers:(builder) => {
+	extraReducers: builder => {
 		builder.addCase(fetchComments.fulfilled, (state, action) => {
 			if (state.isPagination) {
 				state.comments = {
@@ -105,18 +115,18 @@ const slice = createSlice({
 			} else {
 				state.comments = action.payload;
 			}
-		})
+		});
 		builder.addCase(createComment.fulfilled, (state, action) => {
 			state.comments.items.unshift(action.payload);
 			state.comments.totalCount += 1;
-		})
+		});
 		builder.addCase(updateComment.fulfilled, (state, action) => {
 			const index = state.comments.items.findIndex(cm => cm.id === action.payload.commentId);
 
 			if (index > -1) {
 				state.comments.items[index].content = action.payload.content;
 			}
-		})
+		});
 		builder.addCase(deleteComment.fulfilled, (state, action) => {
 			const index = state.comments.items.findIndex(cm => cm.id === action.payload);
 
@@ -124,12 +134,9 @@ const slice = createSlice({
 				state.comments.items.splice(index, 1);
 				state.comments.totalCount -= 1;
 			}
-		})
-	}
+		});
+	},
 });
 
 export const commentsReducer = slice.reducer;
-export const {
-	setPageNumberComments,
-	setIsPaginationComments,
-} = slice.actions;
+export const { setPageNumberComments, setIsPaginationComments, setIsLoadingComments, clearComments } = slice.actions;

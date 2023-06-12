@@ -14,9 +14,9 @@ type PropsType = {
 export const PostsList = ({ posts, postsTotalCount, onPagination, navData }: PropsType) => {
 	return (
 		<div className={s.container}>
-			{posts.length ? (
+			{posts?.length ? (
 				<div className={s.posts}>
-					{posts.map(ps => (
+					{posts?.map(ps => (
 						<Post
 							key={ps.id}
 							postId={ps.id}
@@ -30,7 +30,7 @@ export const PostsList = ({ posts, postsTotalCount, onPagination, navData }: Pro
 			) : (
 				<Empty title="No Posts" />
 			)}
-			{postsTotalCount > posts.length && (
+			{postsTotalCount > posts?.length && (
 				<div className={s.pagination}>
 					<Pagination callback={onPagination} />
 				</div>

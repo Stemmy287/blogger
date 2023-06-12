@@ -55,6 +55,9 @@ const slice = createSlice({
 		setIsPaginationPosts(state) {
 			state.isPagination = true;
 		},
+		clearPost(state) {
+			state.post = {} as PostType
+		}
 	},
 	extraReducers: builder => {
 		builder.addCase(fetchPosts.fulfilled, (state, action) => {
@@ -73,4 +76,4 @@ const slice = createSlice({
 });
 
 export const postsReducer = slice.reducer;
-export const { setPageNumberPosts, setSortByPosts, setIsPaginationPosts } = slice.actions;
+export const { setPageNumberPosts, setSortByPosts, setIsPaginationPosts, clearPost } = slice.actions;

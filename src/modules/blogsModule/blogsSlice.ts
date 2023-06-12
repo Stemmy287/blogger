@@ -4,30 +4,24 @@ import { AppRootStateType } from 'store';
 import { PostType } from 'modules/postsModule';
 import { apiBlogs } from 'modules/blogsModule';
 
-export const fetchBlogs = createAsyncThunk(
-	'blogs/fetchBlogs',
-	async (param, { rejectWithValue, getState }) => {
-		const state = getState() as AppRootStateType;
-		const queryParams = state.blogs.queryParams;
-		const isPagination = state.blogs.isPagination
+export const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async (param, { rejectWithValue, getState }) => {
+	const state = getState() as AppRootStateType;
+	const queryParams = state.blogs.queryParams;
+	const isPagination = state.blogs.isPagination;
 
-		try {
-			return await apiBlogs.getBlogs(isPagination ? queryParams : { ...queryParams, pageNumber: 1 });
-		} catch (e) {
-			return rejectWithValue(null);
-		}
+	try {
+		return await apiBlogs.getBlogs(isPagination ? queryParams : { ...queryParams, pageNumber: 1 });
+	} catch (e) {
+		return rejectWithValue(null);
 	}
-);
-export const fetchBlog = createAsyncThunk(
-	'blogs/fetchBlog',
-	async (param: string , { rejectWithValue }) => {
-		try {
-			return await apiBlogs.getBlog(param);
-		} catch (e) {
-			return rejectWithValue(null);
-		}
+});
+export const fetchBlog = createAsyncThunk('blogs/fetchBlog', async (param: string, { rejectWithValue }) => {
+	try {
+		return await apiBlogs.getBlog(param);
+	} catch (e) {
+		return rejectWithValue(null);
 	}
-);
+});
 
 export const fetchPostsForSpecificBlog = createAsyncThunk(
 	'blogs/fetchPosts',
@@ -37,11 +31,10 @@ export const fetchPostsForSpecificBlog = createAsyncThunk(
 		const isPagination = state.blogs.isPaginationForPosts;
 
 		try {
-			return  await apiBlogs.getPostsForSpecificBlog(
+			return await apiBlogs.getPostsForSpecificBlog(
 				param,
 				isPagination ? queryParams : { ...queryParams, pageNumber: 1 }
 			);
-
 		} catch (e) {
 			return rejectWithValue(null);
 		}
@@ -91,6 +84,12 @@ const slice = createSlice({
 		setIsPaginationPostsForSpecificBLog(state) {
 			state.isPaginationForPosts = true;
 		},
+		clearBlog(state) {
+			state.blog = {} as BlogType
+		},
+		clearPostsForSpecificBLog(state) {
+			state.postsForSpecificBlog = {} as ResponseType<PostType[]>
+		}
 	},
 	extraReducers: builder => {
 		builder.addCase(fetchBlogs.fulfilled, (state, action) => {
@@ -126,4 +125,6 @@ export const {
 	setIsPaginationBlogs,
 	setPageNumberPostsForSpecificBLog,
 	setIsPaginationPostsForSpecificBLog,
+	clearBlog,
+	clearPostsForSpecificBLog
 } = slice.actions;

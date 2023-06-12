@@ -7,3 +7,6 @@ export const commentsTotalCountSelector = (state: AppRootStateType) => state.com
 
 //query params
 export const commentsPageNumberSelector = (state: AppRootStateType) => state.comments.queryParams.pageNumber;
+
+//states
+export const isLoadingCommentsSelector = (state: AppRootStateType) => state.comments.isLoadingComments

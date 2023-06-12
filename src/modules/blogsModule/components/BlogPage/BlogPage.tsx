@@ -1,27 +1,24 @@
 import React, { useEffect } from 'react';
 import s from './BlogPage.module.scss';
-import { Preloader, Title } from 'common/components';
-import { BackLink } from 'common/components';
+import { BackLink, Preloader, Title } from 'common/components';
 import { useParams } from 'react-router-dom';
 import {
+	BlogOnPage,
+	blogSelector,
+	clearBlog,
+	clearPostsForSpecificBLog,
 	fetchBlog,
 	fetchPostsForSpecificBlog,
-	setIsPaginationPostsForSpecificBLog,
-	setPageNumberPostsForSpecificBLog,
-} from 'modules/blogsModule';
-import { useAppDispatch } from 'hooks';
-import { useAppSelector } from 'hooks';
-import defaultBlogBanner from 'assets/image/blog-banner.png';
-import {
-	blogSelector,
 	postsForSpecificBlogSelector,
 	postsPageNumberForSpecificBlogSelector,
 	postsTotalCountForSpecificBlogSelector,
+	setIsPaginationPostsForSpecificBLog,
+	setPageNumberPostsForSpecificBLog,
 } from 'modules/blogsModule';
-import { BlogOnPage } from 'modules/blogsModule';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import defaultBlogBanner from 'assets/image/blog-banner.png';
 import { PATH } from 'common/constans';
 import { PostsList } from 'modules/postsModule';
-import { isLoadingSelector } from 'app';
 
 export const BlogPage = () => {
 	const { blogId } = useParams();
@@ -32,8 +29,6 @@ export const BlogPage = () => {
 
 	const postsTotalCount = useAppSelector(postsTotalCountForSpecificBlogSelector);
 
-	const isLoading = useAppSelector(isLoadingSelector);
-
 	const pageNumber = useAppSelector(postsPageNumberForSpecificBlogSelector);
 
 	const dispatch = useAppDispatch();
@@ -43,6 +38,10 @@ export const BlogPage = () => {
 			dispatch(fetchBlog(blogId));
 			dispatch(fetchPostsForSpecificBlog(blogId));
 		}
+		return () => {
+			dispatch(clearBlog());
+			dispatch(clearPostsForSpecificBLog());
+		};
 	}, [dispatch, blogId, pageNumber]);
 
 	const onPagination = () => {
@@ -50,7 +49,7 @@ export const BlogPage = () => {
 		dispatch(setPageNumberPostsForSpecificBLog(pageNumber + 1));
 	};
 
-	return !isLoading ? (
+	return blog.id ? (
 		<div className={s.container}>
 			<div className={s.blog}>
 				<Title title="Blogs" isDesc={true} desc={blog.name} />

@@ -8,7 +8,7 @@ type PropsType = {
 export const CommentsList = ({ comments }: PropsType) => {
 	return (
 		<div className={s.comments}>
-			{comments.map(cm => (
+			{comments?.map(cm => (
 				<Comment key={cm.id} comment={cm}/>
 			))}
 		</div>
