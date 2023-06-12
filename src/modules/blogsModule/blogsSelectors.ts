@@ -12,6 +12,7 @@ export const blogsSortBySelector = (state: AppRootStateType) => state.blogs.quer
 export const blogsSortDirectionSelector = (state: AppRootStateType) => state.blogs.queryParams.sortDirection;
 export const blogsSearchNameTermSelector = (state: AppRootStateType) => state.blogs.queryParams.searchNameTerm;
 export const isPaginationBlogsSelector = (state: AppRootStateType) => state.blogs.isPagination
+export const isLoadingBlogsSelector = (state: AppRootStateType) => state.blogs.isLoadingBlogs
 
 //posts for specific blog
 export const postsForSpecificBlogSelector = (state: AppRootStateType) => state.blogs.postsForSpecificBlog.items;

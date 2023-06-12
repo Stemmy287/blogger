@@ -9,6 +9,7 @@ import {
 	blogsSortDirectionSelector,
 	blogsTotalCountSelector,
 	fetchBlogs,
+	isLoadingBlogsSelector,
 	isPaginationBlogsSelector,
 	OptionsSelectorType,
 	setIsPaginationBlogs,
@@ -29,6 +30,7 @@ export const Blogs = () => {
 	const searchNameTerm = useAppSelector(blogsSearchNameTermSelector);
 
 	const isPagination = useAppSelector(isPaginationBlogsSelector);
+	const isLoadingBlogs = useAppSelector(isLoadingBlogsSelector);
 
 	const isLoading = useAppSelector(isLoadingSelector);
 
@@ -69,37 +71,40 @@ export const Blogs = () => {
 	return (
 		<div>
 			<Title title="Blogs" isDesc={false} />
-			{!blogs.length && !searchNameTerm ? (
+			{(!blogs.length && !searchNameTerm) || (isLoadingBlogs && !isPagination) ? (
 				<Preloader />
 			) : (
-				<div className={s.searchBar}>
-					<div className={s.input}>
-						<Input
-							component="searchInput"
-							value={searchValue}
-							onChange={e => setSearchValue(e.currentTarget.value)}
-							placeholder="Search"
-						/>
-					</div>
-					<div className={s.select}>
-						<Select
-							title={options[0].title}
-							onChange={onChangeSelect}
-							options={options}
-							disabled={!blogs.length || isLoading}
-						/>
-					</div>
-				</div>
-			)}
-			{!blogs.length && !isLoading ? (
-				<Empty title="No Blogs" />
-			) : (
 				<>
-					<BlogsList blogs={blogs} />
-					{blogsTotalCount > blogs.length && (
-						<div className={s.pagination}>
-							<Pagination callback={onPagination} isLoading={isPagination} />
+					<div className={s.searchBar}>
+						<div className={s.input}>
+							<Input
+								component="searchInput"
+								value={searchValue}
+								onChange={e => setSearchValue(e.currentTarget.value)}
+								placeholder="Search"
+							/>
 						</div>
+						<div className={s.select}>
+							<Select
+								title={options[0].title}
+								onChange={onChangeSelect}
+								options={options}
+								disabled={!blogs.length || isLoading}
+							/>
+						</div>
+					</div>
+
+					{!blogs.length && !isLoading ? (
+						<Empty title="No Blogs" />
+					) : (
+						<>
+							<BlogsList blogs={blogs} />
+							{blogsTotalCount > blogs.length && (
+								<div className={s.pagination}>
+									<Pagination callback={onPagination} isLoading={isPagination} />
+								</div>
+							)}
+						</>
 					)}
 				</>
 			)}

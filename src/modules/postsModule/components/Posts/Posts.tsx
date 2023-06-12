@@ -4,6 +4,7 @@ import { Preloader, Select, Title } from 'common/components';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import {
 	fetchPosts,
+	isLoadingPostsSelector,
 	isPaginationPostsSelector,
 	PostsList,
 	postsPageNumberSelector,
@@ -24,6 +25,8 @@ export const Posts = () => {
 	const sortBy = useAppSelector(postsSortBySelector);
 	const sortDirection = useAppSelector(postsSortDirectionSelector);
 	const isPagination = useAppSelector(isPaginationPostsSelector);
+
+	const isLoadingPosts = useAppSelector(isLoadingPostsSelector);
 
 	const postsTotalCount = useAppSelector(postsTotalCountSelector);
 
@@ -54,7 +57,9 @@ export const Posts = () => {
 	return (
 		<>
 			<Title title="Posts" isDesc={false} />
-			{posts.length ? (
+			{!posts.length || (isLoadingPosts && !isPagination) ? (
+					<Preloader />
+			) : (
 				<>
 					<div className={s.selectWrapper}>
 						<div className={s.select}>
@@ -69,8 +74,6 @@ export const Posts = () => {
 						isPagination={isPagination}
 					/>
 				</>
-			) : (
-				<Preloader />
 			)}
 		</>
 	);

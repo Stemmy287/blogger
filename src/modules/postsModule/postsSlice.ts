@@ -6,14 +6,19 @@ import { ResponseType } from 'modules/blogsModule';
 
 export const fetchPosts = createAsyncThunk(
 	'postsModule/fetchPosts',
-	async (param, { rejectWithValue, getState }) => {
+	async (param, {dispatch, rejectWithValue, getState }) => {
 		const state = getState() as AppRootStateType;
 		const queryParams = state.posts.queryParams;
 		const isPagination = state.posts.isPagination;
 
+		dispatch(setIsLoadingPosts(true))
+
 		try {
-			return await apiPosts.getPosts(isPagination ? queryParams : { ...queryParams, pageNumber: 1 });
+			const res = await apiPosts.getPosts(isPagination ? queryParams : { ...queryParams, pageNumber: 1 });
+			dispatch(setIsLoadingPosts(false))
+			return res
 		} catch (e) {
+			dispatch(setIsLoadingPosts(false))
 			return rejectWithValue(null);
 		}
 	}
@@ -37,6 +42,7 @@ const slice = createSlice({
 			items: [] as PostType[],
 		} as ResponseType<PostType[]>,
 		post: {} as PostType,
+		isLoadingPosts: false,
 		queryParams: {
 			pageNumber: 1,
 			pageSize: 15,
@@ -51,6 +57,9 @@ const slice = createSlice({
 		},
 		setSortByPosts(state, action: PayloadAction<{ sortBy: string; sortDirection: string }>) {
 			state.queryParams = { ...state.queryParams, ...action.payload };
+		},
+		setIsLoadingPosts(state, action:PayloadAction<boolean>) {
+			state.isLoadingPosts = action.payload
 		},
 		setIsPaginationPosts(state) {
 			state.isPagination = true;
@@ -76,4 +85,4 @@ const slice = createSlice({
 });
 
 export const postsReducer = slice.reducer;
-export const { setPageNumberPosts, setSortByPosts, setIsPaginationPosts, clearPost } = slice.actions;
+export const { setPageNumberPosts, setSortByPosts, setIsLoadingPosts, setIsPaginationPosts, clearPost } = slice.actions;
