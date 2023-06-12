@@ -1,14 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const slice = createSlice({
 	name: 'app',
 	initialState: {
 		isInitialized: false,
 		isLoading: false,
+		isError: 'some error' as null | string,
 	},
 	reducers: {
 		setIsInitialized(state) {
 			state.isInitialized = true;
+		},
+		setIsError(state, action: PayloadAction<null | string>) {
+			state.isError = action.payload;
 		},
 	},
 	extraReducers: builder => {
@@ -34,4 +38,4 @@ const slice = createSlice({
 });
 
 export const appReducer = slice.reducer;
-export const { setIsInitialized } = slice.actions;
+export const { setIsInitialized, setIsError } = slice.actions;
