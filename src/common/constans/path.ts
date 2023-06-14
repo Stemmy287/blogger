@@ -1,5 +1,5 @@
 export const PATH = {
-  MAIN: '/',
+  MAIN: '/blogger',
   LOGIN: '/login',
   REGISTRATION: '/registration',
   BLOGS: '/blogs',
