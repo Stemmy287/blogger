@@ -20,6 +20,12 @@
     bottom: 55px;
   }
 
+  .error {
+    @include text(400, 12px, 24px, $red300);
+    position: absolute;
+    bottom: 82px;
+  }
+
   > button {
     margin-top: 48px;
   }

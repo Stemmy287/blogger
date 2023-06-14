@@ -8,6 +8,7 @@ import loginBanner from 'assets/image/rafiki.svg';
 import { registration } from 'modules/authModule';
 import { PATH } from 'common/constans';
 import { isLoadingSelector } from 'app';
+import * as Yup from 'yup';
 
 export const Registration = () => {
 	const dispatch = useAppDispatch();
@@ -30,10 +31,30 @@ export const Registration = () => {
 			login: '',
 			password: '',
 			email: '',
+			commonError: '',
 		},
-		onSubmit(values) {
-			dispatch(registration(values));
-			setIsActive(true);
+		validationSchema: Yup.object({
+			login: Yup.string().min(3, 'Min length 3 symbols')
+				.max(10, 'Max length 10 symbols')
+				.required('Required'),
+			password: Yup
+				.string()
+				.min(6, 'Min length 2 symbols')
+				.max(21, 'Max length 21 symbols')
+				.required('Required'),
+			email: Yup
+				.string()
+				.email('Invalid email address')
+				.required('Required')
+		}),
+		onSubmit: async values => {
+			const resultAction = await dispatch(registration(values));
+			if (registration.rejected.match(resultAction)) {
+				formik.setErrors({ commonError: resultAction.payload as string });
+			} else {
+				setSuccesses(true)
+				setIsActive(true);
+			}
 		},
 	});
 
@@ -42,9 +63,25 @@ export const Registration = () => {
 			<AuthWrapper>
 				<h3 className={s.title}>Sign Up</h3>
 				<form onSubmit={formik.handleSubmit} className={s.form}>
-					<Input title="Username" component="input" {...formik.getFieldProps('login')} />
-					<Input title="Email" component="input" {...formik.getFieldProps('email')} />
-					<Input title="Password" component="input" password {...formik.getFieldProps('password')} />
+					<Input
+						title="Username"
+						component="input"
+						{...formik.getFieldProps('login')}
+						error={(formik.touched.login && formik.errors.login) || ''}
+					/>
+					<Input
+						title="Email"
+						component="input"
+						{...formik.getFieldProps('email')}
+						error={(formik.touched.email && formik.errors.email) || ''}
+					/>
+					<Input
+						title="Password"
+						component="input" password
+						{...formik.getFieldProps('password')}
+						error={(formik.touched.password && formik.errors.password) || ''}
+					/>
+					{formik.errors.commonError && <div className={s.error}>{formik.errors.commonError}</div>}
 					{successes && (
 						<span className={s.successesNotify}>
 							The link has been sent by email. <br />
