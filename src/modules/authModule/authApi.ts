@@ -13,6 +13,7 @@ export const apiAuth = {
 		return instance.get<UserType>('api/auth/me').then(res => res.data);
 	},
 	registration(data: RegistrationDataType) {
-		return instance.post<'', AxiosResponse, RegistrationDataType>('api/auth/registration', data);
+		return instance.post<'', AxiosResponse, RegistrationDataType>('api/auth/registration', data)
+			.then(res => res.data);
 	},
 };
