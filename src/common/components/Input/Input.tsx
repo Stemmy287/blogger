@@ -8,10 +8,12 @@ type PropsType = {
 	component: 'input' | 'searchInput' | 'textarea';
 	title?: string;
 	password?: boolean;
+	error?: string
 };
 export const Input = ({
 	component,
 	title,
+	error,
 	password,
 	...restProps
 }: PropsType & DefaultInputPropsType & DefaultTextAreaPropsType) => {
@@ -28,13 +30,16 @@ export const Input = ({
 			{ isInput && (
 				<>
 					{title && <span>{title}</span>}
-					<input
-						className={component === 'input' ? s.input : s.searchInput}
-						data-showpassword={password && showPassword}
-						{...restProps}
-					/>
-					{component === 'searchInput' && <GlassMag className={s.glassMag} />}
-					{password && <Eye className={s.showPassword} onClick={onShowHandler} />}
+					<div className={s.inputContainer}>
+						<input
+							className={component === 'input' ? s.input : s.searchInput}
+							data-showpassword={password && showPassword}
+							{...restProps}
+						/>
+						{component === 'searchInput' && <GlassMag className={s.glassMag} />}
+						{password && <Eye className={s.showPassword} onClick={onShowHandler} />}
+					</div>
+					{error && <div className={s.error}>{error}</div>}
 				</>
 			)}
 			{component === 'textarea' && <textarea className={s.textarea} {...restProps} />}
