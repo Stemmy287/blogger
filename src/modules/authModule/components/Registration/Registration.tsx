@@ -49,7 +49,7 @@ export const Registration = () => {
 		}),
 		onSubmit: async values => {
 			const resultAction = await dispatch(registration(values));
-			if (registration.rejected.match(resultAction)) {
+			if (resultAction.payload) {
 				formik.setErrors({ commonError: resultAction.payload as string });
 			} else {
 				setSuccesses(true)

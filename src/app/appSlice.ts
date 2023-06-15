@@ -5,7 +5,7 @@ const slice = createSlice({
 	initialState: {
 		isInitialized: false,
 		isLoading: false,
-		isError: 'some error' as null | string,
+		isError: null as null | string,
 	},
 	reducers: {
 		setIsInitialized(state) {

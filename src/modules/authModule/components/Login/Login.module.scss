@@ -15,6 +15,11 @@
   position: relative;
   margin-bottom: 18px;
 
+  .error {
+    @include text(400, 12px, 24px, $red300);
+    position: absolute;
+    bottom: 60px;
+  }
   > button {
     margin-top: 48px;
   }
