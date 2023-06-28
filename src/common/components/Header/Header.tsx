@@ -9,6 +9,8 @@ import { useAppDispatch } from 'hooks';
 import { logout } from 'modules/authModule';
 import { LoadingLine } from 'common/components';
 import { isLoadingSelector } from 'app';
+import { useNavigate } from 'react-router-dom';
+import { PATH } from 'common/constans';
 
 export const Header = () => {
 	const [isActiveLogout, setIsActiveLogout] = useState(false);
@@ -18,6 +20,9 @@ export const Header = () => {
 	const user = useAppSelector(userSelector);
 
 	const dispatch = useAppDispatch();
+
+	const navigate = useNavigate();
+
 	const logoutHandler = () => {
 		dispatch(logout());
 	};
@@ -28,13 +33,17 @@ export const Header = () => {
 		setIsActiveLogout(true);
 	};
 
+	const onProfileSettings = () => {
+		navigate(PATH.DEVICES);
+	};
+
 	return (
 		<header className={s.container}>
 			<h2>Blogger Platform</h2>
 			{isLoggedIn && (
 				<div className={s.userAndLogout}>
 					<BurgerMenu user={user.login}>
-						<BurgerMenuButton title="Profile Setting" callback={() => {}} />
+						<BurgerMenuButton title="Profile Setting" callback={onProfileSettings} />
 					</BurgerMenu>
 					<div className={s.logout} onClick={onModalLogoutHandler}>
 						<LogoutIcon />
