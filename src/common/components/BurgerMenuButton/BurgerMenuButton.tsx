@@ -4,7 +4,7 @@ import s from './BurgerMenuButton.module.scss';
 type PropsType = {
 	title: string;
 	callback: () => void;
-	icon: ReactNode;
+	icon?: ReactNode;
 };
 
 export const BurgerMenuButton = ({ title, callback, icon }: PropsType) => {

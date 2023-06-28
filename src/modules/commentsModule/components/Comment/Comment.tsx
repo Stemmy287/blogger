@@ -3,9 +3,11 @@ import s from './Comment.module.scss';
 import noPhoto from 'assets/image/no-image.svg';
 import { dateConvertor } from 'common/utils';
 import { CommentType, deleteComment, updateComment } from 'modules/commentsModule';
-import { BurgerMenu, Button, Input, Notification, PopUp } from 'common/components';
+import { BurgerMenu, BurgerMenuButton, Button, Input, Notification, PopUp } from "common/components";
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { userSelector } from 'modules/authModule';
+import { ReactComponent as EditIcon } from 'assets/icons/Edit.svg';
+import { ReactComponent as DeleteIcon } from 'assets/icons/Delete.svg';
 
 type PropsType = {
 	comment: CommentType;
@@ -78,7 +80,10 @@ export const Comment = ({ comment }: PropsType) => {
 				</div>
 				{!isEdit && user.userId === comment.userId && (
 					<div className={s.burgerMenu}>
-						<BurgerMenu onEditClick={onEditActiveHandler} onDeleteClick={onModalHandler} />
+						<BurgerMenu>
+							<BurgerMenuButton title="Delete" callback={onModalHandler} icon={<DeleteIcon/>} />
+							<BurgerMenuButton title="Edit" callback={onEditActiveHandler} icon={<EditIcon/>} />
+						</BurgerMenu>
 					</div>
 				)}
 			</div>
