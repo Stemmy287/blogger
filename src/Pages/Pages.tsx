@@ -10,7 +10,7 @@ import { WithoutNav } from 'Pages';
 import { WithNav } from 'Pages';
 import { Registration } from 'modules/authModule';
 import { ProfileSettings } from 'modules/profileSettingModule/components/ProfileSettings/ProfileSettings';
-import { Devices } from 'modules/profileSettingModule/components/Devices/Devices';
+import { Devices } from 'modules/profileSettingModule';
 
 export const Pages = () => {
 	return (
