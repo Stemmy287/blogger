@@ -3,18 +3,18 @@ import s from './Comment.module.scss';
 import noPhoto from 'assets/image/no-image.svg';
 import { dateConvertor } from 'common/utils';
 import { CommentType, deleteComment, updateComment } from 'modules/commentsModule';
-import { BurgerMenu, BurgerMenuButton, Button, Input, Notification, PopUp } from "common/components";
+import { BurgerMenu, BurgerMenuButton, Button, Input, Notification, PopUp } from 'common/components';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { userSelector } from 'modules/authModule';
 import { ReactComponent as EditIcon } from 'assets/icons/Edit.svg';
 import { ReactComponent as DeleteIcon } from 'assets/icons/Delete.svg';
+import { Card } from 'common/components';
 
 type PropsType = {
 	comment: CommentType;
 };
 
 export const Comment = ({ comment }: PropsType) => {
-
 	const user = useAppSelector(userSelector);
 
 	const dispatch = useAppDispatch();
@@ -33,8 +33,8 @@ export const Comment = ({ comment }: PropsType) => {
 	};
 
 	const onModalHandler = () => {
-		setIsActive(true)
-	}
+		setIsActive(true);
+	};
 
 	const onEditActiveHandler = () => {
 		setIsEdit(true);
@@ -50,43 +50,39 @@ export const Comment = ({ comment }: PropsType) => {
 	};
 
 	const onCloseHandler = () => {
-		setIsActive(false)
-	}
+		setIsActive(false);
+	};
 
 	return (
 		<>
-			<div className={s.container}>
+			<Card>
 				<img className={s.photo} src={noPhoto} alt="ava" />
 				<div className={s.content}>
 					<div className={s.userInfo}>
 						<h2 className={s.name}>{comment.userLogin}</h2>
 						<span className={s.date}>{dateConvertor(comment.createdAt)}</span>
 					</div>
-					{isEdit ? <Input
-						value={editValue}
-						onChange={onChangeValue}
-						component="textarea" />
-						: <p>{comment.content}</p>}
+					{isEdit ? (
+						<Input value={editValue} onChange={onChangeValue} component="textarea" />
+					) : (
+						<p>{comment.content}</p>
+					)}
 					{isEdit && (
 						<div className={s.buttons}>
 							<Button isNoBackGround title="Cancel" callback={onCancelHandler} />
-							<Button 
-								disabled={comment.content === editValue} 
-								title="Edit Comment" 
-								callback={onEditHandler} 
-							/>
+							<Button disabled={comment.content === editValue} title="Edit Comment" callback={onEditHandler} />
 						</div>
 					)}
 				</div>
 				{!isEdit && user.userId === comment.userId && (
 					<div className={s.burgerMenu}>
 						<BurgerMenu>
-							<BurgerMenuButton title="Delete" callback={onModalHandler} icon={<DeleteIcon/>} />
-							<BurgerMenuButton title="Edit" callback={onEditActiveHandler} icon={<EditIcon/>} />
+							<BurgerMenuButton title="Delete" callback={onModalHandler} icon={<DeleteIcon />} />
+							<BurgerMenuButton title="Edit" callback={onEditActiveHandler} icon={<EditIcon />} />
 						</BurgerMenu>
 					</div>
 				)}
-			</div>
+			</Card>
 			{isActive && (
 				<PopUp onClose={onCloseHandler}>
 					<Notification
