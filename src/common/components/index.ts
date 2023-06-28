@@ -16,4 +16,5 @@ export * from 'common/components/BurgerMenuButton/BurgerMenuButton'
 export * from 'common/components/LoadingLine/LoadingLine'
 export * from 'common/components/Preloader/Preloader'
 export * from 'common/components/Empty/Empty'
+export * from 'common/components/Card/Card'
 

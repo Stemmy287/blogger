@@ -1,0 +1,21 @@
+@import "common/styles/mixns.scss";
+@import "common/styles/variables.scss";
+
+.container {
+  display: flex;
+  column-gap: 12px;
+  .content {
+    display: flex;
+    flex-direction: column;
+    .title {
+      @include text(600, 16px, 24px);
+      margin-bottom: 13px;
+    }
+    .ip {
+      @include text(400, 14px, 24px)
+    }
+    .date {
+      @include text(400, 12px, 24px)
+    }
+  }
+}
