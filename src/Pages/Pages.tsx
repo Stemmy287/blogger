@@ -9,6 +9,8 @@ import { Login } from 'modules/authModule';
 import { WithoutNav } from 'Pages';
 import { WithNav } from 'Pages';
 import { Registration } from 'modules/authModule';
+import { ProfileSettings } from 'modules/profileSettingModule/components/ProfileSettings/ProfileSettings';
+import { Devices } from 'modules/profileSettingModule/components/Devices/Devices';
 
 export const Pages = () => {
 	return (
@@ -23,8 +25,15 @@ export const Pages = () => {
 				<Route path={PATH.POSTS} element={<Posts />} />
 				<Route path={PATH.BLOG_PAGE} element={<BlogPage />} />
 				<Route path={PATH.POST_PAGE} element={<PostPage />} />
+				<Route
+					path={PATH.DEVICES}
+					element={
+						<ProfileSettings>
+							<Devices />
+						</ProfileSettings>
+					}
+				/>
 			</Route>
 		</Routes>
 	);
 };
-

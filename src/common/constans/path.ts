@@ -5,5 +5,6 @@ export const PATH = {
   BLOGS: '/blogs',
   POSTS: '/posts',
   BLOG_PAGE: '/blog-page/:blogId?',
-  POST_PAGE: '/post-page/:postId?'
+  POST_PAGE: '/post-page/:postId?',
+  DEVICES: '/devices'
 } as const
