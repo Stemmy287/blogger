@@ -1,0 +1,17 @@
+@import "common/styles/mixns.scss";
+@import "common/styles/variables.scss";
+
+.title {
+  @include text(500, 16px, 24px);
+  margin-bottom: 6px;
+}
+
+.container {
+  background-color: $gray200;
+  box-shadow: 0 5px 20px rgba(29, 33, 38, 0.03), 0 1px 2px rgba(29, 33, 38, 0.1);
+  border-radius: 2px;
+  padding: 17px 14px 17px 19px;
+  display: flex;
+  position: relative;
+  column-gap: 12px;
+}
