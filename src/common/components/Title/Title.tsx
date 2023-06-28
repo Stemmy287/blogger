@@ -5,7 +5,7 @@ import arrow from 'assets/icons/arrow.svg';
 type PropsType = {
   title: string
   desc?: string
-  isDesc: boolean
+  isDesc?: boolean
 }
 
 export const Title = ({title, desc, isDesc }: PropsType) => {
