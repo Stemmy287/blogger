@@ -1,0 +1,25 @@
+@import "common/styles/mixns.scss";
+@import "common/styles/variables.scss";
+
+.container {
+  position: relative;
+  margin-bottom: 42px;
+
+  > h5 {
+    @include text(600, 14px, 20px, $red200);
+    border-bottom: 2px solid $red200;
+    width:fit-content;
+    padding-bottom: 3px;
+    cursor: pointer;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    background: $gray400;
+    width: 106.8%;
+    height: 1px;
+    left: 53.4%;
+    transform: translate(-50%);
+  }
+}
