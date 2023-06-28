@@ -47,3 +47,9 @@
     border-bottom-color: $gray400;
   }
 }
+
+.noIcon {
+  padding-left: 0;
+  justify-content: center;
+  @include text(400, 16px)
+}

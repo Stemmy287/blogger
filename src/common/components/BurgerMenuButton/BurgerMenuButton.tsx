@@ -9,7 +9,7 @@ type PropsType = {
 
 export const BurgerMenuButton = ({ title, callback, icon }: PropsType) => {
 	return (
-		<button className={s.button} onClick={callback}>
+		<button className={!icon ? `${s.noIcon} ${s.button}` : s.button} onClick={callback}>
 			<span>{title}</span>
 			{icon}
 		</button>
