@@ -5,6 +5,12 @@
   position: relative;
   z-index: 1;
 
+  .userName {
+    @include text(600, 16px, 24px);
+    border-bottom: 1px dashed $gray1000;
+    cursor: pointer;
+  }
+
   .burger {
     cursor: pointer;
   }
@@ -17,6 +23,10 @@
     position: absolute;
     top: 25px;
     transform: translate(-90%, 0%);
+  }
+  .notDots {
+    top: 35px;
+    left: 67px;
   }
 }
 

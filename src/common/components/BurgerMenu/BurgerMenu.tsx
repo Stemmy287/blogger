@@ -5,9 +5,10 @@ import { useOutsideClick } from 'hooks';
 
 type PropsType = {
 	children: ReactNode;
+	user?: string;
 };
 
-export const BurgerMenu = ({children}: PropsType) => {
+export const BurgerMenu = ({ children, user }: PropsType) => {
 	const [isActive, setIsActive] = useState(false);
 
 	const selectRef = useRef<HTMLDivElement>(null);
@@ -15,17 +16,17 @@ export const BurgerMenu = ({children}: PropsType) => {
 	useOutsideClick(selectRef, () => setIsActive(false), isActive);
 
 	const onClickBurgerHandler = () => {
-		setIsActive(true);
+		setIsActive(!isActive);
 	};
 
 	return (
 		<div className={s.container} ref={selectRef}>
-			<img src={burgerMenu} alt="burger menu" className={s.burger} onClick={onClickBurgerHandler} />
-			{isActive && (
-				<div className={s.buttons}>
-					{children}
-				</div>
+			{user ? (
+				<h3 className={s.userName} onClick={onClickBurgerHandler}>{user}</h3>
+			) : (
+				<img src={burgerMenu} alt="burger menu" className={s.burger} onClick={onClickBurgerHandler} />
 			)}
+			{isActive && <div className={user ? `${s.buttons} ${s.notDots}` : s.buttons}>{children}</div>}
 		</div>
 	);
 };
