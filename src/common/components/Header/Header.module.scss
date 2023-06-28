@@ -13,6 +13,7 @@
   justify-content: space-between;
   position: relative;
   z-index: 100;
+
   > h2 {
     @include text(600, 26px, 36px);
   }
@@ -21,24 +22,27 @@
     display: flex;
     align-items: center;
     column-gap: 63px;
+
     .userName {
       @include text(600, 16px, 24px);
       border-bottom: 1px dashed $gray1000;
-    }
-
-    .logout {
-      display: flex;
-      align-items: center;
-      column-gap: 15px;
       cursor: pointer;
-      > span {
-        @include text(400, 14px, 24px);
-      }
     }
   }
 
-  > a {
-    text-decoration: none;
-    @include text(600, 16px, 24px);
+  .logout {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    cursor: pointer;
+
+    > span {
+      @include text(400, 14px, 24px);
+    }
   }
+}
+
+> a {
+  text-decoration: none;
+  @include text(600, 16px, 24px);
 }

@@ -3,7 +3,7 @@ import s from './Header.module.scss';
 import { useAppSelector } from 'hooks';
 import { isLoggedInSelector, userSelector } from 'modules/authModule';
 import { ReactComponent as LogoutIcon } from 'assets/icons/Logout.svg';
-import { PopUp } from 'common/components';
+import { BurgerMenu, BurgerMenuButton, PopUp } from 'common/components';
 import { Notification } from 'common/components';
 import { useAppDispatch } from 'hooks';
 import { logout } from 'modules/authModule';
@@ -11,7 +11,7 @@ import { LoadingLine } from 'common/components';
 import { isLoadingSelector } from 'app';
 
 export const Header = () => {
-	const [isActive, setIsActive] = useState(false);
+	const [isActiveLogout, setIsActiveLogout] = useState(false);
 
 	const isLoggedIn = useAppSelector(isLoggedInSelector);
 	const isLoading = useAppSelector(isLoadingSelector);
@@ -21,11 +21,11 @@ export const Header = () => {
 	const logoutHandler = () => {
 		dispatch(logout());
 	};
-	const onCloseHandler = () => {
-		setIsActive(false);
+	const onCloseLogoutHandler = () => {
+		setIsActiveLogout(false);
 	};
-	const onModalHandler = () => {
-		setIsActive(true);
+	const onModalLogoutHandler = () => {
+		setIsActiveLogout(true);
 	};
 
 	return (
@@ -33,19 +33,21 @@ export const Header = () => {
 			<h2>Blogger Platform</h2>
 			{isLoggedIn && (
 				<div className={s.userAndLogout}>
-					<h3 className={s.userName}>{user.login}</h3>
-					<div className={s.logout} onClick={onModalHandler}>
+					<BurgerMenu user={user.login}>
+						<BurgerMenuButton title="Profile Setting" callback={() => {}} />
+					</BurgerMenu>
+					<div className={s.logout} onClick={onModalLogoutHandler}>
 						<LogoutIcon />
 						<span>login out</span>
 					</div>
 				</div>
 			)}
-			{isActive && (
-				<PopUp onClose={onCloseHandler}>
+			{isActiveLogout && (
+				<PopUp onClose={onCloseLogoutHandler}>
 					<Notification
 						title="login out"
 						message={`Do you really want to log out of your account: ${user.email}`}
-						onClose={setIsActive}
+						onClose={setIsActiveLogout}
 						callback={logoutHandler}
 					/>
 				</PopUp>
