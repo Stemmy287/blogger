@@ -8,10 +8,10 @@ type PropsType = {
 
 export const Card = ({ children, title }: PropsType) => {
 	return (
-		<>
+		<div>
 			{title && <h6 className={s.title}>{title}</h6>}
 			<div className={s.container}>{children}</div>
-		</>
+		</div>
 	)
 }
 
