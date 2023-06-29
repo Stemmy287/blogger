@@ -1,2 +1,20 @@
 @import "common/styles/mixns.scss";
 @import "common/styles/variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  > button {
+    width: 231px;
+    margin-top: 24px;
+    margin-bottom: 18px;
+    align-self: end;
+  }
+
+  .activeSessions {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+  }
+}
