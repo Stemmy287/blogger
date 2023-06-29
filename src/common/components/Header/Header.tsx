@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import s from './Header.module.scss';
 import { useAppSelector } from 'hooks';
 import { isLoggedInSelector, userSelector } from 'modules/authModule';
-import { ReactComponent as LogoutIcon } from 'assets/icons/Logout.svg';
 import { BurgerMenu, BurgerMenuButton, PopUp } from 'common/components';
 import { Notification } from 'common/components';
 import { useAppDispatch } from 'hooks';
@@ -11,6 +10,7 @@ import { LoadingLine } from 'common/components';
 import { isLoadingSelector } from 'app';
 import { useNavigate } from 'react-router-dom';
 import { PATH } from 'common/constans';
+import { Logout } from 'common/components';
 
 export const Header = () => {
 	const [isActiveLogout, setIsActiveLogout] = useState(false);
@@ -45,10 +45,7 @@ export const Header = () => {
 					<BurgerMenu user={user.login}>
 						<BurgerMenuButton title="Profile Setting" callback={onProfileSettings} />
 					</BurgerMenu>
-					<div className={s.logout} onClick={onModalLogoutHandler}>
-						<LogoutIcon />
-						<span>login out</span>
-					</div>
+					<Logout callback={onModalLogoutHandler} />
 				</div>
 			)}
 			{isActiveLogout && (

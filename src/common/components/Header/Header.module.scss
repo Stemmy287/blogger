@@ -29,17 +29,6 @@
       cursor: pointer;
     }
   }
-
-  .logout {
-    display: flex;
-    align-items: center;
-    column-gap: 15px;
-    cursor: pointer;
-
-    > span {
-      @include text(400, 14px, 24px);
-    }
-  }
 }
 
 > a {
