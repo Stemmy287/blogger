@@ -8,7 +8,7 @@ export const Devices = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(fetchDevices());
+		dispatch(fetchDevices() );
 	}, [dispatch]);
 
 	return (
