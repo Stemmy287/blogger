@@ -6,6 +6,7 @@ import { postsReducer } from 'modules/postsModule';
 import { authReducer } from 'modules/authModule';
 import { appReducer } from 'app/appSlice';
 import { commentsReducer } from 'modules/commentsModule';
+import { profileSettingReducer } from 'modules/profileSettingModule';
 
 const rootReducer = combineReducers({
 	app: appReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
 	posts: postsReducer,
 	auth: authReducer,
 	comments: commentsReducer,
+	profileSetting: profileSettingReducer,
 });
 
 export const store = configureStore({

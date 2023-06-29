@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const instance = axios.create({
 	baseURL: 'https://back-samurai.vercel.app/',
-	withCredentials: true,
+	withCredentials: true
 });
 
 instance.interceptors.request.use(config => {
@@ -27,7 +27,7 @@ instance.interceptors.response.use(
 				localStorage.setItem('accessToken', res.data.accessToken);
 				return instance.request(originalRequest);
 			} catch (e) {
-				console.log(e);
+
 			}
 		}
 	}

@@ -1,9 +1,16 @@
-import React from 'react';
-import s from './Devices.module.scss'
+import React, { useEffect } from 'react';
+import s from './Devices.module.scss';
 import { Button, Card } from 'common/components';
-import { Device } from 'modules/profileSettingModule';
+import { Device, fetchDevices } from 'modules/profileSettingModule';
+import { useAppDispatch } from 'hooks';
 
 export const Devices = () => {
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(fetchDevices());
+	}, [dispatch]);
+
 	return (
 		<div className={s.container}>
 			<Card title="This devices">
