@@ -17,7 +17,7 @@ export const Button = ({ callback, title, type, isNoBackGround, disabled }: Prop
 				onClick={callback}
 				disabled={disabled}
 			>
-				{title}
+				{title || 'ok'}
 			</button>
 	);
 };
